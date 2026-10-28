@@ -1,0 +1,22 @@
+{
+  "name": "chargedossier",
+  "version": "0.1.0",
+  "description": "Evidence-quality review copilot for e-commerce payment disputes",
+  "type": "module",
+  "main": "src/engine.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test tests/*.test.js"
+  },
+  "keywords": [
+    "fintech",
+    "mastercard",
+    "disputes",
+    "chargebacks",
+    "evidence-audit",
+    "first-party-trust"
+  ],
+  "author": "Mastercard Opportunity Lab",
+  "license": "UNLICENSED",
+  "private": true
+}

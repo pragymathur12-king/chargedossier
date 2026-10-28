@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChargeDossier — Dispute Evidence Copilot</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Top Navigation Header -->
+  <header class="app-header">
+    <div class="header-brand">
+      <div class="logo-mark">CD</div>
+      <div class="brand-text">
+        <h1 class="brand-title">ChargeDossier</h1>
+        <span class="brand-subtitle">Evidence-Quality Review Copilot &middot; Mastercard Opportunity Lab</span>
+      </div>
+    </div>
+    <div class="header-actions">
+      <a href="https://pragymathur12-king.github.io/aura-portfolio/chargedossier.html" class="btn btn-outline btn-sm header-link" title="Read full product case study on portfolio">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+        Case Study
+      </a>
+      <a href="https://github.com/pragymathur12-king/chargedossier" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm header-link" title="View Source Code on GitHub">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <span class="sandbox-pill">
+        <span class="pulse-dot"></span>
+        Synthetic Sandbox &middot; Zero Live PII
+      </span>
+      <button id="btn-reset-demo" class="btn btn-secondary btn-sm" title="Restore all synthetic disputes to initial unreviewed state">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+        Reset Demo
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Application Container -->
+  <div class="app-container">
+    <!-- Left Sidebar: Dispute Queue -->
+    <aside class="sidebar-queue">
+      <div class="queue-header">
+        <h2 class="queue-title">Dispute Review Queue</h2>
+        <span class="queue-count" id="queue-count">4 Cases</span>
+      </div>
+      <div class="queue-list" id="dispute-list">
+        <!-- Dynamically rendered by app.js -->
+        <div class="loading-state">Loading dispute queue...</div>
+      </div>
+      <div class="queue-footer">
+        <div class="hint-text">
+          <strong>Internal Heuristic Audit:</strong> Evidence completeness evaluated against ChargeDossier internal heuristics modeled on common dispute reason codes (4837 Fraud &middot; 4853 Merchandise). Synthetic sandbox only; not an official Mastercard rating or predicted dispute outcome.
+        </div>
+      </div>
+    </aside>
+
+    <!-- Center/Right Content Area -->
+    <main class="main-content" id="main-view">
+      <!-- Active Dispute Header -->
+      <section class="dispute-hero" id="dispute-hero">
+        <div class="hero-primary">
+          <div class="hero-title-row">
+            <span class="hero-id" id="hero-dispute-id">DSP-0000</span>
+            <span class="badge" id="hero-state-badge">UNREVIEWED</span>
+            <span class="badge" id="hero-tier-badge">Awaiting Audit</span>
+          </div>
+          <h2 class="hero-product" id="hero-product-name">Select a dispute from the queue</h2>
+          <div class="hero-meta-row">
+            <span class="meta-item"><strong>Network:</strong> <span id="hero-network">Mastercard</span></span>
+            <span class="meta-item"><strong>Reason Code:</strong> <span id="hero-reason-code">-</span></span>
+            <span class="meta-item"><strong>Filing Deadline:</strong> <span id="hero-deadline">-</span></span>
+          </div>
+        </div>
+        <div class="hero-amount-card">
+          <span class="amount-label">Disputed Amount</span>
+          <span class="amount-val" id="hero-amount">$0.00 USD</span>
+          <span class="amount-sub" id="hero-order-id">Order #---</span>
+        </div>
+      </section>
+
+      <!-- Inspection & Audit Two-Column Grid -->
+      <div class="content-grid">
+        <!-- Left Column: Evidence & Order Inspection Pane -->
+        <div class="panel-column">
+          <div class="card card-tabs">
+            <div class="tabs-header">
+              <button class="tab-btn active" data-tab="tab-order">Order & Customer</button>
+              <button class="tab-btn" data-tab="tab-payment">Payment Auth</button>
+              <button class="tab-btn" data-tab="tab-fulfillment">Carrier Tracking</button>
+              <button class="tab-btn" data-tab="tab-policy">Policies & Chat</button>
+            </div>
+            <div class="card-body">
+              <!-- Tab 1: Order -->
+              <div class="tab-pane active" id="tab-order">
+                <div class="inspect-grid">
+                  <div class="inspect-item">
+                    <span class="inspect-label">Customer Name</span>
+                    <span class="inspect-val" id="insp-cust-name">-</span>
+                  </div>
+                  <div class="inspect-item">
+                    <span class="inspect-label">Customer Email</span>
+                    <span class="inspect-val" id="insp-cust-email">-</span>
+                  </div>
+                  <div class="inspect-item">
+                    <span class="inspect-label">Account Tenure</span>
+                    <span class="inspect-val" id="insp-tenure">-</span>
+                  </div>
+                  <div class="inspect-item">
+                    <span class="inspect-label">Prior Settled Orders</span>
+                    <span class="inspect-val" id="insp-prior-orders">-</span>
+                  </div>
+                  <div class="inspect-item full-width">
+                    <span class="inspect-label">Billing Address</span>
+                    <span class="inspect-val" id="insp-billing-address">-</span>
+                  </div>
+                  <div class="inspect-item full-width">
+                    <span class="inspect-label">Shipping Address</span>
+                    <span class="inspect-val" id="insp-shipping-address">-</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tab 2: Payment -->
+              <div class="tab-pane" id="tab-payment">
+                <div class="inspect-grid">
+                  <div class="inspect-item">
+                    <span class="inspect-label">Gateway / Intent</span>
+                    <span class="inspect-val" id="insp-gateway">-</span>
+                  </div>
+                  <div class="inspect-item">
+                    <span class="inspect-label">Card Brand & Last 4</span>
+                    <span class="inspect-val" id="insp-card">-</span>
+                  </div>
+                  <div class="inspect-item">
+                    <span class="inspect-label">AVS Street Match</span>
+                    <span class="inspect-val font-mono" id="insp-avs-street">-</span>
+                  </div>
+                  <div class="inspect-item">
+                    <span class="inspect-label">AVS Zip Match</span>
+                    <span class="inspect-val font-mono" id="insp-avs-zip">-</span>
+                  </div>
+                  <div class="inspect-item">
+                    <span class="inspect-label">CVC Security Code</span>
+                    <span class="inspect-val font-mono" id="insp-cvc">-</span>
+                  </div>
+                  <div class="inspect-item">
+                    <span class="inspect-label">3D Secure Result</span>
+                    <span class="inspect-val" id="insp-3ds">-</span>
+                  </div>
+                  <div class="inspect-item full-width">
+                    <span class="inspect-label">Customer Checkout IP & Geo</span>
+                    <span class="inspect-val" id="insp-ip-geo">-</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tab 3: Fulfillment -->
+              <div class="tab-pane" id="tab-fulfillment">
+                <div class="inspect-grid">
+                  <div class="inspect-item">
+                    <span class="inspect-label">Carrier & Tracking</span>
+                    <span class="inspect-val font-mono" id="insp-carrier-tracking">-</span>
+                  </div>
+                  <div class="inspect-item">
+                    <span class="inspect-label">Carrier Status</span>
+                    <span class="inspect-val" id="insp-carrier-status">-</span>
+                  </div>
+                  <div class="inspect-item">
+                    <span class="inspect-label">Delivery Date</span>
+                    <span class="inspect-val" id="insp-delivery-date">-</span>
+                  </div>
+                  <div class="inspect-item">
+                    <span class="inspect-label">Destination Address Match</span>
+                    <span class="inspect-val" id="insp-dest-match">-</span>
+                  </div>
+                  <div class="inspect-item full-width">
+                    <span class="inspect-label">Signature Captured</span>
+                    <span class="inspect-val" id="insp-signature">-</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tab 4: Policies & Communications -->
+              <div class="tab-pane" id="tab-policy">
+                <div class="inspect-grid">
+                  <div class="inspect-item">
+                    <span class="inspect-label">Terms Accepted at Checkout</span>
+                    <span class="inspect-val" id="insp-terms-accepted">-</span>
+                  </div>
+                  <div class="inspect-item">
+                    <span class="inspect-label">Published Return Policy</span>
+                    <span class="inspect-val" id="insp-refund-policy">-</span>
+                  </div>
+                  <div class="inspect-item full-width">
+                    <span class="inspect-label">Customer Support Logs</span>
+                    <div class="comm-records" id="insp-comm-records">No communication logs recorded.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Attached Exhibits Manifest Card -->
+          <div class="card mt-4">
+            <div class="card-header">
+              <h3 class="card-title">Attached Exhibits Manifest</h3>
+              <span class="badge" id="exhibit-count-badge">0 Files</span>
+            </div>
+            <div class="card-body">
+              <ul class="exhibit-list" id="attached-exhibits-list">
+                <!-- Dynamically populated -->
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Evidence Quality Assessment & Audit Card -->
+        <div class="panel-column">
+          <!-- Quality Score Card -->
+          <div class="card card-audit" id="audit-card">
+            <div class="card-header">
+              <h3 class="card-title">Evidence-Quality Assessment</h3>
+              <button class="btn btn-primary btn-sm" id="btn-run-audit">Run Quality Audit</button>
+            </div>
+            <div class="card-body">
+              <div class="score-display-row">
+                <div class="score-circle-container">
+                  <div class="score-circle" id="score-circle">
+                    <span class="score-number" id="score-val">--</span>
+                    <span class="score-denom">/ 100</span>
+                  </div>
+                </div>
+                <div class="score-narrative">
+                  <div class="tier-pill" id="tier-pill">Awaiting Audit</div>
+                  <p class="tier-desc" id="tier-desc">Click 'Run Quality Audit' to evaluate this dispute against deterministic rule heuristics modeled on second presentment guidelines.</p>
+                </div>
+              </div>
+
+              <!-- Action Recommendation Banner -->
+              <div class="recommendation-banner" id="recommendation-banner">
+                <span class="rec-label">Recommended Decision:</span>
+                <span class="rec-action" id="rec-action-text">--</span>
+              </div>
+
+              <!-- Contradictions & Risk Callout (Hidden when none) -->
+              <div class="callout callout-danger" id="contradictions-box" style="display: none;">
+                <h4 class="callout-title">Contradictory Evidence Detected</h4>
+                <ul class="callout-list" id="contradictions-list"></ul>
+              </div>
+
+              <!-- Actionable Fixes Drawer (For fixable cases) -->
+              <div class="callout callout-warning" id="fixes-box" style="display: none;">
+                <h4 class="callout-title">Remediation Steps Required</h4>
+                <ul class="callout-list" id="fixes-list"></ul>
+                <div class="fix-action-row" id="fix-action-container" style="display: none;">
+                  <button class="btn btn-warning btn-sm" id="btn-apply-fix">
+                    Attach Published Return Policy & Support Remedy
+                  </button>
+                </div>
+              </div>
+
+              <!-- Itemized Rule Checklist -->
+              <div class="rules-table-container">
+                <h4 class="subhead-title">Evidence Heuristic Checklist</h4>
+                <table class="rules-table">
+                  <thead>
+                    <tr>
+                      <th>Status</th>
+                      <th>Rule Description</th>
+                      <th>Points</th>
+                    </tr>
+                  </thead>
+                  <tbody id="rules-table-body">
+                    <tr><td colspan="3" class="text-muted">Audit not yet executed.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Structured Dossier Generation & Action Bar -->
+          <div class="card mt-4" id="dossier-card">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">Structured Second Presentment Dossier</h3>
+                <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.2rem;">
+                  Illustrative draft for merchant review; not an officially compliant or guaranteed submission-ready document.
+                </div>
+              </div>
+              <button class="btn btn-secondary btn-sm" id="btn-toggle-dossier">Preview Dossier</button>
+            </div>
+            <div class="card-body" id="dossier-preview-body" style="display: none;">
+              <div class="dossier-container">
+                <div class="dossier-header-block">
+                  <div class="dossier-id-tag" id="doss-id">DOS-DSP-XXXX</div>
+                  <div class="dossier-scheme-tag">Illustrative Draft Second Presentment &middot; Synthetic Simulation</div>
+                </div>
+                <div class="dossier-section">
+                  <h5 class="dossier-sec-title">1. Executive Rebuttal Letter (Illustrative Draft)</h5>
+                  <p class="dossier-text" id="doss-rebuttal-narrative">Narrative will be synthesized based on verified evidence exhibits.</p>
+                </div>
+                <div class="dossier-section">
+                  <h5 class="dossier-sec-title">2. Exhibits Manifest (Illustrative Layout)</h5>
+                  <div class="dossier-exhibits-grid" id="doss-exhibits-manifest"></div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer decision-footer">
+              <div class="decision-prompt" id="decision-prompt-text">
+                <strong>Operator Review Checkpoint:</strong> Inspect evidence and choose whether to approve as an illustrative draft or reject to avoid spending additional staff time on an unsuitable submission.
+              </div>
+              <div class="decision-status-banner" id="decision-status-banner" style="display: none;"></div>
+              <div class="decision-buttons" id="decision-buttons-group">
+                <button class="btn btn-danger" id="btn-reject-dossier">Reject Dossier (Accept Loss)</button>
+                <button class="btn btn-success" id="btn-approve-dossier">Approve Dossier (Simulated)</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal Dialog: Approve Confirmation -->
+  <div class="modal-overlay" id="modal-approve" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Approve Dossier Draft for Second Presentment</h3>
+        <button class="modal-close" data-close="modal-approve">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>You are marking this synthetic dispute dossier as <strong>APPROVED</strong> for operator records. In a production environment, this dossier draft would be exported for merchant gateway upload. This prototype operates strictly in a sandbox and does not submit to live payment processors.</p>
+        <div class="form-group">
+          <label for="approve-notes">Operator Verification Notes:</label>
+          <textarea id="approve-notes" class="form-input" rows="3" placeholder="e.g. Cardholder signature matches delivery manifest. Zendesk logs confirm customer received item."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-close="modal-approve">Cancel</button>
+        <button class="btn btn-success" id="btn-confirm-approve">Confirm Approval</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Dialog: Reject Confirmation -->
+  <div class="modal-overlay" id="modal-reject" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Reject Dossier &amp; Accept Dispute</h3>
+        <button class="modal-close" data-close="modal-reject">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>You are choosing <strong>not to contest</strong> this dispute. Accepting the dispute accepts the loss and may avoid spending additional staff time on an unsuitable submission.</p>
+        <div class="operational-savings-callout">
+          <strong>Decision Outcome:</strong> Dispute accepted as loss. May avoid spending additional operator time on an unsuitable submission. (No fee refund or gateway ratio change is implied).
+        </div>
+        <div class="form-group mt-3">
+          <label for="reject-reason">Rejection Rationale:</label>
+          <select id="reject-reason" class="form-input">
+            <option value="Carrier tracking confirms package is still in transit / delayed.">Carrier tracking confirms package is still in transit / delayed.</option>
+            <option value="Severe address mismatch and failed AVS indicate legitimate fraud.">Severe address mismatch and failed AVS indicate legitimate fraud.</option>
+            <option value="Missing customer signature makes recovery under scheme rules improbable.">Missing customer signature makes recovery under scheme rules improbable.</option>
+            <option value="Cost of assembling remaining evidence exceeds disputed recovery value.">Cost of assembling remaining evidence exceeds disputed recovery value.</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-close="modal-reject">Cancel</button>
+        <button class="btn btn-danger" id="btn-confirm-reject">Confirm Rejection</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
