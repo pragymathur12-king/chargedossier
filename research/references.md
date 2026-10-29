@@ -1,8 +1,8 @@
 # ChargeDossier: Research References & Evidence Register
 
 **Author:** Pragy Mathur  
-**Affiliation:** Integrated MBA Candidate (Class of 2027) *(Flagged for Author Confirmation)*  
-**Email:** pragymathur12@gmail.com *(Flagged for Author Confirmation)*  
+**Affiliation:** Integrated MBA Candidate (Class of 2027), Parul University  
+**Email:** pragymathur12@gmail.com  
 **Project:** Mastercard Opportunity Lab — ChargeDossier  
 **Paper:** *Deterministic Decision Support for Payment Dispute Evidence: A Synthetic Case Evaluation of Explainable Pre-Submission Auditing*  
 **Target Roles:** General Associate Product Manager (APM) &middot; Target Companies: Mastercard, Visa, Razorpay, Fintechs  
