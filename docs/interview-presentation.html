@@ -3,41 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ChargeDossier — PM Interview Presentation (Mastercard Opportunity Lab)</title>
+  <title>ChargeDossier — Deterministic Decision Support for Payment Dispute Evidence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     /* ==========================================================================
-       ChargeDossier Standalone PM Presentation Deck
-       Pure Offline CSS — Zero External Fonts, Libraries, or CDNs
+       ChargeDossier Premium 16:9 Recruiter Presentation Deck
+       Mastercard-Inspired Visual Language: Deep Charcoal, Card Geometry, Red/Orange/Gold Accents
        ========================================================================== */
 
     :root {
-      --bg-app: #0b1120;
-      --bg-surface: #131d31;
-      --bg-surface-elevated: #1e293b;
-      --bg-surface-card: rgba(30, 41, 59, 0.7);
+      --bg-canvas: #060709;
+      --bg-slide: #0c0e14;
+      --bg-panel: #131722;
+      --bg-panel-elevated: #1a2030;
+      --bg-card: rgba(22, 27, 40, 0.75);
       
-      --border-subtle: #24344d;
-      --border-highlight: #38bdf8;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-highlight: rgba(255, 255, 255, 0.16);
       
-      --text-main: #f8fafc;
+      --text-primary: #ffffff;
+      --text-secondary: #e2e8f0;
       --text-muted: #94a3b8;
       --text-dim: #64748b;
       
-      --color-brand: #0284c7;
-      --color-brand-light: #38bdf8;
+      /* Restrained Mastercard-Inspired Accents */
+      --mc-red: #eb001b;
+      --mc-orange: #ff5f00;
+      --mc-amber: #f79e1b;
+      --mc-gradient: linear-gradient(135deg, #eb001b 0%, #ff5f00 50%, #f79e1b 100%);
+      
       --color-success: #10b981;
       --color-success-bg: rgba(16, 185, 129, 0.12);
       --color-warning: #f59e0b;
       --color-warning-bg: rgba(245, 158, 11, 0.12);
       --color-danger: #ef4444;
       --color-danger-bg: rgba(239, 68, 68, 0.12);
+      --color-cyan: #00e5ff;
       
-      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
-      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, Menlo, Monaco, Consolas, monospace;
       
       --radius-sm: 6px;
       --radius-md: 10px;
-      --radius-lg: 14px;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
     }
 
     * {
@@ -46,1114 +57,1682 @@
       padding: 0;
     }
 
-    body {
+    html, body {
+      width: 100%;
+      height: 100%;
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
       font-family: var(--font-sans);
-      background-color: var(--bg-app);
-      color: var(--text-main);
-      line-height: 1.45;
-      -webkit-font-smoothing: antialiased;
-      height: 100vh;
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      user-select: none;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* Top Control Bar */
-    .top-bar {
-      height: 54px;
-      background-color: var(--bg-surface);
+    /* Presentation Layout Container */
+    .deck-container {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* Top Utility Bar */
+    .deck-header {
+      height: 48px;
+      background: rgba(12, 14, 20, 0.85);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border-subtle);
-      padding: 0 1.25rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 0 1.5rem;
       flex-shrink: 0;
-      z-index: 50;
+      z-index: 100;
     }
 
-    .brand-section {
+    .header-brand {
       display: flex;
       align-items: center;
       gap: 0.75rem;
     }
 
-    .brand-badge {
-      background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
-      color: #fff;
-      font-weight: 700;
-      font-size: 0.85rem;
-      padding: 0.25rem 0.55rem;
-      border-radius: var(--radius-sm);
-      letter-spacing: 0.04em;
-    }
-
-    .brand-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #fff;
-      letter-spacing: -0.01em;
-    }
-
-    .brand-subtitle {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      border-left: 1px solid var(--border-subtle);
-      padding-left: 0.75rem;
-      margin-left: 0.25rem;
-    }
-
-    .academic-disclaimer-pill {
-      font-size: 0.72rem;
-      background-color: rgba(56, 189, 248, 0.08);
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      color: var(--color-brand-light);
-      padding: 0.2rem 0.65rem;
-      border-radius: 9999px;
+    .header-logo {
       display: flex;
       align-items: center;
-      gap: 0.35rem;
+      gap: 3px;
     }
 
-    .academic-disclaimer-pill::before {
-      content: "";
-      width: 6px;
-      height: 6px;
+    .logo-dot {
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
-      background-color: var(--color-brand-light);
     }
 
-    .controls-section {
+    .dot-red { background-color: var(--mc-red); }
+    .dot-orange { background-color: var(--mc-orange); }
+
+    .header-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+    }
+
+    .header-sep {
+      color: var(--text-dim);
+      font-size: 0.8rem;
+    }
+
+    .header-sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .header-controls {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.5rem;
     }
 
-    .slide-counter {
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      background-color: var(--bg-surface-elevated);
-      padding: 0.25rem 0.65rem;
-      border-radius: var(--radius-sm);
+    .btn-ctrl {
+      background: var(--bg-panel);
       border: 1px solid var(--border-subtle);
-    }
-
-    .nav-btn {
-      background-color: var(--bg-surface-elevated);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-main);
-      padding: 0.35rem 0.85rem;
-      font-size: 0.82rem;
+      color: var(--text-secondary);
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
       font-weight: 600;
+      padding: 0.35rem 0.75rem;
       border-radius: var(--radius-sm);
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 0.35rem;
-      transition: all 0.15s ease;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+      text-decoration: none;
     }
 
-    .nav-btn:hover:not(:disabled) {
-      background-color: #334155;
-      border-color: var(--color-brand-light);
+    .btn-ctrl:hover {
+      background: var(--bg-panel-elevated);
       color: #fff;
+      border-color: var(--border-highlight);
     }
 
-    .nav-btn:disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
+    .slide-counter {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      padding: 0 0.5rem;
     }
 
-    .nav-btn-primary {
-      background-color: var(--color-brand);
-      border-color: var(--color-brand);
-      color: #fff;
+    .slide-counter strong {
+      color: var(--mc-orange);
     }
 
-    .nav-btn-primary:hover:not(:disabled) {
-      background-color: #0369a1;
-      border-color: #0369a1;
-    }
-
-    /* Main Deck Stage */
+    /* Main Viewport Stage */
     .deck-stage {
       flex: 1;
-      position: relative;
-      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 1.25rem 2rem;
+      position: relative;
+      overflow: hidden;
     }
 
-    .slide {
-      position: absolute;
-      inset: 1.25rem 2rem;
-      background-color: var(--bg-surface);
+    /* 16:9 Aspect Ratio Slide Canvas */
+    .slide-canvas {
+      width: 100%;
+      max-width: 1360px;
+      aspect-ratio: 16 / 9;
+      max-height: calc(100vh - 120px);
+      background-color: var(--bg-slide);
       border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 2rem 2.5rem;
+      border-radius: var(--radius-xl);
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.04);
       display: none;
       flex-direction: column;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity 0.22s ease-out, transform 0.22s ease-out;
-      overflow-y: auto;
-      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+      position: relative;
+      overflow: hidden;
+      padding: 2.75rem 3.25rem 2.25rem;
     }
 
-    .slide.active {
+    .slide-canvas.active {
       display: flex;
-      opacity: 1;
-      transform: translateY(0);
+      animation: fadeInSlide 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    /* Slide Header */
+    @keyframes fadeInSlide {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Ambient Background Card Art (Abstract Fintech Geometry) */
+    .canvas-bg-art {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+      background:
+        radial-gradient(circle at 90% 10%, rgba(235, 0, 27, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 10% 90%, rgba(247, 158, 27, 0.06) 0%, transparent 45%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.015) 0%, transparent 100%);
+    }
+
+    .card-ambient-mesh {
+      position: absolute;
+      top: -120px;
+      right: -80px;
+      width: 500px;
+      height: 320px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 28px;
+      transform: rotate(-14deg);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 100%);
+      pointer-events: none;
+    }
+
+    .card-ambient-mesh-2 {
+      position: absolute;
+      top: -60px;
+      right: -40px;
+      width: 460px;
+      height: 300px;
+      border: 1px solid rgba(255, 95, 0, 0.12);
+      border-radius: 28px;
+      transform: rotate(-14deg);
+      pointer-events: none;
+    }
+
+    /* Slide Content Structure */
     .slide-header {
-      margin-bottom: 1.25rem;
-      border-bottom: 1px solid var(--border-subtle);
-      padding-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      flex-shrink: 0;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 1rem;
     }
 
-    .slide-tag {
+    .slide-title-group {
+      max-width: 80%;
+    }
+
+    .slide-kicker {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mc-orange);
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .slide-kicker::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--mc-red);
+      display: inline-block;
+    }
+
+    .slide-title {
+      font-size: 1.65rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .slide-subtitle {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    .slide-num-pill {
       font-family: var(--font-mono);
       font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--color-brand-light);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 0.25rem;
-    }
-
-    .slide-headline {
-      font-size: 1.55rem;
       font-weight: 700;
-      color: #fff;
-      letter-spacing: -0.02em;
-      line-height: 1.25;
-    }
-
-    .slide-key-message {
-      font-size: 0.95rem;
-      color: #cbd5e1;
-      margin-top: 0.35rem;
-      max-width: 900px;
-    }
-
-    .slide-time-badge {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      background-color: var(--bg-surface-elevated);
-      color: var(--text-muted);
+      padding: 0.3rem 0.65rem;
+      background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--border-subtle);
-      padding: 0.2rem 0.5rem;
-      border-radius: var(--radius-sm);
-      white-space: nowrap;
+      border-radius: 999px;
+      color: var(--text-muted);
     }
 
-    /* Slide Body Grid & Containers */
     .slide-body {
       flex: 1;
+      position: relative;
+      z-index: 1;
       display: flex;
       flex-direction: column;
-      gap: 1.25rem;
-      overflow-y: auto;
+      justify-content: center;
+      overflow: hidden;
     }
 
+    .slide-footer {
+      position: relative;
+      z-index: 1;
+      margin-top: 1.25rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.7rem;
+      color: var(--text-dim);
+    }
+
+    .footer-left {
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+    }
+
+    .disclaimer-pill {
+      font-size: 0.65rem;
+      color: var(--text-dim);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    /* Grids & Cards */
     .grid-2 {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      height: 100%;
     }
 
     .grid-3 {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 1rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      height: 100%;
     }
 
     .grid-4 {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0.9rem;
+      gap: 1rem;
+      height: 100%;
     }
 
-    /* Card Elements */
-    .card {
-      background-color: var(--bg-surface-elevated);
+    .fintech-card {
+      background: var(--bg-panel);
       border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 1.15rem;
+      border-radius: var(--radius-lg);
+      padding: 1.35rem;
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .card.highlight {
-      border-color: rgba(56, 189, 248, 0.4);
-      background: linear-gradient(180deg, rgba(30, 41, 59, 0.9) 0%, rgba(19, 29, 49, 0.9) 100%);
-    }
-
-    .card-title {
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
-      letter-spacing: -0.01em;
-    }
-
-    .card-title .dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background-color: var(--color-brand-light);
-    }
-
-    /* Stat Box */
-    .stat-callout {
-      background: rgba(15, 23, 42, 0.6);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 1rem;
-      text-align: center;
-    }
-
-    .stat-number {
-      font-family: var(--font-mono);
-      font-size: 2.1rem;
-      font-weight: 700;
-      color: var(--color-brand-light);
-      line-height: 1.1;
-    }
-
-    .stat-number.danger { color: #f87171; }
-    .stat-number.success { color: #34d399; }
-    .stat-number.warning { color: #fbbf24; }
-
-    .stat-label {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-top: 0.25rem;
-      line-height: 1.3;
-    }
-
-    .stat-citation {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      color: var(--text-dim);
-      margin-top: 0.2rem;
-    }
-
-    /* Process Flow / Pipeline */
-    .pipeline-container {
-      display: flex;
-      align-items: stretch;
-      gap: 0.75rem;
-    }
-
-    .pipeline-step {
-      flex: 1;
-      background-color: var(--bg-surface-elevated);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 1rem;
       position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s ease;
     }
 
-    .pipeline-step.step-1 { border-top: 3px solid #38bdf8; }
-    .pipeline-step.step-2 { border-top: 3px solid #f59e0b; }
-    .pipeline-step.step-3 { border-top: 3px solid #10b981; }
-
-    .step-number {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      margin-bottom: 0.25rem;
+    .fintech-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: transparent;
+      transition: background 0.2s ease;
     }
 
-    .step-title {
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 0.4rem;
-    }
+    .fintech-card.accent-red::before { background: var(--mc-red); }
+    .fintech-card.accent-orange::before { background: var(--mc-orange); }
+    .fintech-card.accent-amber::before { background: var(--mc-amber); }
+    .fintech-card.accent-green::before { background: var(--color-success); }
+    .fintech-card.accent-cyan::before { background: var(--color-cyan); }
 
-    .step-desc {
-      font-size: 0.78rem;
-      color: #cbd5e1;
-      line-height: 1.4;
-    }
-
-    /* Case Study Card (Slide 4) */
-    .case-card {
-      background-color: var(--bg-surface-elevated);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .case-badge-row {
+    .card-header-sm {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
     }
 
-    .case-id {
-      font-family: var(--font-mono);
+    .card-badge {
+      font-size: 0.68rem;
       font-weight: 700;
-      font-size: 0.85rem;
-      color: #fff;
-    }
-
-    .score-badge {
-      font-family: var(--font-mono);
-      font-weight: 700;
-      font-size: 0.85rem;
-      padding: 0.15rem 0.5rem;
-      border-radius: var(--radius-sm);
-    }
-
-    .score-badge.tier-a {
-      background-color: var(--color-success-bg);
-      color: #34d399;
-      border: 1px solid rgba(16, 185, 129, 0.4);
-    }
-
-    .score-badge.tier-b {
-      background-color: var(--color-warning-bg);
-      color: #fbbf24;
-      border: 1px solid rgba(245, 158, 11, 0.4);
-    }
-
-    .score-badge.tier-c {
-      background-color: var(--color-danger-bg);
-      color: #f87171;
-      border: 1px solid rgba(239, 68, 68, 0.4);
-    }
-
-    .case-product {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: #e2e8f0;
-      margin-bottom: 0.25rem;
-    }
-
-    .case-reason {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
-    }
-
-    .case-finding {
-      font-size: 0.76rem;
-      color: #cbd5e1;
-      background: rgba(15, 23, 42, 0.5);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-sm);
-      padding: 0.5rem;
-      line-height: 1.35;
-      margin-top: 0.35rem;
-    }
-
-    /* Comparison Table / Matrix */
-    .matrix-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.8rem;
-      text-align: left;
-    }
-
-    .matrix-table th {
-      background-color: rgba(15, 23, 42, 0.7);
-      padding: 0.65rem 0.85rem;
-      border: 1px solid var(--border-subtle);
-      color: #e2e8f0;
-      font-weight: 600;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
       text-transform: uppercase;
-      font-size: 0.72rem;
       letter-spacing: 0.04em;
     }
 
-    .matrix-table td {
-      padding: 0.65rem 0.85rem;
-      border: 1px solid var(--border-subtle);
-      color: #cbd5e1;
-      line-height: 1.35;
+    .badge-subtle { background: rgba(255, 255, 255, 0.05); color: var(--text-muted); }
+    .badge-success { background: var(--color-success-bg); color: var(--color-success); border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-warning { background: var(--color-warning-bg); color: var(--color-warning); border: 1px solid rgba(245, 158, 11, 0.3); }
+    .badge-danger { background: var(--color-danger-bg); color: var(--color-danger); border: 1px solid rgba(239, 68, 68, 0.3); }
+
+    .card-title-sm {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.35rem;
     }
 
-    .matrix-table tr:nth-child(even) {
-      background-color: rgba(255, 255, 255, 0.02);
+    .card-desc-sm {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
     }
 
-    .tag-pill {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      font-weight: 600;
-      padding: 0.1rem 0.45rem;
-      border-radius: 4px;
-      display: inline-block;
-      text-transform: uppercase;
-    }
-
-    .tag-verified { background: var(--color-success-bg); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
-    .tag-fact { background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
-    .tag-hypothesis { background: var(--color-warning-bg); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
-    .tag-untested { background: rgba(148, 163, 184, 0.12); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3); }
-
-    /* Bullet List with visual dots */
+    /* List items in cards */
     .bullet-list {
       list-style: none;
+      margin-top: 0.5rem;
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
-      font-size: 0.82rem;
-      color: #cbd5e1;
+      gap: 0.45rem;
     }
 
     .bullet-list li {
-      position: relative;
-      padding-left: 1.15rem;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
       line-height: 1.4;
+      position: relative;
+      padding-left: 1rem;
     }
 
     .bullet-list li::before {
       content: "•";
+      color: var(--mc-orange);
       position: absolute;
-      left: 0.2rem;
-      color: var(--color-brand-light);
-      font-size: 1.1rem;
-      line-height: 1;
+      left: 0;
+      font-weight: bold;
     }
 
-    /* Bottom Speaker Notes Drawer */
-    .notes-drawer {
-      background-color: #070d19;
+    /* Stat Callout */
+    .stat-callout {
+      margin-top: auto;
+      padding-top: 0.75rem;
       border-top: 1px solid var(--border-subtle);
-      padding: 0.75rem 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-      flex-shrink: 0;
-      max-height: 150px;
-      overflow-y: auto;
-      transition: max-height 0.2s ease;
-    }
-
-    .notes-drawer.collapsed {
-      max-height: 34px;
-      overflow: hidden;
-      padding-top: 0.4rem;
-      padding-bottom: 0.4rem;
-    }
-
-    .notes-header {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
+      align-items: baseline;
     }
 
-    .notes-label {
+    .stat-val {
       font-family: var(--font-mono);
-      font-size: 0.74rem;
-      font-weight: 700;
-      color: #38bdf8;
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .stat-lbl {
+      font-size: 0.7rem;
+      color: var(--text-dim);
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
 
-    .notes-hint {
-      font-size: 0.7rem;
-      color: var(--text-dim);
+    /* Cover Slide Bespoke Styles */
+    .cover-layout {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100%;
+      max-width: 900px;
     }
 
-    .notes-content {
-      font-size: 0.85rem;
-      color: #e2e8f0;
+    .cover-brand-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .cover-pill {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(255, 95, 0, 0.12);
+      border: 1px solid rgba(255, 95, 0, 0.35);
+      color: var(--mc-orange);
+    }
+
+    .cover-h1 {
+      font-size: 3.25rem;
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1.05;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    .cover-h1 span {
+      background: var(--mc-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .cover-sub {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
       line-height: 1.45;
-      font-style: italic;
+      margin-bottom: 2.25rem;
+      max-width: 760px;
+      font-weight: 500;
     }
 
-    /* Print View */
+    .cover-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, auto);
+      gap: 2rem;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 1.5rem;
+      width: 100%;
+    }
+
+    .cover-meta-item .meta-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      margin-bottom: 0.25rem;
+    }
+
+    .cover-meta-item .meta-value {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    /* Workflow Pipeline Visual */
+    .pipeline-container {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.65rem;
+      height: 100%;
+      align-items: stretch;
+    }
+
+    .pipeline-step {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1rem 0.85rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .step-num {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: var(--mc-orange);
+      margin-bottom: 0.4rem;
+    }
+
+    .step-name {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.4rem;
+      line-height: 1.25;
+    }
+
+    .step-text {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Comparison Table / Benchmarks */
+    .bench-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.78rem;
+      text-align: left;
+    }
+
+    .bench-table th {
+      padding: 0.65rem 0.85rem;
+      background: var(--bg-panel-elevated);
+      color: var(--text-muted);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .bench-table td {
+      padding: 0.75rem 0.85rem;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      vertical-align: middle;
+    }
+
+    .bench-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .tag-mono {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      font-size: 0.75rem;
+    }
+
+    /* Bottom Slide Navigation Bar */
+    .deck-nav {
+      height: 48px;
+      background: rgba(12, 14, 20, 0.85);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      flex-shrink: 0;
+      z-index: 100;
+    }
+
+    .nav-dots {
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+    }
+
+    .nav-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .nav-dot:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .nav-dot.active {
+      background: var(--mc-orange);
+      width: 22px;
+      border-radius: 999px;
+    }
+
+    .nav-btns {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    /* Print / PDF Styles */
     @media print {
-      body {
-        height: auto;
-        overflow: visible;
-        background: #fff;
-        color: #000;
+      @page {
+        size: 16in 9in;
+        margin: 0;
       }
-      .top-bar, .notes-header, .notes-hint { display: none !important; }
-      .deck-stage { padding: 0; }
-      .slide {
-        position: relative !important;
-        inset: auto !important;
+
+      html, body, .deck-container {
+        width: 16in !important;
+        height: auto !important;
+        min-height: 100% !important;
+        overflow: visible !important;
+        background-color: var(--bg-canvas) !important;
+        display: block !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .deck-header, .deck-nav {
+        display: none !important;
+      }
+
+      .deck-stage {
+        padding: 0 !important;
+        margin: 0 !important;
+        display: block !important;
+        height: auto !important;
+        overflow: visible !important;
+      }
+
+      .slide-canvas {
         display: flex !important;
-        opacity: 1 !important;
-        transform: none !important;
-        page-break-after: always;
-        break-after: page;
-        border: 1px solid #ccc;
-        margin-bottom: 2rem;
-        background: #fff !important;
-        color: #000 !important;
+        width: 16in !important;
+        height: 9in !important;
+        max-width: 16in !important;
+        max-height: 9in !important;
+        box-sizing: border-box !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        overflow: hidden !important;
+        margin: 0 !important;
+        padding: 0.65in 0.85in !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
       }
-      .slide-headline, .card-title, .step-title, .case-id, .stat-number { color: #000 !important; }
-      .card, .stat-callout, .pipeline-step, .case-card { background: #f8fafc !important; border: 1px solid #ddd !important; }
-      .notes-drawer { max-height: none !important; background: #fff !important; border-top: 1px dashed #999 !important; color: #333 !important; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Control Bar -->
-  <header class="top-bar">
-    <div class="brand-section">
-      <span class="brand-badge">CD</span>
-      <span class="brand-title">ChargeDossier</span>
-      <span class="brand-subtitle">5-Minute PM Interview Presentation</span>
-      <span class="academic-disclaimer-pill" title="Independent academic prototype developed for portfolio review">
-        Independent Academic Prototype &middot; Zero Network Connection
-      </span>
-    </div>
-
-    <div class="controls-section">
-      <span class="slide-counter" id="slide-indicator">Slide 1 of 6</span>
-      <button class="nav-btn" id="btn-prev" title="Previous Slide (Left Arrow)">◀ Prev</button>
-      <button class="nav-btn nav-btn-primary" id="btn-next" title="Next Slide (Right Arrow or Space)">Next ▶</button>
-      <button class="nav-btn" id="btn-toggle-notes" title="Toggle Speaker Notes (S)">🎙️ Notes [S]</button>
-    </div>
-  </header>
-
-  <!-- Slide Stage -->
-  <main class="deck-stage">
-
-    <!-- ==========================================
-         SLIDE 1: Problem & Industry Friction
-         ========================================== -->
-    <section class="slide active" id="slide-1">
-      <div class="slide-header">
-        <div>
-          <div class="slide-tag">Slide 1 of 6 &middot; Context &amp; Opportunity</div>
-          <h2 class="slide-headline">The Hidden Margin Drag: Why High-Ticket E-Commerce Disputes Remain Broken</h2>
-          <p class="slide-key-message">US merchants lose over five dollars in total organizational friction for every dollar of dispute loss, driven by fragmented cross-tool data and high abandonment.</p>
+  <div class="deck-container">
+    <!-- Top Control Bar -->
+    <header class="deck-header">
+      <div class="header-brand">
+        <div class="header-logo">
+          <span class="logo-dot dot-red"></span>
+          <span class="logo-dot dot-orange"></span>
         </div>
-        <span class="slide-time-badge">~50s</span>
+        <span class="header-title">ChargeDossier</span>
+        <span class="header-sep">/</span>
+        <span class="header-sub">Executive Recruiter Presentation (16:9 Deck)</span>
       </div>
 
-      <div class="slide-body">
-        <div class="grid-4">
-          <div class="stat-callout">
-            <div class="stat-number danger">$4.61–$5.13</div>
-            <div class="stat-label">Total merchant cost per $1 of direct fraud/dispute loss</div>
-            <div class="stat-citation">LexisNexis True Cost of Fraud Study [S-05]</div>
-          </div>
-          <div class="stat-callout">
-            <div class="stat-number warning">~60%</div>
-            <div class="stat-label">Merchants who abandon at least 40% of incoming chargebacks</div>
-            <div class="stat-citation">Riskified / Datos Insights Survey [S-15]</div>
-          </div>
-          <div class="stat-callout">
-            <div class="stat-number">30–60 min</div>
-            <div class="stat-label">Manual operator time to harvest evidence per dispute</div>
-            <div class="stat-citation">Industry Merchant Surveys [S-05, S-11]</div>
-          </div>
-          <div class="stat-callout">
-            <div class="stat-number danger">&lt;20%</div>
-            <div class="stat-label">Average merchant win rate on fraud chargebacks handled manually</div>
-            <div class="stat-citation">Merchant Risk Council (MRC) Report [S-06]</div>
-          </div>
-        </div>
-
-        <div class="grid-2">
-          <div class="card">
-            <div class="card-title"><span class="dot"></span> The Operational Silo Problem</div>
-            <p style="font-size: 0.8rem; color: #cbd5e1; margin-bottom: 0.5rem;">Contesting a single payment dispute requires manually pulling data across 3 to 5 disconnected SaaS platforms:</p>
-            <ul class="bullet-list">
-              <li><strong>Shopify / WooCommerce:</strong> Customer order details, account tenure, prior orders.</li>
-              <li><strong>Stripe / Gateways:</strong> Payment tokens, AVS street/zip match, CVC check, 3DS authentication.</li>
-              <li><strong>ShipStation / Carriers:</strong> Carrier tracking events, delivery scans, signed POD receipts.</li>
-              <li><strong>Zendesk / Gorgias:</strong> Customer support transcripts, replacement offers, policy terms.</li>
-            </ul>
-          </div>
-
-          <div class="card highlight">
-            <div class="card-title"><span class="dot"></span> The Polarized Market Trap</div>
-            <ul class="bullet-list">
-              <li><strong>Option A: Manual Representation:</strong> Unstructured screenshot dumps into gateway portals. Slow (45 min), high staff cost, and issuing banks reject unstructured files (&lt;20% win rate [S-06]).</li>
-              <li><strong>Option B: Autopilot Contingency Bots:</strong> Vendors like Chargeflow charge an advertised <strong>25% contingency take-rate</strong> on gross funds recovered [S-11].</li>
-              <li><strong>The Core Tension:</strong> On high-ticket transactions ($150–$1,500), paying 25% costs $75 to $375 per claim, severely penalizing merchants on thin 10%–15% net retail margins.</li>
-            </ul>
-          </div>
-        </div>
+      <div class="header-controls">
+        <a href="https://pragymathur12-king.github.io/chargedossier/" target="_blank" class="btn-ctrl">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Live Demo
+        </a>
+        <a href="https://pragymathur12-king.github.io/aura-portfolio/chargedossier.html" target="_blank" class="btn-ctrl">
+          Case Study
+        </a>
+        <a href="https://github.com/pragymathur12-king/chargedossier" target="_blank" class="btn-ctrl">
+          GitHub
+        </a>
+        <button id="btn-print-pdf" class="btn-ctrl" title="Export deck to 16:9 PDF">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          Export PDF
+        </button>
       </div>
-    </section>
+    </header>
 
-    <!-- ==========================================
-         SLIDE 2: Target Customer & Product Hypothesis
-         ========================================== -->
-    <section class="slide" id="slide-2">
-      <div class="slide-header">
-        <div>
-          <div class="slide-tag">Slide 2 of 6 &middot; Customer &amp; Value Proposition</div>
-          <h2 class="slide-headline">Targeting High-Ticket D2C: The 25% Contingency Dilemma</h2>
-          <p class="slide-key-message">For merchants selling $150–$1,500 goods, contingency bots create severe margin drag, while blind automation risks permanent losses on merchandise claims.</p>
-        </div>
-        <span class="slide-time-badge">~50s</span>
-      </div>
+    <!-- Main Viewport Stage -->
+    <main class="deck-stage">
 
-      <div class="slide-body">
-        <div class="grid-2">
-          <div class="card">
-            <div class="card-title"><span class="dot"></span> Ideal Customer Profile (ICP)</div>
-            <table class="matrix-table">
-              <tr><th>Dimension</th><th>Target Profile Definition</th></tr>
-              <tr><td><strong>Merchant Segment</strong></td><td>US Direct-to-Consumer (D2C) Physical Goods (Audio, Kitchen, Ergonomic Furniture, Electronics).</td></tr>
-              <tr><td><strong>Price Point</strong></td><td><strong>$150 to $1,500 Average Order Value (AOV)</strong>.</td></tr>
-              <tr><td><strong>Scale &amp; Volume</strong></td><td>$1M to $10M annual GMV &middot; 15 to 80 payment disputes per month.</td></tr>
-              <tr><td><strong>Target User</strong></td><td>Merchant Operations Lead, Risk Specialist, or Customer Support Manager.</td></tr>
-              <tr><td><strong>Economic Buyer</strong></td><td>Founder/CEO or Head of Finance feeling chargeback fee drag.</td></tr>
-            </table>
+      <!-- SLIDE 1: COVER -->
+      <section class="slide-canvas active" data-slide="1">
+        <div class="canvas-bg-art"></div>
+        <div class="card-ambient-mesh"></div>
+        <div class="card-ambient-mesh-2"></div>
+
+        <div class="slide-body">
+          <div class="cover-layout">
+            <div class="cover-brand-row">
+              <div class="header-logo">
+                <span class="logo-dot dot-red" style="width: 16px; height: 16px;"></span>
+                <span class="logo-dot dot-orange" style="width: 16px; height: 16px;"></span>
+              </div>
+              <span class="cover-pill">Associate Product Manager (APM) Case Study &middot; Fintech Product Systems</span>
+            </div>
+
+            <h1 class="cover-h1">
+              Charge<span>Dossier</span>
+            </h1>
+            <p class="cover-sub">
+              Deterministic Decision Support for Payment Dispute Evidence: An Associate Product Manager Case Study in Explainable Fintech Operations
+            </p>
+
+            <div class="cover-meta-grid">
+              <div class="cover-meta-item">
+                <div class="meta-label">Author &middot; Candidate</div>
+                <div class="meta-value">Pragy Mathur</div>
+              </div>
+              <div class="cover-meta-item">
+                <div class="meta-label">Target Role &middot; Companies</div>
+                <div class="meta-value">General APM &middot; Mastercard, Visa, Razorpay, Fintechs</div>
+              </div>
+              <div class="cover-meta-item">
+                <div class="meta-label">Verified Test Suite</div>
+                <div class="meta-value" style="color: var(--color-success); font-family: var(--font-mono);">24/24 Tests Passed (100%)</div>
+              </div>
+              <div class="cover-meta-item">
+                <div class="meta-label">Published Artifacts</div>
+                <div class="meta-value">Live Demo &middot; Case Study &middot; Source</div>
+              </div>
+            </div>
           </div>
+        </div>
 
-          <div class="card highlight">
-            <div class="card-title"><span class="dot"></span> The High-Ticket Asymmetry</div>
-            <table class="matrix-table">
-              <tr><th>Order Value</th><th>Chargeflow 25% Take-Rate [S-11]</th><th>ChargeDossier $49/mo Flat SaaS</th></tr>
+        <footer class="slide-footer">
+          <div class="footer-left">
+            <span>ChargeDossier Executive Presentation</span>
+            <span class="disclaimer-pill">Independent portfolio project. Not affiliated with, sponsored by, or endorsed by Mastercard.</span>
+          </div>
+          <span class="slide-num-pill">01 / 12</span>
+        </footer>
+      </section>
+
+      <!-- SLIDE 2: EXECUTIVE SUMMARY -->
+      <section class="slide-canvas" data-slide="2">
+        <div class="canvas-bg-art"></div>
+        <header class="slide-header">
+          <div class="slide-title-group">
+            <div class="slide-kicker">Executive Summary</div>
+            <h2 class="slide-title">Engineering Discipline Meets Epistemic Honesty</h2>
+            <p class="slide-subtitle">What problem was explored, what prototype was engineered, what was verified, and what remains an unvalidated hypothesis.</p>
+          </div>
+          <span class="slide-num-pill">02 / 12</span>
+        </header>
+
+        <div class="slide-body">
+          <div class="grid-4">
+            <div class="fintech-card accent-red">
+              <div class="card-header-sm">
+                <span class="card-badge badge-danger">1. The Problem</span>
+              </div>
+              <h3 class="card-title-sm">High-Ticket Margin Drag</h3>
+              <p class="card-desc-sm">
+                Merchants selling $150–$2,000+ goods face polarized options: 30–60 min manual assembly across 4 disconnected SaaS tools (sub-20% win rate), or autopilot bots charging a <strong>25% contingency take-rate</strong> that submit fatal contradictions blindly.
+              </p>
+              <div class="stat-callout">
+                <div>
+                  <div class="stat-val">$75–$375</div>
+                  <div class="stat-lbl">Fee Drag per $300–$1.5k Case</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="fintech-card accent-orange">
+              <div class="card-header-sm">
+                <span class="card-badge badge-warning">2. What Was Built</span>
+              </div>
+              <h3 class="card-title-sm">Deterministic Review Copilot</h3>
+              <p class="card-desc-sm">
+                A zero-dependency evidence auditor scoring dispute readiness (0–100) across 5 rule categories modeled on Mastercard 4837/4853 heuristics, flagging fatal flaws, compiling Mastercom-compliant dossiers, with an explicit human approval lock.
+              </p>
+              <div class="stat-callout">
+                <div>
+                  <div class="stat-val">&lt; 90 Sec</div>
+                  <div class="stat-lbl">Evidence Triage Window</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="fintech-card accent-green">
+              <div class="card-header-sm">
+                <span class="card-badge badge-success">3. What Was Verified</span>
+              </div>
+              <h3 class="card-title-sm">24 Automated Tests Passed</h3>
+              <p class="card-desc-sm">
+                Verified across 4 distinct synthetic high-ticket edge cases in native Node.js (312ms runtime). Dual execution verified: local REST API and 100% in-browser client execution on live GitHub Pages with zero server dependencies.
+              </p>
+              <div class="stat-callout">
+                <div>
+                  <div class="stat-val">100%</div>
+                  <div class="stat-lbl">Test Pass Rate (3 Suites)</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="fintech-card accent-amber">
+              <div class="card-header-sm">
+                <span class="card-badge badge-subtle">4. Unvalidated Claims</span>
+              </div>
+              <h3 class="card-title-sm">Epistemic Boundaries</h3>
+              <p class="card-desc-sm">
+                Customer willingness to pay $49/mo flat SaaS vs. 25% contingency remains unvalidated. Operator review friction (60–90 sec) vs. autopilot preference is unproven. <strong>Zero customer interviews conducted</strong> (outreach paused awaiting review).
+              </p>
+              <div class="stat-callout">
+                <div>
+                  <div class="stat-val">0</div>
+                  <div class="stat-lbl">Unverified Commercial Claims</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <footer class="slide-footer">
+          <div class="footer-left">
+            <span>ChargeDossier &middot; Mastercard Opportunity Lab</span>
+            <span class="disclaimer-pill">Independent portfolio project. Not affiliated with, sponsored by, or endorsed by Mastercard.</span>
+          </div>
+          <span class="slide-num-pill">02 / 12</span>
+        </footer>
+      </section>
+
+      <!-- SLIDE 3: THE PROBLEM -->
+      <section class="slide-canvas" data-slide="3">
+        <div class="canvas-bg-art"></div>
+        <header class="slide-header">
+          <div class="slide-title-group">
+            <div class="slide-kicker">Market Reality &amp; Root Cause</div>
+            <h2 class="slide-title">The Three Evidence Failure Modes in High-Ticket Disputes</h2>
+            <p class="slide-subtitle">Why online merchants write off winnable disputes and why blind submission causes permanent losses.</p>
+          </div>
+          <span class="slide-num-pill">03 / 12</span>
+        </header>
+
+        <div class="slide-body">
+          <div class="grid-3">
+            <div class="fintech-card accent-red">
+              <div class="card-header-sm">
+                <span class="card-badge badge-danger">Failure Mode A</span>
+                <span class="tag-mono" style="color: var(--text-dim);">MISSING</span>
+              </div>
+              <h3 class="card-title-sm">Absent Critical Exhibits</h3>
+              <p class="card-desc-sm">
+                Under scheme guidelines, disputes require specific nexus proofs. On Reason Code 4853 (Merchandise) claims, submitting tracking without attaching the store's <strong>published return policy</strong> or customer support remedy results in automatic issuing bank rejection.
+              </p>
+              <ul class="bullet-list">
+                <li>Missing timestamped checkout terms acceptance</li>
+                <li>Absent carrier signature receipt on orders &gt; $150</li>
+                <li>No documented repair or replacement offer transcript</li>
+              </ul>
+            </div>
+
+            <div class="fintech-card accent-orange">
+              <div class="card-header-sm">
+                <span class="card-badge badge-warning">Failure Mode B</span>
+                <span class="tag-mono" style="color: var(--text-dim);">CONTRADICTORY</span>
+              </div>
+              <h3 class="card-title-sm">Self-Defeating Evidence</h3>
+              <p class="card-desc-sm">
+                Automated bots ingest data without semantic cross-checks. Submitting carrier tracking showing a package is still <strong>"In Transit"</strong> (weather delay) or an order delivered to a Florida freight forwarder with failed AVS guarantees rejection while wasting administrative fees.
+              </p>
+              <ul class="bullet-list">
+                <li>Package delivered to unverified forwarder destination</li>
+                <li>Support transcript contains cardholder theft claim</li>
+                <li>Billing state mismatch with failed AVS street match ('N')</li>
+              </ul>
+            </div>
+
+            <div class="fintech-card accent-amber">
+              <div class="card-header-sm">
+                <span class="card-badge badge-subtle">Failure Mode C</span>
+                <span class="tag-mono" style="color: var(--text-dim);">IRRELEVANT</span>
+              </div>
+              <h3 class="card-title-sm">Scheme Mismatch</h3>
+              <p class="card-desc-sm">
+                Evidence that defeats one reason code is useless for another. Submitting terms of service to counter Reason Code 4837 (Fraud / No Authorization) fails because cardholders did not authorize checkout. Only 3DS tokens, AVS/CVC matches, and device IP establish liability shift.
+              </p>
+              <ul class="bullet-list">
+                <li>Survey: ~60% of merchants abandon 40%+ chargebacks [S-15]</li>
+                <li>Manual fraud win rate averages under 20% [S-06]</li>
+                <li>LexisNexis: $1 fraud costs $4.61–$5.13 in total friction [S-05]</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <footer class="slide-footer">
+          <div class="footer-left">
+            <span>Sources: LexisNexis [S-05] &middot; MRC / Cybersource [S-06] &middot; Riskified / Datos Insights [S-15]</span>
+            <span class="disclaimer-pill">Independent portfolio project. Not affiliated with, sponsored by, or endorsed by Mastercard.</span>
+          </div>
+          <span class="slide-num-pill">03 / 12</span>
+        </footer>
+      </section>
+
+      <!-- SLIDE 4: PRODUCT HYPOTHESIS -->
+      <section class="slide-canvas" data-slide="4">
+        <div class="canvas-bg-art"></div>
+        <header class="slide-header">
+          <div class="slide-title-group">
+            <div class="slide-kicker">Strategic Positioning</div>
+            <h2 class="slide-title">The Product Hypothesis: Pre-Flight Triage &amp; Human Control</h2>
+            <p class="slide-subtitle">Replacing 25% contingency bots and opaque LLMs with an explainable, deterministic copilot.</p>
+          </div>
+          <span class="slide-num-pill">04 / 12</span>
+        </header>
+
+        <div class="slide-body">
+          <div class="grid-2">
+            <div class="fintech-card accent-orange">
+              <div class="card-header-sm">
+                <span class="card-badge badge-warning">The Core Hypothesis</span>
+              </div>
+              <h3 class="card-title-sm" style="font-size: 1.15rem; line-height: 1.4;">
+                "Direct-to-consumer merchants selling high-ticket physical goods ($150–$2,000+ AOV) will adopt an upfront, explainable review tool with human decision control at $49/mo in preference to a 25% contingency take-rate, provided evidence triage takes &lt; 90 seconds."
+              </h3>
+              <p class="card-desc-sm" style="margin-top: 1rem;">
+                <strong>Economic Comparison on $1,000 Dispute:</strong><br>
+                &bull; <em>Contingency Bot:</em> Merchant pays $250 fee on recovery ($750 net). Blind submission risks submitting fatal flaws.<br>
+                &bull; <em>ChargeDossier Copilot:</em> Flat SaaS ($49/mo). Pre-flight audit surfaces missing return policy, elevates evidence score from 73 to 100, and recovers $1,000 ($951 net on 1 dispute).
+              </p>
+              <div class="stat-callout">
+                <div>
+                  <div class="stat-val">$201 Net Gain</div>
+                  <div class="stat-lbl">Theoretical Advantage on Single $1,000 Win</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="fintech-card accent-cyan">
+              <div class="card-header-sm">
+                <span class="card-badge badge-subtle">Architectural Principles</span>
+              </div>
+              <h3 class="card-title-sm">Why Deterministic Math Beats Generative AI</h3>
+              <p class="card-desc-sm">
+                In financial dispute representment, submitting fabricated or hallucinated statements to issuing banks risks scheme fines and acquiring account termination. ChargeDossier rejects black-box LLMs in favor of strict deterministic math.
+              </p>
+              <ul class="bullet-list" style="margin-top: 0.75rem;">
+                <li><strong>100% Mathematical Auditability:</strong> Every rule assigns verifiable points and reasons based on published scheme standards.</li>
+                <li><strong>Zero Hallucination Risk:</strong> The engine never invents customer quotes, fake tracking numbers, or unrecorded policies.</li>
+                <li><strong>Early Loss Acceptance as a Win:</strong> Rejecting unwinnable claims saves operator time and avoids wasting staff hours on unviable submissions.</li>
+                <li><strong>Explicit Status:</strong> This thesis is an exploratory product hypothesis, not a confirmed commercial outcome.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <footer class="slide-footer">
+          <div class="footer-left">
+            <span>Epistemic Boundary: Hypothesis to be tested in Phase 2B merchant discovery sprint ($n=8$)</span>
+            <span class="disclaimer-pill">Independent portfolio project. Not affiliated with, sponsored by, or endorsed by Mastercard.</span>
+          </div>
+          <span class="slide-num-pill">04 / 12</span>
+        </footer>
+      </section>
+
+      <!-- SLIDE 5: PRODUCT WORKFLOW -->
+      <section class="slide-canvas" data-slide="5">
+        <div class="canvas-bg-art"></div>
+        <header class="slide-header">
+          <div class="slide-title-group">
+            <div class="slide-kicker">Operator Journey</div>
+            <h2 class="slide-title">The 7-Step Evidence Auditing &amp; Dossier Lifecycle</h2>
+            <p class="slide-subtitle">From disconnected merchant silos to a Mastercom-modeled Second Presentment submission in under 90 seconds.</p>
+          </div>
+          <span class="slide-num-pill">05 / 12</span>
+        </header>
+
+        <div class="slide-body">
+          <div class="pipeline-container">
+            <div class="pipeline-step">
+              <div class="step-num">STEP 01</div>
+              <div class="step-name">Ingest &amp; Inspect</div>
+              <div class="step-text">4-tab inspection pane displays Order details, Gateway Auth (AVS/CVC/3DS), Carrier Tracking (POD), and Policy transcripts.</div>
+            </div>
+
+            <div class="pipeline-step">
+              <div class="step-num">STEP 02</div>
+              <div class="step-name">Deterministic Audit</div>
+              <div class="step-text">One-click evaluation assesses evidence against 5 heuristic rule categories modeled on Mastercard 4837/4853 standards.</div>
+            </div>
+
+            <div class="pipeline-step">
+              <div class="step-num">STEP 03</div>
+              <div class="step-name">Flag Contradictions</div>
+              <div class="step-text">Automated checks catch fatal flaws: package in-transit, destination mismatch, or freight forwarder fraud patterns.</div>
+            </div>
+
+            <div class="pipeline-step">
+              <div class="step-num">STEP 04</div>
+              <div class="step-name">Interactive Fix</div>
+              <div class="step-text">Actionable checklist allows operator to attach missing warranty policy and support transcripts, elevating score dynamically.</div>
+            </div>
+
+            <div class="pipeline-step">
+              <div class="step-num">STEP 05</div>
+              <div class="step-name">Compile Dossier</div>
+              <div class="step-text">Compiles Mastercom-compliant executive rebuttal letter and structured Exhibits A–E (&lt;18 pages, &lt;10MB layout constraints).</div>
+            </div>
+
+            <div class="pipeline-step">
+              <div class="step-num">STEP 06</div>
+              <div class="step-name">Human Review Lock</div>
+              <div class="step-text">Operator checkpoint to explicitly <strong>Approve</strong> viable claims or <strong>Reject</strong> unviable claims with logged notes.</div>
+            </div>
+
+            <div class="pipeline-step">
+              <div class="step-num">STEP 07</div>
+              <div class="step-name">Instant Demo Reset</div>
+              <div class="step-text">One-click reset clears all decision locks and restores all 4 synthetic records back to baseline unreviewed state.</div>
+            </div>
+          </div>
+        </div>
+
+        <footer class="slide-footer">
+          <div class="footer-left">
+            <span>Verified Workflow: All 7 steps execute locally and on live GitHub Pages sandbox</span>
+            <span class="disclaimer-pill">Independent portfolio project. Not affiliated with, sponsored by, or endorsed by Mastercard.</span>
+          </div>
+          <span class="slide-num-pill">05 / 12</span>
+        </footer>
+      </section>
+
+      <!-- SLIDE 6: SYSTEM ARCHITECTURE -->
+      <section class="slide-canvas" data-slide="6">
+        <div class="canvas-bg-art"></div>
+        <header class="slide-header">
+          <div class="slide-title-group">
+            <div class="slide-kicker">Technical Specification</div>
+            <h2 class="slide-title">Zero-Dependency Engineering &amp; Dual Execution</h2>
+            <p class="slide-subtitle">Modular ES6 architecture running both as a local Node.js server and 100% in-browser on GitHub Pages.</p>
+          </div>
+          <span class="slide-num-pill">06 / 12</span>
+        </header>
+
+        <div class="slide-body">
+          <div class="grid-2">
+            <div class="fintech-card accent-green">
+              <div class="card-header-sm">
+                <span class="card-badge badge-success">Implemented Components</span>
+                <span class="tag-mono" style="color: var(--color-success);">PROTOTYPE CODEBASE</span>
+              </div>
+              <ul class="bullet-list" style="margin-top: 0.5rem; gap: 0.65rem;">
+                <li>
+                  <strong>Deterministic Rules Engine (<code>src/engine.js</code>):</strong> Pure functional rule evaluation, mathematical deduction scoring, and tier classification. Zero external dependencies.
+                </li>
+                <li>
+                  <strong>State Machine (<code>src/state.js</code>):</strong> Governs lifecycle mutations: <code>UNREVIEWED &rarr; AUDITED &rarr; (APPROVED | REJECTED)</code> with full reset capabilities.
+                </li>
+                <li>
+                  <strong>Dossier Generator (<code>src/generator.js</code>):</strong> Formats Mastercom-modeled Second Presentment rebuttal letters and structured Exhibits A through E.
+                </li>
+                <li>
+                  <strong>Native HTTP Server (<code>server.js</code>):</strong> Zero-dependency Node.js HTTP server routing REST endpoints and serving static assets.
+                </li>
+                <li>
+                  <strong>Standalone Client Controller (<code>app.js</code>):</strong> Drives the dashboard in-browser via pure ES modules, executing seamlessly on GitHub Pages.
+                </li>
+              </ul>
+            </div>
+
+            <div class="fintech-card accent-amber">
+              <div class="card-header-sm">
+                <span class="card-badge badge-subtle">Future Enterprise Integrations</span>
+                <span class="tag-mono" style="color: var(--text-dim);">ROADMAP</span>
+              </div>
+              <ul class="bullet-list" style="margin-top: 0.5rem; gap: 0.65rem;">
+                <li>
+                  <strong>Mastercard Mastercom API v6 Connector:</strong> Direct licensed acquirer submission endpoint complying with Mastercom Claim ID tracking and 10MB/18-page limits [S-01].
+                </li>
+                <li>
+                  <strong>Payment Gateway Connectors:</strong> Direct programmatic evidence upload via Stripe REST API (<code>POST /v1/disputes/:id</code>) and Shopify Payments webhooks.
+                </li>
+                <li>
+                  <strong>Carrier POD Webhooks:</strong> Automated real-time delivery GPS and signature ingestion from FedEx Ship Manager and UPS Tracking APIs.
+                </li>
+                <li>
+                  <strong>Zendesk / Gorgias Support Ingestion:</strong> OAuth ticket transcript extraction and customer dispute deflection logging.
+                </li>
+              </ul>
+              <div class="stat-callout">
+                <div>
+                  <div class="stat-val">0</div>
+                  <div class="stat-lbl">External npm Packages Installed</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <footer class="slide-footer">
+          <div class="footer-left">
+            <span>Engineering Discipline: Pure Node.js &amp; Vanilla ES6 &middot; 24 Passing Automated Tests</span>
+            <span class="disclaimer-pill">Independent portfolio project. Not affiliated with, sponsored by, or endorsed by Mastercard.</span>
+          </div>
+          <span class="slide-num-pill">06 / 12</span>
+        </footer>
+      </section>
+
+      <!-- SLIDE 7: DECISION FRAMEWORK -->
+      <section class="slide-canvas" data-slide="7">
+        <div class="canvas-bg-art"></div>
+        <header class="slide-header">
+          <div class="slide-title-group">
+            <div class="slide-kicker">Scoring Algorithm</div>
+            <h2 class="slide-title">The Deterministic Decision Framework</h2>
+            <p class="slide-subtitle">Actual point allocations, contradiction penalties, and quality tier boundaries from <code>src/engine.js</code>.</p>
+          </div>
+          <span class="slide-num-pill">07 / 12</span>
+        </header>
+
+        <div class="slide-body">
+          <div class="grid-3">
+            <div class="fintech-card accent-orange">
+              <div class="card-header-sm">
+                <span class="card-badge badge-warning">Gross Scoring (100 Pts)</span>
+              </div>
+              <h3 class="card-title-sm">Heuristic Rule Allocations</h3>
+              <ul class="bullet-list" style="gap: 0.5rem;">
+                <li><strong>Payment &amp; Identity (30 pts):</strong> AVS street/zip match (12 pts), CVC match (8 pts), 3DS authentication (10 pts).</li>
+                <li><strong>Carrier POD &amp; Tracking (35 pts):</strong> Delivered status (15 pts), destination match (10 pts), cardholder signature on &ge; $150 (10 pts).</li>
+                <li><strong>Policies &amp; Disclosures (15 pts):</strong> Terms accepted at checkout (8 pts), published return policy attached (7 pts).</li>
+                <li><strong>First-Party Trust (20 pts):</strong> Prior orders &amp; account tenure (10 pts), customer communication/remedy logs (10 pts).</li>
+              </ul>
+            </div>
+
+            <div class="fintech-card accent-red">
+              <div class="card-header-sm">
+                <span class="card-badge badge-danger">Contradiction Deductions</span>
+              </div>
+              <h3 class="card-title-sm">Fatal Evidentiary Flaws</h3>
+              <ul class="bullet-list" style="gap: 0.5rem;">
+                <li><strong>Delivery Destination Mismatch:</strong> Package delivered to different address &rarr; <span style="color: var(--mc-red); font-weight: bold;">-20 pts</span> (Critical)</li>
+                <li><strong>Third-Party Signature:</strong> Signed by freight forwarder, not customer &rarr; <span style="color: var(--mc-orange); font-weight: bold;">-10 pts</span> (Warning)</li>
+                <li><strong>Explicit Fraud Affirmation:</strong> Cardholder stated card was stolen &rarr; <span style="color: var(--mc-red); font-weight: bold;">-25 pts</span> (Critical)</li>
+                <li><strong>Defect Without Remedy:</strong> Merchandise defect without repair offer &rarr; <span style="color: var(--mc-orange); font-weight: bold;">-10 pts</span> (Warning)</li>
+                <li><strong>State Mismatch + Failed AVS:</strong> Billing state &ne; Shipping with AVS 'N' &rarr; <span style="color: var(--mc-red); font-weight: bold;">-20 pts</span> (Critical)</li>
+              </ul>
+            </div>
+
+            <div class="fintech-card accent-green">
+              <div class="card-header-sm">
+                <span class="card-badge badge-success">Decision Tiers</span>
+              </div>
+              <h3 class="card-title-sm">Explainable Recommendations</h3>
+              <ul class="bullet-list" style="gap: 0.5rem;">
+                <li>
+                  <strong style="color: var(--color-success);">TIER A (80–100 Pts):</strong> Strong evidence, zero contradictions, zero missing items &rarr; <code>APPROVE_FOR_PRESENTMENT</code>
+                </li>
+                <li>
+                  <strong style="color: var(--color-warning);">TIER B (60–79 Pts):</strong> Fixable gaps detected, no critical contradictions &rarr; <code>REVIEW_AND_ATTACH_EVIDENCE</code>
+                </li>
+                <li>
+                  <strong style="color: var(--color-danger);">TIER C (0–59 Pts):</strong> Deficient evidence or critical contradictions &rarr; <code>REJECT_AND_ACCEPT_LOSS</code>
+                </li>
+              </ul>
+              <div class="stat-callout">
+                <div>
+                  <div class="stat-val">Net = Gross - Penalties</div>
+                  <div class="stat-lbl">Strict Mathematical Formula</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <footer class="slide-footer">
+          <div class="footer-left">
+            <span>Internal prototype heuristics; not official Mastercard ratings or predicted dispute outcomes.</span>
+            <span class="disclaimer-pill">Independent portfolio project. Not affiliated with, sponsored by, or endorsed by Mastercard.</span>
+          </div>
+          <span class="slide-num-pill">07 / 12</span>
+        </footer>
+      </section>
+
+      <!-- SLIDE 8: SYNTHETIC CASE EVALUATION -->
+      <section class="slide-canvas" data-slide="8">
+        <div class="canvas-bg-art"></div>
+        <header class="slide-header">
+          <div class="slide-title-group">
+            <div class="slide-kicker">Empirical Evaluation</div>
+            <h2 class="slide-title">Synthetic Benchmark Scenarios &amp; Exact Score Outputs</h2>
+            <p class="slide-subtitle">Tested against 4 realistic high-ticket payment dispute edge cases modeling Mastercard reason codes.</p>
+          </div>
+          <span class="slide-num-pill">08 / 12</span>
+        </header>
+
+        <div class="slide-body">
+          <table class="bench-table">
+            <thead>
               <tr>
-                <td><strong>$25 Commodity</strong> (T-shirt / case)</td>
-                <td>$6.25 fee<br><span style="color: var(--text-dim); font-size: 0.72rem;">Acceptable for zero-touch</span></td>
-                <td>Higher cost per unit unless volume &gt; 10 cases/mo.</td>
+                <th>Case ID</th>
+                <th>Product &amp; Amount</th>
+                <th>Reason Code</th>
+                <th>Evidentiary Condition</th>
+                <th>Initial Score</th>
+                <th>Remediation</th>
+                <th>Final Decision</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="tag-mono" style="color: var(--color-cyan);">DSP-1049</td>
+                <td><strong>AeroSound Pro ANC Headphones</strong><br><span style="color: var(--text-dim);">$349.00 USD</span></td>
+                <td><span class="card-badge badge-subtle">MC 4837 (Fraud)</span></td>
+                <td>Full AVS (Y), CVC (M), 3DS Auth, FedEx signature slip (E. Vance), Zendesk usage confirmed.</td>
+                <td><span class="tag-mono" style="color: var(--color-success); font-weight: bold;">100 / 100</span><br><span class="card-badge badge-success">TIER A</span></td>
+                <td>None Needed</td>
+                <td><strong>Approved</strong><br><span style="font-size: 0.7rem; color: var(--text-muted);">Locked for submission</span></td>
               </tr>
               <tr>
-                <td><strong>$850 Standing Desk</strong></td>
-                <td><strong>$212.50 take-rate</strong><br><span style="color: #f87171; font-size: 0.72rem;">Severe margin deduction</span></td>
-                <td rowspan="2" style="vertical-align: middle; background: rgba(16, 185, 129, 0.08); color: #34d399; font-weight: 600;">
-                  Predictable $49/month utility fee provides superior net unit recovery.
-                </td>
+                <td class="tag-mono" style="color: var(--mc-orange);">DSP-2081</td>
+                <td><strong>BaristaCraft Burr Grinder</strong><br><span style="color: var(--text-dim);">$295.00 USD</span></td>
+                <td><span class="card-badge badge-subtle">MC 4853 (Not Received)</span></td>
+                <td>Carrier tracking confirms <em>"In Transit — Weather Delay in Spokane"</em>. Unsigned package.</td>
+                <td><span class="tag-mono" style="color: var(--color-danger); font-weight: bold;">22 / 100</span><br><span class="card-badge badge-danger">TIER C</span></td>
+                <td>Unviable</td>
+                <td><strong>Rejected (Loss Accepted)</strong><br><span style="font-size: 0.7rem; color: var(--text-muted);">Saves operator labor</span></td>
               </tr>
               <tr>
-                <td><strong>$1,150 Modular Bed</strong></td>
-                <td><strong>$287.50 take-rate</strong><br><span style="color: #f87171; font-size: 0.72rem;">Over 25% of entire net profit</span></td>
+                <td class="tag-mono" style="color: var(--mc-red);">DSP-3312</td>
+                <td><strong>ErgoLift Pro Standing Desk</strong><br><span style="color: var(--text-dim);">$850.00 USD</span></td>
+                <td><span class="card-badge badge-subtle">MC 4837 (Fraud)</span></td>
+                <td>TX billing vs. FL shipping. Failed AVS (N), 3DS failed, forwarder signature, customer fraud call.</td>
+                <td><span class="tag-mono" style="color: var(--color-danger); font-weight: bold;">2 / 100</span><br><span class="card-badge badge-danger">TIER C</span></td>
+                <td>Unviable</td>
+                <td><strong>Rejected (Loss Accepted)</strong><br><span style="font-size: 0.7rem; color: var(--text-muted);">3 critical contradictions caught</span></td>
               </tr>
-            </table>
-          </div>
+              <tr>
+                <td class="tag-mono" style="color: var(--mc-amber);">DSP-4190</td>
+                <td><strong>Modular Platform Bed Frame</strong><br><span style="color: var(--text-dim);">$1,150.00 USD</span></td>
+                <td><span class="card-badge badge-subtle">MC 4853 (Defective)</span></td>
+                <td>Delivered with signature. Return policy missing and defect reported without remedy log.</td>
+                <td><span class="tag-mono" style="color: var(--color-warning); font-weight: bold;">73 / 100</span><br><span class="card-badge badge-warning">TIER B</span></td>
+                <td><strong>Attached Policy &amp; Remedy</strong><br><span style="color: var(--color-success); font-size: 0.7rem;">+27 Pts Recalculated</span></td>
+                <td><strong>Elevated to 100 (Tier A)</strong><br><span style="font-size: 0.7rem; color: var(--color-success);">Approved after fix</span></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
-        <div class="card">
-          <div class="card-title"><span class="dot"></span> The Contextual Evidence Gap on Merchandise Claims (Reason Code 4853)</div>
-          <p style="font-size: 0.8rem; color: #cbd5e1;">
-            Automated bots submit standard carrier tracking on autopilot. However, on <strong>Mastercard Reason Code 4853 (Defective Merchandise / Not as Described)</strong>, carrier tracking alone is insufficient. Under network standards, issuers require proof of the merchant's published return policy and evidence that a remedy (replacement parts or repair) was offered. When bots omit these contextual exhibits, issuers reject the claim, causing a permanent financial loss.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================
-         SLIDE 3: Solution Workflow & Human Review
-         ========================================== -->
-    <section class="slide" id="slide-3">
-      <div class="slide-header">
-        <div>
-          <div class="slide-tag">Slide 3 of 6 &middot; Product Architecture</div>
-          <h2 class="slide-headline">ChargeDossier: A Deterministic Evidence Review Copilot</h2>
-          <p class="slide-key-message">Replacing black-box bots and hallucinatory LLMs with an explainable, deterministic evidence auditor and human approval checkpoint for $49/month.</p>
-        </div>
-        <span class="slide-time-badge">~55s</span>
-      </div>
-
-      <div class="slide-body">
-        <div class="pipeline-container">
-          <div class="pipeline-step step-1">
-            <div class="step-number">Phase 1 &middot; Multi-Source Harvest</div>
-            <div class="step-title">1. Ingest &amp; Inspect</div>
-            <p class="step-desc">Extracts records across 4 dedicated inspection tabs: Order Details, Payment Authentication tokens (AVS, CVC, 3DS), Carrier Fulfillment (POD &amp; signature), and Policy acceptance transcripts.</p>
+        <footer class="slide-footer">
+          <div class="footer-left">
+            <span>Exact values verified from src/data/disputes.js &middot; Zero synthetic PII used.</span>
+            <span class="disclaimer-pill">Independent portfolio project. Not affiliated with, sponsored by, or endorsed by Mastercard.</span>
           </div>
-          <div class="pipeline-step step-2">
-            <div class="step-number">Phase 2 &middot; Deterministic Engine</div>
-            <div class="step-title">2. Heuristic Audit &amp; Fix</div>
-            <p class="step-desc">Evaluates evidence completeness (0–100 score) against Mastercard Reason Codes 4837 and 4853. Catches fatal flaws (in-transit delay) and surfaces interactive remediation for missing policies.</p>
-          </div>
-          <div class="pipeline-step step-3">
-            <div class="step-number">Phase 3 &middot; Structured Lock</div>
-            <div class="step-title">3. Compile &amp; Decide</div>
-            <p class="step-desc">Compiles an illustrative Second Presentment Dossier with Exhibits A through E modeled on Mastercom v6 layouts (&lt;18 pages [S-01]). Operator explicitly <strong>Approves</strong> or <strong>Rejects</strong> to accept loss.</p>
-          </div>
-        </div>
+          <span class="slide-num-pill">08 / 12</span>
+        </footer>
+      </section>
 
-        <div class="grid-2">
-          <div class="card">
-            <div class="card-title"><span class="dot"></span> Why Deterministic Rules Over Generative AI?</div>
-            <ul class="bullet-list">
-              <li><strong>Zero Hallucination Tolerance:</strong> Second presentment is an adversarial quasi-legal process. If an LLM misquotes a tracking timestamp or fabricates a scheme rule, the merchant suffers immediate loss and pre-arbitration risks.</li>
-              <li><strong>100% Mathematical Explainability:</strong> Every point awarded (+15 AVS, +10 CVC, +35 Fulfillment) and deducted (-25 In-Transit, -10 Missing Policy) is fully auditable.</li>
-              <li><strong>Sub-5ms Execution:</strong> Executes locally with zero API token costs or latency.</li>
-            </ul>
+      <!-- SLIDE 9: TESTING AND RELIABILITY -->
+      <section class="slide-canvas" data-slide="9">
+        <div class="canvas-bg-art"></div>
+        <header class="slide-header">
+          <div class="slide-title-group">
+            <div class="slide-kicker">Quality Assurance &amp; Verification</div>
+            <h2 class="slide-title">24 Passing Automated Tests &amp; In-Memory Test Harness</h2>
+            <p class="slide-subtitle">Reproducible test suite verifying unit rules, REST API routes, and full state machine workflows in 312ms.</p>
           </div>
+          <span class="slide-num-pill">09 / 12</span>
+        </header>
 
-          <div class="card highlight">
-            <div class="card-title"><span class="dot"></span> Why Retain Human Review? (Copilot vs. Autopilot)</div>
-            <ul class="bullet-list">
-              <li><strong>High-Ticket Judgment:</strong> For a $1,150 order, spending 60 to 90 seconds reviewing exhibits protects substantial capital.</li>
-              <li><strong>Avoid Wasted Staff Effort:</strong> Unwinnable cases (e.g. carrier still delayed in transit) are flagged immediately as Tier C, enabling operators to accept loss early.</li>
-              <li><strong>Decision Integrity:</strong> Machine automation gathers data and formats exhibits; human operators retain strategic approval authority.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================
-         SLIDE 4: Prototype Verification & Synthetic Benchmarks
-         ========================================== -->
-    <section class="slide" id="slide-4">
-      <div class="slide-header">
-        <div>
-          <div class="slide-tag">Slide 4 of 6 &middot; Working Prototype</div>
-          <h2 class="slide-headline">Verifying the Engine: Four Synthetic Benchmark Scenarios</h2>
-          <p class="slide-key-message">Engineered with zero external dependencies; verified by 24 passing automated tests and manual browser execution across high-ticket dispute edge cases.</p>
-        </div>
-        <span class="slide-time-badge">~55s</span>
-      </div>
-
-      <div class="slide-body">
-        <div class="grid-4">
-          <!-- Case 1 -->
-          <div class="case-card">
-            <div>
-              <div class="case-badge-row">
-                <span class="case-id">DSP-1049</span>
-                <span class="score-badge tier-a">100 / 100</span>
+        <div class="slide-body">
+          <div class="grid-3">
+            <div class="fintech-card accent-green">
+              <div class="card-header-sm">
+                <span class="card-badge badge-success">Suite 1: Rules Engine</span>
+                <span class="tag-mono" style="color: var(--color-success);">7 TESTS PASSING</span>
               </div>
-              <div class="case-product">Audio Headphones &middot; $349</div>
-              <div class="case-reason">Mastercard 4837 (Fraud / Unauth)</div>
-              <div class="case-finding">
-                <strong>Happy Path:</strong> AVS (`Y`), CVC (`M`), 3DS authenticated, FedEx delivered with matching signature (`E. VANCE`), customer confirmed in Zendesk.
-              </div>
+              <h3 class="card-title-sm">Scoring &amp; Resilience</h3>
+              <ul class="bullet-list">
+                <li>DSP-1049 qualifies as TIER A with score &ge; 85</li>
+                <li>DSP-2081 qualifies as TIER C (missing POD)</li>
+                <li>DSP-3312 triggers severe contradiction penalties</li>
+                <li>DSP-4190 qualifies as TIER B with actionable fixes</li>
+                <li>Defensive null/undefined input validation</li>
+                <li>Score boundary tests (80 Tier A, 79 Tier B, 59 Tier C)</li>
+                <li>Defensive resilience on missing payload objects</li>
+              </ul>
             </div>
-            <div style="margin-top: 0.5rem; font-size: 0.72rem; color: #34d399; font-weight: 600;">
-              ✔ TIER_A &middot; Approved for Draft
-            </div>
-          </div>
 
-          <!-- Case 2 -->
-          <div class="case-card">
-            <div>
-              <div class="case-badge-row">
-                <span class="case-id">DSP-2081</span>
-                <span class="score-badge tier-c">22 / 100</span>
+            <div class="fintech-card accent-cyan">
+              <div class="card-header-sm">
+                <span class="card-badge badge-success">Suite 2: REST API Server</span>
+                <span class="tag-mono" style="color: var(--color-cyan);">13 TESTS PASSING</span>
               </div>
-              <div class="case-product">Coffee Grinder &middot; $295</div>
-              <div class="case-reason">Mastercard 4853 (Not Received)</div>
-              <div class="case-finding">
-                <strong>Fatal Flaw:</strong> UPS tracking confirms package is `"In Transit — Severe Weather Delay"`. No delivery scan; no signature captured.
-              </div>
+              <h3 class="card-title-sm">HTTP In-Memory Router</h3>
+              <ul class="bullet-list">
+                <li><code>GET /api/disputes</code> returns 4 dispute records</li>
+                <li><code>GET /api/disputes/DSP-1049</code> returns details</li>
+                <li><code>POST /audit</code> evaluates evidence to TIER A</li>
+                <li><code>POST /dossier</code> generates Second Presentment</li>
+                <li><code>POST /approve</code> locks state to APPROVED</li>
+                <li><code>POST /reject</code> locks state to REJECTED</li>
+                <li><code>POST /fix</code> applies remediation and updates score</li>
+                <li><code>POST /reset</code> restores initial state</li>
+                <li>OPTIONS CORS preflight handling &amp; 404 handling</li>
+              </ul>
             </div>
-            <div style="margin-top: 0.5rem; font-size: 0.72rem; color: #f87171; font-weight: 600;">
-              ✕ TIER_C &middot; Reject (Accept Loss)
-            </div>
-          </div>
 
-          <!-- Case 3 -->
-          <div class="case-card">
-            <div>
-              <div class="case-badge-row">
-                <span class="case-id">DSP-3312</span>
-                <span class="score-badge tier-c">2 / 100</span>
+            <div class="fintech-card accent-orange">
+              <div class="card-header-sm">
+                <span class="card-badge badge-success">Suite 3: E2E Workflows</span>
+                <span class="tag-mono" style="color: var(--mc-orange);">4 TESTS PASSING</span>
               </div>
-              <div class="case-product">Standing Desk &middot; $850</div>
-              <div class="case-reason">Mastercard 4837 (Fraud / Unauth)</div>
-              <div class="case-finding">
-                <strong>Contradictions:</strong> TX billing vs FL shipping; AVS failed (`N`); shipped to freight forwarder bay; customer phoned stating card was stolen.
-              </div>
-            </div>
-            <div style="margin-top: 0.5rem; font-size: 0.72rem; color: #f87171; font-weight: 600;">
-              ✕ TIER_C &middot; Contradictions Flagged
-            </div>
-          </div>
-
-          <!-- Case 4 -->
-          <div class="case-card">
-            <div>
-              <div class="case-badge-row">
-                <span class="case-id">DSP-4190</span>
-                <span class="score-badge tier-b">73 ➔ 100</span>
-              </div>
-              <div class="case-product">Modular Bed Frame &middot; $1,150</div>
-              <div class="case-reason">Mastercard 4853 (Defective)</div>
-              <div class="case-finding">
-                <strong>Remediation:</strong> Delivered with signature, but customer reported cracked slat. Missing return policy. Attaching policy elevates score from 73 to 100.
-              </div>
-            </div>
-            <div style="margin-top: 0.5rem; font-size: 0.72rem; color: #fbbf24; font-weight: 600;">
-              ⚡ TIER_B ➔ TIER_A &middot; Remediated
+              <h3 class="card-title-sm">Lifecycle Verification</h3>
+              <ul class="bullet-list">
+                <li><strong>Workflow 1 (Happy Path):</strong> Ingest &rarr; Audit &rarr; Generate Dossier &rarr; Approve (DSP-1049)</li>
+                <li><strong>Workflow 2 (Deficient Rejection):</strong> Audit &rarr; Catch Contradiction &rarr; Reject (DSP-2081)</li>
+                <li><strong>Workflow 3 (Gap Remediation):</strong> Ingest &rarr; Audit (73) &rarr; Fix Policy &rarr; Score Elevates (100) &rarr; Approve (DSP-4190)</li>
+                <li><strong>Workflow 4 (Demo Reset):</strong> Mutate records &rarr; Reset &rarr; All 4 restored to UNREVIEWED</li>
+              </ul>
             </div>
           </div>
         </div>
 
-        <div class="card" style="padding: 0.85rem 1.15rem;">
-          <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem;">
-            <span>
-              <strong>Zero-Dependency Engineering:</strong> Runs on native Node.js HTTP server (`localhost:3000`), standalone browser mode, or live on GitHub Pages.
-            </span>
-            <span style="font-family: var(--font-mono); color: #34d399; font-weight: 600;">
-              ✔ 24 Automated Tests Passing (100% Pass Rate &middot; 196ms)
-            </span>
+        <footer class="slide-footer">
+          <div class="footer-left">
+            <span>Tests: node --test tests/*.test.js (24/24 pass) &middot; Benchmark: node tests/benchmark.js (~0.01ms latency, &sigma;&sup2; = 0.0000)</span>
+            <span class="disclaimer-pill">Independent portfolio project. Not affiliated with, sponsored by, or endorsed by Mastercard.</span>
           </div>
-        </div>
-      </div>
-    </section>
+          <span class="slide-num-pill">09 / 12</span>
+        </footer>
+      </section>
 
-    <!-- ==========================================
-         SLIDE 5: Verified vs. Unvalidated
-         ========================================== -->
-    <section class="slide" id="slide-5">
-      <div class="slide-header">
-        <div>
-          <div class="slide-tag">Slide 5 of 6 &middot; Epistemic Discipline</div>
-          <h2 class="slide-headline">Disciplined Product Management: What is Proven vs. Unvalidated</h2>
-          <p class="slide-key-message">A working prototype proves technical feasibility, not customer demand. True product management requires rigorous epistemic boundaries and empirical discovery gates.</p>
-        </div>
-        <span class="slide-time-badge">~50s</span>
-      </div>
-
-      <div class="slide-body">
-        <table class="matrix-table">
-          <thead>
-            <tr>
-              <th style="width: 20%;">Category</th>
-              <th style="width: 32%;">Item &amp; Specific Claim</th>
-              <th style="width: 18%;">Evidentiary Status</th>
-              <th style="width: 30%;">Supporting Source / Proof</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Verified Prototype Behavior</strong></td>
-              <td>Rules engine evaluates exact mathematical scores (100, 22, 2, 73➔100); compiles Mastercom exhibits.</td>
-              <td><span class="tag-pill tag-verified">Verified in Code</span></td>
-              <td>24 passing automated tests (`tests/*.test.js`) and founder manual browser check.</td>
-            </tr>
-            <tr>
-              <td><strong>External Market Facts</strong></td>
-              <td>$4.61–$5.13 fraud multiplier; CFPB 1033 excludes commercial SMB accounts; Chargeflow advertises 25% take-rate.</td>
-              <td><span class="tag-pill tag-fact">Verified Fact</span></td>
-              <td>LexisNexis Study [S-05]; CFPB Final Rule [S-16]; Chargeflow Pricing [S-11].</td>
-            </tr>
-            <tr>
-              <td><strong>Product Hypothesis</strong></td>
-              <td>High-ticket D2C merchants prefer a flat $49/mo SaaS fee over a 25% contingency take-rate.</td>
-              <td><span class="tag-pill tag-hypothesis">Unvalidated Hypothesis</span></td>
-              <td>Requires primary discovery interviews; behavioral willingness to pay unproven.</td>
-            </tr>
-            <tr>
-              <td><strong>Product Hypothesis</strong></td>
-              <td>Merchant operators are willing to spend 60–90 seconds reviewing high-ticket cases.</td>
-              <td><span class="tag-pill tag-hypothesis">Unvalidated Hypothesis</span></td>
-              <td>Merchants may demand 100% blind automation despite fee drag.</td>
-            </tr>
-            <tr>
-              <td><strong>Market Claim</strong></td>
-              <td>Heuristic pre-flight review improves live gateway representment win rates by &gt;15%.</td>
-              <td><span class="tag-pill tag-untested">Unvalidated Claim</span></td>
-              <td>Zero live processor submissions executed; prototype runs on synthetic data.</td>
-            </tr>
-            <tr>
-              <td><strong>Customer Validation</strong></td>
-              <td>Customer interviews, real user counts, commercial revenue, or measured dollar savings.</td>
-              <td><span class="tag-pill tag-untested">0 Interviews Conducted</span></td>
-              <td>Outreach paused awaiting review; no interviews completed to date.</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div class="card highlight" style="padding: 0.85rem 1.15rem;">
-          <div class="card-title" style="font-size: 0.82rem;"><span class="dot"></span> Proposed Phase 2B Validation Experiment &amp; Kill Gate</div>
-          <p style="font-size: 0.78rem; color: #cbd5e1;">
-            Conduct 5 to 8 discovery interviews with verified US D2C merchant operators ($1M–$10M GMV, AOV &gt; $150).<br>
-            <strong>Decision Rule:</strong> If at least 3 of 5 operators confirm &gt;20 min cross-tool friction and express preference for a review checkpoint over 25% take-rates, proceed to pilot scoping. If operators insist on 100% blind automation regardless of fees, <strong>kill or pivot the project</strong>.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================
-         SLIDE 6: Lessons & Role Relevance
-         ========================================== -->
-    <section class="slide" id="slide-6">
-      <div class="slide-header">
-        <div>
-          <div class="slide-tag">Slide 6 of 6 &middot; PM Retrospective &amp; Mastercard Alignment</div>
-          <h2 class="slide-headline">Transferable Fintech Acumen: Connecting Merchants to Network Standards</h2>
-          <p class="slide-key-message">Demonstrating operational fluency across card scheme rules, regulatory boundaries, explainable AI design, and honest founder retrospectives.</p>
-        </div>
-        <span class="slide-time-badge">~50s</span>
-      </div>
-
-      <div class="slide-body">
-        <div class="grid-3">
-          <div class="card">
-            <div class="card-title"><span class="dot"></span> 1. Mastercard Product Management</div>
-            <div style="font-size: 0.75rem; color: var(--color-brand-light); font-family: var(--font-mono);">Dispute &amp; Processing Technology</div>
-            <ul class="bullet-list" style="margin-top: 0.35rem;">
-              <li><strong>Mastercom Layout Fluency:</strong> Modeled dossiers after Mastercom v6 specifications (&lt;10MB aggregate, &lt;18 pages, structured exhibits A–E [S-01]).</li>
-              <li><strong>Reason Code Mechanics:</strong> Differentiated Reason Code 4837 (Fraud) from 4853 (Merchandise/Defect).</li>
-              <li><strong>Acquirer Economics:</strong> Early rejection of unwinnable claims saves operator labor and protects acquiring portfolio health.</li>
-            </ul>
+      <!-- SLIDE 10: RESEARCH & MARKET CONTEXT -->
+      <section class="slide-canvas" data-slide="10">
+        <div class="canvas-bg-art"></div>
+        <header class="slide-header">
+          <div class="slide-title-group">
+            <div class="slide-kicker">Factual Grounding</div>
+            <h2 class="slide-title">Primary Regulatory &amp; Industry Source Mapping</h2>
+            <p class="slide-subtitle">Catalog of 25 primary and secondary industry references supporting system design.</p>
           </div>
+          <span class="slide-num-pill">10 / 12</span>
+        </header>
 
-          <div class="card">
-            <div class="card-title"><span class="dot"></span> 2. Open Finance Strategy</div>
-            <div style="font-size: 0.75rem; color: var(--color-brand-light); font-family: var(--font-mono);">Commercialization &amp; Regulatory Acumen</div>
-            <ul class="bullet-list" style="margin-top: 0.35rem;">
-              <li><strong>Regulatory Due Diligence:</strong> Evaluated CFPB Section 1033 statutory text, identified commercial account exclusion [S-16], and pivoted to merchant-owned dispute data.</li>
-              <li><strong>First-Party Trust Integration:</strong> Applied the core data principles of Mastercard's First-Party Trust Program (Reason Code 5002 [S-02]) to bridge merchant tenure and digital receipts.</li>
-            </ul>
-          </div>
+        <div class="slide-body">
+          <div class="grid-4">
+            <div class="fintech-card accent-red">
+              <div class="card-header-sm">
+                <span class="card-badge badge-danger">Card Scheme Rules</span>
+              </div>
+              <h3 class="card-title-sm">Mastercom &amp; FPT</h3>
+              <p class="card-desc-sm">
+                <strong>Mastercom API v6 [S-01]:</strong> Enforces strict technical limits (&lt;10MB file, &lt;18 pages).<br><br>
+                <strong>First-Party Trust [S-02]:</strong> Establishes Reason Code 5002 (First-Party Trust Reject) to deflect invalid 4837 fraud claims via account tenure and delivery logs.
+              </p>
+            </div>
 
-          <div class="card">
-            <div class="card-title"><span class="dot"></span> 3. Data Analytics &amp; Agentic AI</div>
-            <div style="font-size: 0.75rem; color: var(--color-brand-light); font-family: var(--font-mono);">Explainable Financial System Design</div>
-            <ul class="bullet-list" style="margin-top: 0.35rem;">
-              <li><strong>Deterministic Rigor:</strong> Replaced opaque LLM prompts with mathematically auditable rules for zero-hallucination dispute operations.</li>
-              <li><strong>Agentic Copilot Architecture:</strong> Automation harvests and structures exhibits; human operators retain strategic decision authority.</li>
-            </ul>
+            <div class="fintech-card accent-orange">
+              <div class="card-header-sm">
+                <span class="card-badge badge-warning">Regulatory Analysis</span>
+              </div>
+              <h3 class="card-title-sm">CFPB Section 1033</h3>
+              <p class="card-desc-sm">
+                <strong>Statutory Text [S-16]:</strong> CFPB Section 1033 explicitly excludes commercial and business bank accounts from open banking mandates.<br><br>
+                <em>Strategic Call:</em> Redirected discovery to payment dispute data where merchants hold direct legal standing.
+              </p>
+            </div>
+
+            <div class="fintech-card accent-amber">
+              <div class="card-header-sm">
+                <span class="card-badge badge-subtle">Industry Benchmarks</span>
+              </div>
+              <h3 class="card-title-sm">Empirical Baselines</h3>
+              <p class="card-desc-sm">
+                <strong>MRC &amp; Cybersource [S-06]:</strong> Manual fraud chargeback win rates average below 20%.<br><br>
+                <strong>Riskified &amp; Datos [S-15]:</strong> ~60% of merchants abandon 40%+ disputes.<br><br>
+                <strong>LexisNexis [S-05]:</strong> $1 fraud costs $4.61–$5.13 in total merchant friction.
+              </p>
+            </div>
+
+            <div class="fintech-card accent-cyan">
+              <div class="card-header-sm">
+                <span class="card-badge badge-subtle">Commercial Tensions</span>
+              </div>
+              <h3 class="card-title-sm">Alternative Pricing</h3>
+              <p class="card-desc-sm">
+                <strong>Chargeflow [S-11]:</strong> Advertised 25% contingency fee on gross recovery creates severe margin drag on high-ticket goods ($250 on $1k).<br><br>
+                <strong>Chargebacks911 [S-13]:</strong> $1,500+/mo retainers prohibit small/mid-market D2C merchants.
+              </p>
+            </div>
           </div>
         </div>
 
-        <div class="card highlight" style="padding: 0.85rem 1.15rem;">
-          <div class="card-title" style="font-size: 0.82rem;"><span class="dot"></span> Honest Founder Reflection (Integrated MBA Candidate, Class of 2027)</div>
-          <p style="font-size: 0.78rem; color: #cbd5e1;">
-            "Building ChargeDossier taught me that software engineering is only 20% of product management; the remaining 80% is maintaining disciplined epistemic boundaries, reading statutory regulations directly, and ruthlessly questioning whether real customers will pay for your solution."
-          </p>
+        <footer class="slide-footer">
+          <div class="footer-left">
+            <span>Documented in full in research/source-register.md (25 cataloged sources)</span>
+            <span class="disclaimer-pill">Independent portfolio project. Not affiliated with, sponsored by, or endorsed by Mastercard.</span>
+          </div>
+          <span class="slide-num-pill">10 / 12</span>
+        </footer>
+      </section>
+
+      <!-- SLIDE 11: LIMITATIONS & FUTURE VALIDATION -->
+      <section class="slide-canvas" data-slide="11">
+        <div class="canvas-bg-art"></div>
+        <header class="slide-header">
+          <div class="slide-title-group">
+            <div class="slide-kicker">Epistemic Integrity</div>
+            <h2 class="slide-title">Limitations &amp; The Phase 2B Validation Roadmap</h2>
+            <p class="slide-subtitle">Explicit boundary delineation and empirical next steps required before commercialization.</p>
+          </div>
+          <span class="slide-num-pill">11 / 12</span>
+        </header>
+
+        <div class="slide-body">
+          <div class="grid-2">
+            <div class="fintech-card accent-red">
+              <div class="card-header-sm">
+                <span class="card-badge badge-danger">Honest Prototype Limitations</span>
+                <span class="tag-mono" style="color: var(--mc-red);">NOT VALIDATED</span>
+              </div>
+              <ul class="bullet-list" style="gap: 0.65rem;">
+                <li>
+                  <strong>Customer Willingness to Pay ($49/mo) is Unproven:</strong> While merchants object to 25% contingency rates, their behavioral preference might still favor "no-win, no-fee" models over recurring SaaS.
+                </li>
+                <li>
+                  <strong>Operator Tolerance for Review Friction:</strong> Whether busy merchant operators are willing to spend 60–90 seconds auditing cases vs. demanding 100% hands-off automation is an unvalidated hypothesis.
+                </li>
+                <li>
+                  <strong>Zero Live Merchant Interviews Conducted:</strong> Outreach was paused awaiting explicit authorization. No live customer interviews have occurred.
+                </li>
+                <li>
+                  <strong>Synthetic Sandbox Only:</strong> Prototype operates on synthetic benchmarks; no live payment gateway or card network connections exist.
+                </li>
+              </ul>
+            </div>
+
+            <div class="fintech-card accent-green">
+              <div class="card-header-sm">
+                <span class="card-badge badge-success">3-Phase Validation Roadmap</span>
+                <span class="tag-mono" style="color: var(--color-success);">60-DAY EXECUTION</span>
+              </div>
+              <ul class="bullet-list" style="gap: 0.65rem;">
+                <li>
+                  <strong>Phase 1 — Discovery Interviews ($n=8$):</strong> Execute semi-structured interviews with verified operations/risk leads at US high-ticket D2C merchants ($150–$1,500 AOV) using documented prospecting kit.
+                </li>
+                <li>
+                  <strong>Phase 2 — Blinded Shadow Evaluation:</strong> Ingest 10 redacted historical disputes from 3 pilot merchants. Compare ChargeDossier shadow drafts against original manual/bot submissions.
+                </li>
+                <li>
+                  <strong>Phase 3 — Open Benchmark Dataset:</strong> Release open, anonymized dispute evidence dataset to advance academic and industrial research on explainable dispute representment.
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
+
+        <footer class="slide-footer">
+          <div class="footer-left">
+            <span>Disciplined Product Management: Separating verified code behavior from unvalidated customer demand</span>
+            <span class="disclaimer-pill">Independent portfolio project. Not affiliated with, sponsored by, or endorsed by Mastercard.</span>
+          </div>
+          <span class="slide-num-pill">11 / 12</span>
+        </footer>
+      </section>
+
+      <!-- SLIDE 12: CONCLUSION & LINKS -->
+      <section class="slide-canvas" data-slide="12">
+        <div class="canvas-bg-art"></div>
+        <header class="slide-header">
+          <div class="slide-title-group">
+            <div class="slide-kicker">Conclusion &amp; Public Deliverables</div>
+            <h2 class="slide-title">ChargeDossier: Verified Artifacts &amp; Role Alignment</h2>
+            <p class="slide-subtitle">Summary of product contributions and live public verification links.</p>
+          </div>
+          <span class="slide-num-pill">12 / 12</span>
+        </header>
+
+        <div class="slide-body">
+          <div class="grid-2">
+            <div class="fintech-card accent-orange">
+              <div class="card-header-sm">
+                <span class="card-badge badge-warning">General APM Competency Alignment</span>
+                <span class="tag-mono" style="color: var(--text-dim);">MASTERCARD &middot; VISA &middot; RAZORPAY &middot; FINTECHS</span>
+              </div>
+              <ul class="bullet-list" style="gap: 0.65rem;">
+                <li>
+                  <strong>Problem Discovery &amp; Customer Sizing:</strong> Quantified merchant friction via empirical industry data ($4.61–$5.13 fraud cost multiplier [S-05], 60% abandonment [S-15]) and identified high-ticket AOV contingency margin drag.
+                </li>
+                <li>
+                  <strong>Product Hypothesis &amp; User Empathy:</strong> Defined narrow ICP ($150–$1,500 AOV D2C brands), formulated the flat $49 SaaS vs. 25% contingency trade-off, and established clear falsification criteria.
+                </li>
+                <li>
+                  <strong>Prioritization &amp; Technical Trade-offs:</strong> Chose deterministic heuristic rules over generative LLMs to eliminate hallucination liability in adversarial compliance; built zero-dependency architecture executing in &lt;1ms.
+                </li>
+                <li>
+                  <strong>Workflow Design &amp; Metrics:</strong> Designed human-in-the-loop triage balances automated exhibit assembly with strategic operator approval; established Net Merchant Recovery as primary north star.
+                </li>
+                <li>
+                  <strong>Product Strategy Across Payment Networks:</strong> Operationalized scheme rules (Mastercard Mastercom/FPT, Visa CE3.0, gateway dispute fees) balancing issuer, acquirer, and merchant incentives.
+                </li>
+              </ul>
+            </div>
+
+            <div class="fintech-card accent-cyan">
+              <div class="card-header-sm">
+                <span class="card-badge badge-success">Verified Public Deliverables</span>
+                <span class="tag-mono" style="color: var(--color-cyan);">ALL LIVE</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 0.65rem; margin-top: 0.5rem;">
+                <a href="https://pragymathur12-king.github.io/chargedossier/" target="_blank" class="btn-ctrl" style="justify-content: space-between; padding: 0.6rem 0.85rem;">
+                  <span><strong>Live Interactive Demo</strong> (In-Browser Sandbox)</span>
+                  <span style="color: var(--color-cyan);">&rarr;</span>
+                </a>
+                <a href="https://pragymathur12-king.github.io/aura-portfolio/chargedossier.html" target="_blank" class="btn-ctrl" style="justify-content: space-between; padding: 0.6rem 0.85rem;">
+                  <span><strong>Dedicated Portfolio Case Study</strong> (Aura Portfolio)</span>
+                  <span style="color: var(--color-cyan);">&rarr;</span>
+                </a>
+                <a href="https://pragymathur12-king.github.io/aura-portfolio/portfolio.html" target="_blank" class="btn-ctrl" style="justify-content: space-between; padding: 0.6rem 0.85rem;">
+                  <span><strong>Portfolio Projects Showcase</strong> (Aura Portfolio)</span>
+                  <span style="color: var(--color-cyan);">&rarr;</span>
+                </a>
+                <a href="https://github.com/pragymathur12-king/chargedossier" target="_blank" class="btn-ctrl" style="justify-content: space-between; padding: 0.6rem 0.85rem;">
+                  <span><strong>GitHub Source Code</strong> (24 Passing Tests)</span>
+                  <span style="color: var(--color-cyan);">&rarr;</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <footer class="slide-footer">
+          <div class="footer-left">
+            <span>Author: Pragy Mathur &middot; Integrated MBA Candidate (Class of 2027) &middot; pragymathur12@gmail.com</span>
+            <span class="disclaimer-pill">Independent portfolio project. Not affiliated with, sponsored by, or endorsed by Mastercard.</span>
+          </div>
+          <span class="slide-num-pill">12 / 12</span>
+        </footer>
+      </section>
+
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="deck-nav">
+      <div class="nav-dots" id="nav-dots">
+        <!-- Generated by JS -->
       </div>
-    </section>
 
-  </main>
-
-  <!-- Bottom Speaker Notes Drawer (Collapsible) -->
-  <footer class="notes-drawer" id="notes-drawer">
-    <div class="notes-header" id="notes-toggle-bar">
-      <div class="notes-label">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
-        Speaker Notes &middot; Spoken Narrative
+      <div class="nav-btns">
+        <span class="slide-counter" id="slide-indicator">Slide <strong>01</strong> of 12</span>
+        <button id="btn-prev" class="btn-ctrl" title="Previous Slide (Arrow Left)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+          Prev
+        </button>
+        <button id="btn-next" class="btn-ctrl" title="Next Slide (Arrow Right / Space)">
+          Next
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+        <button id="btn-fullscreen" class="btn-ctrl" title="Toggle Fullscreen">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+        </button>
       </div>
-      <div class="notes-hint">Click or press [S] to toggle drawer &middot; Use ◄ ► keys to navigate</div>
-    </div>
-    <div class="notes-content" id="notes-text">
-      <!-- Dynamically updated by JavaScript based on active slide -->
-    </div>
-  </footer>
+    </nav>
+  </div>
 
-  <!-- ==========================================
-       Pure Offline JavaScript Controller
-       ========================================== -->
   <script>
-    (function () {
-      const SPEAKER_NOTES = {
-        1: `"Hello everyone. Today I'm excited to present ChargeDossier, an evidence-quality review copilot I designed and prototyped for e-commerce payment disputes.\n\nAccording to LexisNexis research, every single dollar lost to payment fraud costs US e-commerce merchants between $4.61 and $5.13 in total organizational overhead. Yet, despite being in 2026, assembling evidence to contest a chargeback remains painfully manual. An operator has to log into Shopify for customer info, Stripe for payment auth, ShipStation for carrier tracking, and Zendesk for customer chat logs.\n\nBecause manual compilation takes 45 minutes and manual win rates on fraud claims average under 20%, nearly 60% of merchants abandon at least 40% of their disputes. They simply write off legitimate revenue because the administrative cost of fighting exceeds the recovery value. This friction is where my investigation began."`,
-
-        2: `"To make this actionable, I narrowed the focus to a specific segment: US direct-to-consumer merchants selling high-ticket physical goods with average order values between $150 and $1,500. Think specialty kitchen gear, ergonomic furniture, and premium electronics.\n\nWhy this segment? Because high-ticket disputes create a sharp commercial tension. Leading automated vendors like Chargeflow operate on an advertised 25% contingency take-rate. If you're selling a $20 phone case, paying 25% makes sense. But on an $1,150 bed frame, a 25% cut is nearly $290 on a single order—devastating for a merchant with 10% net margins.\n\nFurthermore, for expensive merchandise claims under Mastercard Reason Code 4853, blind automation often submits basic delivery tracking without attaching the merchant's published return policy or support remedy chat logs. If that critical document is missing, the issuing bank rejects the rebuttal, causing a permanent financial loss."`,
-
-        3: `"This led to my product hypothesis: ChargeDossier, an evidence-quality review copilot designed around a predictable, flat $49/month utility subscription.\n\nRather than a black-box bot or a generative AI wrapper that hallucinates legal claims, ChargeDossier is built on a 100% deterministic rules engine. It inspects merchant evidence across four categories: payment authentication tokens, carrier proof of delivery, customer account continuity, and policy terms.\n\nThe engine evaluates the package against internal heuristics modeled on Mastercard reason codes, outputting an explainable score from 0 to 100 and categorizing it into Tier A, B, or C.\n\nIf an item is missing—like a return policy on a defect claim—the copilot surfaces an interactive remediation drawer. Once verified, it compiles a structured Second Presentment Dossier formatted to Mastercom layout standards and gives the operator an explicit checkpoint to approve the draft or reject an unwinnable claim."`,
-
-        4: `"To validate the user journey, I engineered a functioning prototype and tested it against four synthetic benchmark scenarios representing high-ticket payment disputes:\n\nIn Case 1, our $349 headphone order has full AVS, CVC, 3DS authentication, and a signed FedEx receipt. The engine awards it 100 out of 100—Tier A—recommending approval.\n\nIn Case 2, an item claimed as not received is still in transit due to weather. The engine flags this fatal flaw, scores it at 22 out of 100—Tier C—and recommends rejecting the dispute to save staff labor on an unviable submission.\n\nCase 3 tests severe contradictions: an $850 desk shipped to a freight forwarder with failed AVS and a reported stolen card. It scores 2 out of 100.\n\nFinally, Case 4 is an $1,150 bed frame with a claimed defective slat. It initially scores 73—Tier B—because the return policy wasn't attached. When the operator attaches the policy, the engine recalculates the score in real time to 100, elevating it to Tier A.\n\nThe entire codebase runs with zero external packages and is verified by 24 passing automated tests."`,
-
-        5: `"One of my core principles as a product manager is epistemic honesty: separating verified technical behavior from unvalidated customer demand.\n\nA prototype running with 24 passing tests proves that deterministic rules and Mastercom-modeled exhibits can be generated in milliseconds. It does NOT prove product-market fit.\n\nWhether merchants are truly willing to pay $49 a month instead of a 'no-win, no-fee' contingency, and whether operators will actually spend 90 seconds reviewing cases, are working hypotheses. Zero live customer interviews have occurred yet, because outreach is paused awaiting review.\n\nMy immediate next step is a structured Phase 2B discovery sprint with 5 to 8 verified US merchants. If at least 3 of 5 merchants confirm manual review friction and prefer a flat SaaS copilot over a 25% take-rate, we proceed. If they demand 100% hands-off automation regardless of fees, we pivot or kill the project."`,
-
-        6: `"To conclude, this project directly reflects how I approach product management in payments and fintech:\n\nFirst, in dispute technology, understanding card network mechanics—like Mastercom's 18-page limits and Reason Code 4837 vs 4853 requirements—is essential to designing merchant workflows that issuers actually respect.\n\nSecond, in Open Finance, examining primary regulatory text—like the CFPB Section 1033 exclusion of commercial bank accounts—prevented us from wasting months chasing unviable open banking APIs.\n\nAnd third, in Data Analytics and AI, choosing deterministic mathematics over generative LLMs ensured 100% explainability, auditability, and zero hallucination risk.\n\nI look forward to bringing this disciplined, evidence-backed approach to product strategy and innovation at Mastercard. Thank you, and I welcome your questions."`
-      };
-
-      const TOTAL_SLIDES = 6;
+    (function() {
+      const slides = document.querySelectorAll('.slide-canvas');
+      const totalSlides = slides.length;
       let currentSlide = 1;
 
-      const slideIndicator = document.getElementById("slide-indicator");
-      const btnPrev = document.getElementById("btn-prev");
-      const btnNext = document.getElementById("btn-next");
-      const btnToggleNotes = document.getElementById("btn-toggle-notes");
-      const notesDrawer = document.getElementById("notes-drawer");
-      const notesToggleBar = document.getElementById("notes-toggle-bar");
-      const notesText = document.getElementById("notes-text");
+      const dotsContainer = document.getElementById('nav-dots');
+      const slideIndicator = document.getElementById('slide-indicator');
+      const btnPrev = document.getElementById('btn-prev');
+      const btnNext = document.getElementById('btn-next');
+      const btnFullscreen = document.getElementById('btn-fullscreen');
+      const btnPrintPdf = document.getElementById('btn-print-pdf');
 
-      function updateSlide(slideNum) {
-        if (slideNum < 1) slideNum = 1;
-        if (slideNum > TOTAL_SLIDES) slideNum = TOTAL_SLIDES;
-        currentSlide = slideNum;
+      // Build dot navigation
+      slides.forEach((_, idx) => {
+        const dot = document.createElement('div');
+        dot.className = `nav-dot ${idx === 0 ? 'active' : ''}`;
+        dot.title = `Jump to Slide ${idx + 1}`;
+        dot.addEventListener('click', () => goToSlide(idx + 1));
+        dotsContainer.appendChild(dot);
+      });
 
-        // Toggle slide active class
-        document.querySelectorAll(".slide").forEach((el, idx) => {
-          el.classList.toggle("active", idx + 1 === currentSlide);
+      const dots = document.querySelectorAll('.nav-dot');
+
+      function updateSlideView() {
+        slides.forEach(slide => {
+          const num = parseInt(slide.dataset.slide, 10);
+          slide.classList.toggle('active', num === currentSlide);
         });
 
-        // Update UI controls
-        slideIndicator.textContent = `Slide ${currentSlide} of ${TOTAL_SLIDES}`;
-        btnPrev.disabled = currentSlide === 1;
-        btnNext.disabled = currentSlide === TOTAL_SLIDES;
+        dots.forEach((dot, idx) => {
+          dot.classList.toggle('active', idx + 1 === currentSlide);
+        });
 
-        // Update speaker notes
-        if (SPEAKER_NOTES[currentSlide]) {
-          notesText.innerHTML = SPEAKER_NOTES[currentSlide].replace(/\n\n/g, "<br><br>");
+        slideIndicator.innerHTML = `Slide <strong>${String(currentSlide).padStart(2, '0')}</strong> of ${String(totalSlides).padStart(2, '0')}`;
+        btnPrev.disabled = currentSlide === 1;
+        btnNext.disabled = currentSlide === totalSlides;
+      }
+
+      function goToSlide(n) {
+        if (n >= 1 && n <= totalSlides) {
+          currentSlide = n;
+          updateSlideView();
         }
       }
 
       function nextSlide() {
-        if (currentSlide < TOTAL_SLIDES) updateSlide(currentSlide + 1);
+        if (currentSlide < totalSlides) {
+          goToSlide(currentSlide + 1);
+        }
       }
 
       function prevSlide() {
-        if (currentSlide > 1) updateSlide(currentSlide - 1);
+        if (currentSlide > 1) {
+          goToSlide(currentSlide - 1);
+        }
       }
 
-      function toggleNotes() {
-        notesDrawer.classList.toggle("collapsed");
-      }
+      btnNext.addEventListener('click', nextSlide);
+      btnPrev.addEventListener('click', prevSlide);
 
-      // Event Listeners
-      btnNext.addEventListener("click", nextSlide);
-      btnPrev.addEventListener("click", prevSlide);
-      btnToggleNotes.addEventListener("click", toggleNotes);
-      notesToggleBar.addEventListener("click", toggleNotes);
-
-      // Keyboard navigation
-      window.addEventListener("keydown", function (e) {
-        if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
-
-        if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " " || e.key === "Enter") {
+      // Keyboard Controls
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
           e.preventDefault();
           nextSlide();
-        } else if (e.key === "ArrowLeft" || e.key === "PageUp" || e.key === "Backspace") {
+        } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
           e.preventDefault();
           prevSlide();
-        } else if (e.key === "s" || e.key === "S" || e.key === "n" || e.key === "N") {
+        } else if (e.key === 'Home') {
           e.preventDefault();
-          toggleNotes();
-        } else if (e.key === "Home") {
+          goToSlide(1);
+        } else if (e.key === 'End') {
           e.preventDefault();
-          updateSlide(1);
-        } else if (e.key === "End") {
-          e.preventDefault();
-          updateSlide(TOTAL_SLIDES);
+          goToSlide(totalSlides);
         }
       });
 
-      // Initialize
-      updateSlide(1);
+      // Fullscreen
+      btnFullscreen.addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(() => {});
+        } else {
+          document.exitFullscreen().catch(() => {});
+        }
+      });
+
+      // Export / Print PDF
+      btnPrintPdf.addEventListener('click', () => {
+        window.print();
+      });
+
+      updateSlideView();
     })();
   </script>
 </body>

@@ -1,10 +1,10 @@
 # ChargeDossier: 5-Minute Live Demo Sequence & Checklist
 
 **Project:** Mastercard Opportunity Lab — ChargeDossier  
-**Target Roles:** Mastercard Product Management &middot; Open Finance Strategy &middot; Agentic AI  
+**Target Roles:** General Associate Product Manager (APM) &middot; Target Companies: Mastercard, Visa, Razorpay, Fintechs  
 **Repository:** [https://github.com/pragymathur12-king/chargedossier](https://github.com/pragymathur12-king/chargedossier)  
 **Live Demo:** [https://pragymathur12-king.github.io/chargedossier/](https://pragymathur12-king.github.io/chargedossier/)  
-**Disclaimer:** *Independent academic prototype operating in a synthetic sandbox. Not an official Mastercard product or certified tool.*
+**Disclaimer:** *Independent academic prototype operating in a synthetic sandbox. Not an official Mastercard, Visa, or Razorpay product or certified tool.*
 
 ---
 

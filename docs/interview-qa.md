@@ -1,10 +1,10 @@
-# ChargeDossier: Product Manager Interview Q&A Guide
+# ChargeDossier: Associate Product Manager (APM) Interview Q&A Guide
 
 **Project:** Mastercard Opportunity Lab — ChargeDossier  
 **Candidate:** Integrated MBA Candidate (Class of 2027)  
-**Target Roles:** Mastercard Product Management &middot; Open Finance Strategy & Commercialization &middot; Data Analytics & Agentic AI  
+**Target Roles:** General Associate Product Manager (APM) &middot; Target Companies: Mastercard, Visa, Razorpay, Fintechs  
 **Repository:** [https://github.com/pragymathur12-king/chargedossier](https://github.com/pragymathur12-king/chargedossier)  
-**Disclaimer:** *Independent academic product management case study and prototype. Not affiliated with, endorsed by, or integrated with Mastercard or any live payment processor.*
+**Disclaimer:** *Independent academic product management case study and prototype. Not affiliated with, endorsed by, or integrated with Mastercard, Visa, Razorpay, or any live payment processor.*
 
 ---
 
@@ -148,11 +148,12 @@ Other structural risks include payment gateways (Stripe, Shopify) adding native 
 
 ---
 
-## Question 12: How does this project transfer to a Product Management or Open Finance role at Mastercard?
+## Question 12: How does this project transfer to an Associate Product Manager (APM) role at Mastercard, Visa, Razorpay, or fintech companies?
 
 ### Sample Answer:
-"ChargeDossier directly builds competencies essential for product roles at Mastercard:
-1. **Dispute & Processing Fluency:** Working with Mastercom API v6 exhibit layouts, Reason Code 4837 vs 4853 requirements, 3DS liability shift rules, and acquirer dispute fee mechanics gives me immediate domain fluency in payment network integrity and merchant acquiring operations.
-2. **Commercializing Open Finance & First-Party Data:** Analyzing CFPB Section 1033 taught me how to navigate regulatory boundaries. Furthermore, ChargeDossier implements the exact data philosophy of **Mastercard’s First-Party Trust Program (Reason Code 5002)** [[S-02]]—leveraging merchant-held customer tenure, prior orders, and digital receipts to deflect friendly fraud before it escalates.
-3. **Explainable AI & Agentic Design:** Designing an agentic human-in-the-loop workflow with deterministic mathematical auditing rather than black-box LLM wrappers demonstrates my ability to design high-stakes financial products where accuracy, compliance, and auditability are non-negotiable.
-4. **Structured Cross-Functional Thinking:** Balancing merchant ROI, acquirer economics, cardholder fairness, and network rulebook compliance proves that I can manage multi-sided platform trade-offs at enterprise scale."
+"ChargeDossier builds core product management competencies that transfer directly across payment networks and fintechs:
+1. **Problem Discovery & Quantitative Sizing:** Grounding product strategy in verified industry friction—using LexisNexis research to quantify the $4.61–$5.13 fraud cost multiplier [[S-05]] and identifying high-ticket D2C merchants where 25% contingency take-rates destroy operating margins.
+2. **Technical & Architectural Trade-offs:** Knowing when *not* to use generative AI. Choosing deterministic heuristic rules over LLMs eliminates hallucination liability in adversarial compliance workflows, while achieving sub-millisecond execution (<0.01ms pure latency, <1.0ms test harness) with zero external dependencies.
+3. **Product Strategy & Multi-Sided Network Dynamics:** Navigating the complex interplay between cardholders, merchants, acquirers, payment aggregators (like Razorpay and Stripe), and card networks (Mastercard Mastercom/First-Party Trust [[S-01, S-02]] and Visa CE3.0 [[S-07]]).
+4. **Ruthless MVP Scoping & User Empathy:** Balancing automated exhibit aggregation with an explicit human-in-the-loop review lock for nuanced merchandise claims (Reason Code 4853).
+5. **Epistemic Discipline:** Maintaining clear separation between verified software behavior and unvalidated customer demand ($49/month SaaS pricing, 90-second SLA target) through structured discovery hypotheses."

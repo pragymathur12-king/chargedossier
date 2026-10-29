@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deterministic Decision Support for Payment Dispute Evidence: A Synthetic Case Evaluation of Explainable Pre-Submission Auditing</title>
+<style>
+  @page {
+    size: letter;
+    margin: 0.8in 0.8in 0.8in 0.8in;
+    @bottom-right {
+      content: counter(page);
+      font-size: 9pt;
+      font-family: "Times New Roman", Times, Georgia, serif;
+    }
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Times New Roman", Times, Georgia, serif;
+    font-size: 10.5pt;
+    line-height: 1.5;
+    color: #111;
+    background-color: #fff;
+    margin: 0;
+    padding: 2rem 3rem;
+  }
+
+  @media screen {
+    body {
+      max-width: 8.5in;
+      margin: 2rem auto;
+      padding: 3rem 4rem;
+      background: #fafafa;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      border-radius: 4px;
+    }
+  }
+
+  /* Academic Title Block */
+  .title-block {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #ddd;
+  }
+
+  h1.paper-title {
+    font-size: 18pt;
+    font-weight: 700;
+    line-height: 1.25;
+    margin: 0 0 1rem 0;
+    color: #000;
+  }
+
+  .author-meta {
+    font-size: 11pt;
+    margin-bottom: 0.5rem;
+  }
+
+  .author-name {
+    font-weight: 700;
+    font-size: 12pt;
+  }
+
+  .author-affiliation {
+    font-style: italic;
+    color: #444;
+  }
+
+  .author-email {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 9.5pt;
+    color: #333;
+  }
+
+  .paper-date {
+    font-size: 10pt;
+    color: #666;
+    margin-top: 0.25rem;
+  }
+
+  .repository-links {
+    font-size: 9pt;
+    margin-top: 0.5rem;
+    color: #555;
+  }
+
+  .repository-links a {
+    color: #004499;
+    text-decoration: none;
+  }
+
+  /* Abstract & Keywords Box */
+  .abstract-box {
+    margin: 1.5rem 2rem 2rem 2rem;
+    padding: 1rem 1.5rem;
+    background-color: #fcfcfc;
+    border-left: 3px solid #333;
+    font-size: 9.5pt;
+    text-align: justify;
+    line-height: 1.45;
+  }
+
+  .abstract-title {
+    font-weight: 700;
+    font-size: 10pt;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    color: #111;
+  }
+
+  .keywords-block {
+    margin-top: 0.75rem;
+    font-size: 9.5pt;
+  }
+
+  .keywords-label {
+    font-weight: 700;
+    font-style: italic;
+  }
+
+  /* Headings */
+  h2 {
+    font-size: 13pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin: 1.8rem 0 0.6rem 0;
+    padding-bottom: 0.2rem;
+    border-bottom: 1px solid #111;
+    page-break-after: avoid;
+  }
+
+  h3 {
+    font-size: 11pt;
+    font-weight: 700;
+    margin: 1.2rem 0 0.4rem 0;
+    page-break-after: avoid;
+  }
+
+  h4 {
+    font-size: 10.5pt;
+    font-weight: 700;
+    font-style: italic;
+    margin: 1rem 0 0.3rem 0;
+    page-break-after: avoid;
+  }
+
+  p {
+    margin: 0 0 0.8rem 0;
+    text-align: justify;
+    text-justify: inter-word;
+  }
+
+  /* Lists */
+  ul, ol {
+    margin: 0 0 0.8rem 1.8rem;
+    padding: 0;
+  }
+
+  li {
+    margin-bottom: 0.3rem;
+    text-align: justify;
+  }
+
+  /* Mathematical Formulas */
+  .equation-box {
+    text-align: center;
+    margin: 1.2rem 0;
+    padding: 0.8rem;
+    background: #fbfbfb;
+    border: 1px solid #eee;
+    font-family: "Cambria Math", "Times New Roman", serif;
+    font-size: 12pt;
+    page-break-inside: avoid;
+  }
+
+  /* Tables (Booktabs style) */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 9pt;
+    line-height: 1.35;
+    page-break-inside: avoid;
+  }
+
+  table caption {
+    font-weight: 700;
+    text-align: left;
+    margin-bottom: 0.4rem;
+    font-size: 9.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  thead th {
+    border-top: 2px solid #111;
+    border-bottom: 1px solid #111;
+    padding: 6px 8px;
+    font-weight: 700;
+    text-align: left;
+    background: #fdfdfd;
+  }
+
+  tbody td {
+    padding: 6px 8px;
+    border-bottom: 1px solid #e0e0e0;
+    vertical-align: top;
+  }
+
+  tbody tr:last-child td {
+    border-bottom: 2px solid #111;
+  }
+
+  /* Code blocks & ASCII */
+  pre {
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    padding: 0.8rem;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 8.5pt;
+    line-height: 1.3;
+    overflow-x: auto;
+    margin: 1rem 0;
+    page-break-inside: avoid;
+  }
+
+  code {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 9pt;
+    background: #f0f0f0;
+    padding: 1px 3px;
+    border-radius: 2px;
+  }
+
+  pre code {
+    background: transparent;
+    padding: 0;
+  }
+
+  /* References */
+  .references-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 9pt;
+    line-height: 1.4;
+  }
+
+  .references-list li {
+    margin-bottom: 0.6rem;
+    text-indent: -2.5rem;
+    padding-left: 2.5rem;
+    text-align: left;
+  }
+
+  .ref-id {
+    font-weight: 700;
+  }
+
+  /* Print Styles */
+  @media print {
+    body {
+      background: #fff !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      box-shadow: none !important;
+      font-size: 10pt;
+    }
+
+    h2 {
+      page-break-after: avoid;
+    }
+
+    table, .equation-box, pre, .abstract-box {
+      page-break-inside: avoid;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="title-block">
+  <h1 class="paper-title">Deterministic Decision Support for Payment Dispute Evidence:<br>A Synthetic Case Evaluation of Explainable Pre-Submission Auditing</h1>
+  <div class="author-meta">
+    <span class="author-name">Pragy Mathur</span><br>
+    <span class="author-affiliation">Integrated MBA Candidate, Class of 2027</span><br>
+    <span class="author-affiliation" style="font-weight: 600; color: #222;">Parul University</span><br>
+    <span class="author-email">pragymathur12@gmail.com</span>
+  </div>
+  <div class="paper-date">October 2026 (Integrity Revision: October 30, 2026) &middot; Working Paper &middot; Proposed License: CC BY 4.0 (Subject to Final Author Approval)</div>
+  <div class="repository-links">
+    Repository: <a href="https://github.com/pragymathur12-king/chargedossier">https://github.com/pragymathur12-king/chargedossier</a> &middot; 
+    Live Prototype: <a href="https://pragymathur12-king.github.io/chargedossier/">https://pragymathur12-king.github.io/chargedossier/</a>
+  </div>
+</div>
+
+<div class="abstract-box">
+  <div class="abstract-title">Abstract</div>
+  <p>Payment dispute management in direct-to-consumer (D2C) e-commerce represents an asymmetric operational challenge. While card scheme rules (e.g., Mastercard Mastercom and Visa CE3.0) establish strict technical criteria for second presentment representment, merchants face severe friction: manual evidence compilation requires 30 to 60 minutes per dispute (industry benchmark), while black-box automated solutions charge contingency take-rates of 20% to 25% that extract substantial margin on high-ticket goods ($150 to $1,500 Average Order Value). Furthermore, fully automated submission tools frequently submit contradictory files or fail to attach merchant-specific policies required for merchandise disputes (Mastercard Reason Code 4853).</p>
+  <p>This paper investigates <strong>ChargeDossier</strong>, an explainable, deterministic decision-support copilot designed to pre-audit payment dispute evidence before submission to acquiring networks. Using an adversarial synthetic benchmark dataset (<em>n</em>=4) modeling cardholder fraud (Reason Code 4837) and merchandise non-receipt/defect disputes (Reason Code 4853), we evaluate whether a deterministic heuristic rules engine can reliably classify dispute viability, detect critical evidentiary contradictions, and guide dynamic gap remediation.</p>
+  <p>The evaluation demonstrates that the deterministic scoring engine executes with an average latency of ~0.010 ms per dispute in micro-benchmarks and under 1.0 ms in automated test runners, with zero non-deterministic score drift (&sigma;<sup>2</sup> = 0.0000), accurately isolating deficient claims (scoring 2/100 and 22/100) and elevating remediable claims from Tier B (73/100) to Tier A (100/100) upon attachment of required policy exhibits. We analyze the operational, computational, and economic trade-offs of human-in-the-loop deterministic auditing versus generative language models and uncapped contingency automation, showing that a fixed-cost explainable copilot preserves merchant operating margins while mitigating scheme pre-arbitration risks. No commercial viability, improved chargeback win rates, statistical significance across production populations, or causal dispute reversals are claimed; all evaluations reflect synthetic benchmark profiles and simulated operator actions.</p>
+  <div class="keywords-block">
+    <span class="keywords-label">Keywords:</span> Payment Disputes, Evidence Quality, Explainable Decision Support, Deterministic Rules Engine, Synthetic Case Evaluation, Fintech, Product Research, Second Presentment, First-Party Trust.
+  </div>
+</div>
+
+<h2>1. Introduction & Research Problem</h2>
+<p>Payment card chargebacks were originally designed under the United States Truth in Lending Act of 1968 (Regulation Z) and the Electronic Fund Transfer Act of 1978 (Regulation E) as consumer protection mechanisms against unauthorized merchant charges and billing errors. Over five decades of e-commerce expansion, however, the dispute mechanism has evolved into an asymmetric operational and financial burden for online merchants [S-05].</p>
+<p>According to LexisNexis Risk Solutions' empirical <em>True Cost of Fraud&trade; Study</em>, every $1.00 of direct fraud and dispute loss costs US retail and e-commerce merchants an average of <strong>$4.61 to $5.13</strong> in total organizational costs [S-05]. This multiple reflects not only the loss of the original sale and physical merchandise, but also non-refundable processor dispute assessment fees ($15.00 to $25.00 per event [S-09]), outbound shipping costs, operational labor overhead, and potential card network excessive chargeback penalties.</p>
+<p>Despite the severity of these losses, dispute management across small and mid-sized e-commerce merchants is characterized by pervasive operational abandonment. Industry surveys conducted by Riskified and Datos Insights [S-15] reveal that approximately <strong>60% of surveyed merchants leave at least 40% of their chargebacks completely undisputed</strong>, with roughly 16% of total dispute volume written off as low-dollar losses. The root cause of this abandonment is manual workflow friction: merchant operators must manually harvest transaction logs from payment gateways (e.g., Stripe, Shopify Payments), shipping proof from logistics aggregators (e.g., ShipStation, EasyPost), and customer communications from support desks (e.g., Zendesk, Gorgias), consuming 30 to 60 minutes per dispute [S-05].</p>
+
+<p>In response to manual friction, a class of automated representment vendors (e.g., Chargeflow [S-11], Justt [S-12]) has emerged, offering hands-off dispute automation via gateway API connections. However, prevailing commercial offerings create two major structural problems, particularly for high-ticket direct-to-consumer (D2C) brands selling goods between $150 and $1,500 Average Order Value (AOV):</p>
+<ol>
+  <li><strong>Contingency Margin Extinguishment:</strong> Most turnkey automation providers operate on a contingency pricing model, charging <strong>20% to 25% of recovered gross sales</strong> [S-11], [S-12]. While a 25% take-rate ($5.00) is negligible on a $20 commodity item, on an $850 ergonomic standing desk or an $1,150 modular bed frame, a 25% fee extracts <strong>$212.50 to $287.50 per dispute</strong>, capturing nearly all of the merchant's net operating margin.</li>
+  <li><strong>Contextual Failure on Merchandise Disputes (Reason Code 4853):</strong> Automated bots excel at querying carrier APIs for tracking numbers on simple fraud claims (Reason Code 4837). However, high-ticket disputes frequently arise under <strong>Mastercard Reason Code 4853 (Cardholder Dispute: Defective/Not as Described or Not Received)</strong> [S-13]. Winning a 4853 dispute requires contextual evidence: proof that the customer agreed to a published return/cancellation policy, and documentation of a formal remedy (e.g., replacement parts, return shipping label) offered prior to the dispute. Generic automated scripts that merely upload tracking slips lose 4853 claims automatically.</li>
+  <li><strong>Contradictory File Submission Risks:</strong> When automated bots blindly aggregate customer files without pre-flight auditing, they risk submitting contradictory evidence—such as a billing address in Texas matched with delivery to an unverified commercial freight forwarder in Florida, or a carrier status showing a weather transit delay. Submitting unverified or contradictory files exposes merchants to card scheme pre-arbitration, which carries $500 network filing fees.</li>
+</ol>
+<p>To address these systemic vulnerabilities, this research investigates <strong>deterministic pre-submission evidence auditing</strong>. We propose an explainable decision-support copilot architecture—<strong>ChargeDossier</strong>—and evaluate its effectiveness against a synthetic adversarial benchmark suite.</p>
+
+<h2>2. Background & Related Work</h2>
+<h3>2.1 The Card Network Dispute Lifecycle</h3>
+<p>The lifecycle of an electronic payment dispute is governed by standardized card scheme operating regulations (Mastercard Rules, Visa Core Rules). When a cardholder contacts their issuing bank to contest a line item, the issuer initiates a <strong>First Presentment Chargeback</strong> through the network clearing switch (e.g., Mastercard Mastercom [S-01]). The transaction amount plus an administrative dispute fee ($15.00 flat in Stripe US [S-09]) is immediately debited from the merchant’s acquiring bank account.</p>
+<p>The merchant is granted a finite window (typically 7 to 20 calendar days) to exercise <strong>Second Presentment (Representment)</strong> by submitting compelling evidence that proves transaction validity under the governing reason code. If the merchant fails to respond within the deadline or submits deficient evidence, the chargeback is sustained in favor of the cardholder. If the merchant submits evidence and the issuer rejects it, the dispute escalates to pre-arbitration and formal network arbitration, where the losing party incurs up to $500 in scheme arbitration penalties.</p>
+
+<h3>2.2 Network Standardization: Mastercom API v6 & First-Party Trust</h3>
+<p>Mastercard's centralized dispute engine, <strong>Mastercom API v6</strong> [S-01], automates the interchange of dispute lifecycle events. Mastercom establishes rigorous technical ingestion boundaries for second presentment documentation: evidence must be uploaded as a consolidated TIFF or PDF document under a strict <strong>10 megabyte aggregate size limit</strong>, aggregate document length must not exceed <strong>18 pages</strong>, and all uploaded exhibits must map to specific card scheme evidential standards.</p>
+<p>Simultaneously, Mastercard launched the <strong>First-Party Trust (FPT) Program</strong> [S-02] to address "friendly fraud"—first-party misuse where legitimate cardholders improperly claim unauthorized transactions. First-Party Trust establishes <strong>Reason Code 5002 (First-Party Trust Reject)</strong>, allowing acquirers to deflect invalid Reason Code 4837 (No Cardholder Authorization) chargebacks prior to merchant impact if the merchant provides verified telemetry across three vectors: (1) <em>Device Identity</em> (IP, device fingerprint), (2) <em>Delivery Proof</em> (carrier tracking, geolocation), and (3) <em>Account Continuity</em> (prior purchase history, account tenure) [S-02]. A similar mechanism exists under Visa’s <strong>Compelling Evidence 3.0 (CE3.0)</strong> specification [S-07].</p>
+
+<h3>2.3 Existing Commercial Approaches and Regulatory Boundaries</h3>
+<p>Current market approaches encompass pre-dispute alert networks (Ethoca [S-04], Verifi [S-08]) which charge $19 to $40 per alert [S-14] while requiring a full merchant refund, and turnkey contingency autopilots (Chargeflow [S-11], Justt [S-12]) which charge 20% to 25% contingency fees.</p>
+<p>In adjacent financial domains, the Consumer Financial Protection Bureau’s (CFPB) Section 1033 Final Rule on Personal Financial Data Rights [S-16] mandated open consumer banking APIs. Crucially, however, CFPB Section 1033 <strong>explicitly excluded commercial and small business accounts</strong> from its 2024 final scope [S-16], creating extensive regulatory gatekeeping for third-party B2B open banking tools. In contrast, dispute evidence management utilizes first-party merchant-held data where the merchant already possesses complete legal ownership, allowing immediate operational execution without regulatory gatekeeping.</p>
+
+<h2>3. Research Questions</h2>
+<p>This study evaluates the technical and operational viability of an explainable, deterministic evidence auditing system by formulating three primary research questions:</p>
+<ul>
+  <li><strong>RQ1 (Rule Consistency & Determinism):</strong> Can a deterministic heuristic scoring engine reliably audit multi-faceted dispute evidence across payment authentication, carrier proof, and policy compliance without non-deterministic drift, execution latency, or hallucination risks inherent in generative language models?</li>
+  <li><strong>RQ2 (Dynamic Remediation Response):</strong> Does surfacing explainable evidentiary gaps allow operators to remediate deficient dispute dossiers interactively (e.g., elevating borderline Tier B cases to submission-ready Tier A) prior to network submission?</li>
+  <li><strong>RQ3 (Deterministic vs. Black-Box Trade-Offs):</strong> What are the comparative computational, economic, and operational trade-offs of deterministic heuristic pre-submission auditing versus full-black-box automation and generative AI drafting for high-ticket e-commerce merchants?</li>
+</ul>
+
+<h2>4. Methodology & Synthetic Dataset Design</h2>
+<h3>4.1 Ethical Justification for Synthetic Benchmarking</h3>
+<p>Evaluating payment dispute systems with live production transaction data introduces severe compliance, legal, and privacy hazards: live payment gateway records contain sensitive cardholder data and Personally Identifiable Information (PII) falling under PCI-DSS Level 1 compliance scope, expose confidential merchant dispute ratios, and exhibit extreme scarcity of rare adversarial edge cases. To eliminate PII liability while systematically stress-testing edge-case resilience, this study constructed an adversarial synthetic benchmark dataset.</p>
+
+<h3>4.2 Benchmark Dataset Specification</h3>
+<p>The synthetic benchmark comprises four representative e-commerce dispute profiles spanning distinct merchandise categories, Average Order Values ($295 to $1,150), and network reason codes (Mastercard 4837 and 4853):</p>
+<ul>
+  <li><strong>Case DSP-1049 (High-Quality Fraud Claim — Happy Path):</strong> AeroSound Pro Wireless ANC Headphones ($349.00 USD | Reason Code 4837 Fraud). Customer account tenure of 18 months, 4 prior successful orders; full AVS street and zip match (<code>Y</code>/<code>Y</code>); CVC match (<code>M</code>); 3D Secure authenticated liability shift; FedEx signed delivery matching customer surname (<code>E. VANCE</code>); positive customer chat log. Clean representment eligible for First-Party Trust deflection.</li>
+  <li><strong>Case DSP-2081 (Fatal Evidentiary Flaw — Package In Transit):</strong> BaristaCraft Burr Coffee Grinder ($295.00 USD | Reason Code 4853 Goods Not Received). UPS tracking shows status <code>"In Transit — Severe Weather Delay"</code> with zero proof of delivery scan. AVS and CVC matched. Customer submitted a chargeback for non-delivery while package was still moving through carrier network.</li>
+  <li><strong>Case DSP-3312 (Severe Adversarial Fraud Contradictions):</strong> ErgoLift Pro Motorized Standing Desk ($850.00 USD | Reason Code 4837 Fraud). Billing in Austin, TX, but shipping destination routed to an unverified commercial freight-forwarding warehouse in Miami, FL; AVS failed (<code>N</code>); customer initiated phone complaint stating card was stolen; order placed from an anonymized VPN proxy. Malicious card theft where merchant evidence directly contradicts representation viability.</li>
+  <li><strong>Case DSP-4190 (Borderline Dispute with Remediable Policy Gap):</strong> The Modern Modular Platform Bed Frame ($1,150.00 USD | Reason Code 4853 Defective Merchandise). Valid delivery completed with signed proof (<code>M. ROSSI</code>); customer submitted photos of cosmetic scratch on side rail; merchant possesses published warranty policy and support chat offering free replacement parts, but these records were not initially attached to the dispute dossier.</li>
+</ul>
+
+<h2>5. System Architecture & Decision Framework</h2>
+<p>ChargeDossier comprises five decoupled functional stages: Ingestion, Evidence Parsing, Deterministic Rules Engine, Dossier Generation Engine, and Human Decision Interface.</p>
+
+<div class="equation-box">
+  <em>S</em><sub>final</sub> = max(0, min(100, &sum; <em>w</em><sub><em>i</em></sub> &middot; <em>s</em><sub><em>i</em></sub> &minus; &sum; <em>P</em><sub><em>j</em></sub>))
+</div>
+
+<p>Where <em>w</em><sub><em>i</em></sub> represents category weight (&sum; <em>w</em><sub><em>i</em></sub> = 100), <em>s</em><sub><em>i</em></sub> &isin; [0, 1] represents normalized rule satisfaction, and <em>P</em><sub><em>j</em></sub> represents contradiction penalties.</p>
+
+<h3>5.1 Category Weights and Evidentiary Rules</h3>
+<ol>
+  <li><strong>Payment Authentication (<em>w</em><sub>1</sub> = 25 pts):</strong> AVS Street & Zip Exact Match (+15 pts); CVC Match (+10 pts).</li>
+  <li><strong>Cardholder Verification & 3D Secure (<em>w</em><sub>2</sub> = 15 pts):</strong> Fully Authenticated 3D Secure Liability Shift (+15 pts on 4837).</li>
+  <li><strong>Fulfillment & Carrier Proof (<em>w</em><sub>3</sub> = 35 pts):</strong> Carrier Proof of Delivery Scan (+20 pts); Matching Delivery Destination (+10 pts); Recipient Signature Confirmation (+5 pts).</li>
+  <li><strong>Customer Relationship & History (<em>w</em><sub>4</sub> = 15 pts):</strong> Account Tenure &ge; 6 months (+5 pts); Prior Successful Orders &ge; 2 (+5 pts); Positive Interaction History (+5 pts).</li>
+  <li><strong>Policy Adherence & Terms (<em>w</em><sub>5</sub> = 10 pts):</strong> Explicit Terms Acceptance (+5 pts); Published Return/Warranty Policy Attached (+5 pts).</li>
+</ol>
+
+<h3>5.2 Contradiction Penalties (<em>P</em><sub><em>j</em></sub>) and Decision Tiers</h3>
+<p>Penalties deduct points for irreconcilable claims: In-transit carrier delay on 4853 non-delivery (-20 pts); commercial freight-forwarder mismatch (-15 pts); customer stolen card report (-25 pts); AVS failure on fraud claim (-15 pts); missing return policy on 4853 defect claim (-10 pts).</p>
+<p>Claims are triaged into three operational tiers: <strong>Tier A (&ge;80)</strong> (Approve for Presentment), <strong>Tier B (60&ndash;79)</strong> (Actionable Remediation Required), and <strong>Tier C (&lt;60)</strong> (Reject / Accept Loss to avoid $500 pre-arbitration exposure).</p>
+
+<h2>6. Evaluation Results</h2>
+<p>All four benchmark dispute profiles were evaluated through the ChargeDossier engine. Table 1 summarizes the empirical scoring outputs, identified evidentiary gaps, and post-remediation operational outcomes.</p>
+
+<table>
+  <caption>Table 1: ChargeDossier Empirical Benchmark Evaluation Matrix</caption>
+  <thead>
+    <tr>
+      <th>Dispute ID</th>
+      <th>Merchandise Item</th>
+      <th>Amount</th>
+      <th>Reason Code</th>
+      <th>Initial Score</th>
+      <th>Tier</th>
+      <th>Contradictions / Evidentiary Gaps Identified</th>
+      <th>Post-Remediation Outcome</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>DSP-1049</strong></td>
+      <td>Wireless ANC Headphones</td>
+      <td>$349.00</td>
+      <td>4837 (Fraud)</td>
+      <td><strong>100 / 100</strong></td>
+      <td>Tier A</td>
+      <td>None. AVS/CVC/3DS verified; signature match.</td>
+      <td><strong>100 / 100 &rarr; Approved for Presentment</strong></td>
+    </tr>
+    <tr>
+      <td><strong>DSP-2081</strong></td>
+      <td>Specialty Burr Grinder</td>
+      <td>$295.00</td>
+      <td>4853 (Not Recv)</td>
+      <td><strong>22 / 100</strong></td>
+      <td>Tier C</td>
+      <td>Package In Transit (Weather Delay); -20 penalty.</td>
+      <td><strong>22 / 100 &rarr; Closed / Accepted Loss</strong></td>
+    </tr>
+    <tr>
+      <td><strong>DSP-3312</strong></td>
+      <td>Motorized Standing Desk</td>
+      <td>$850.00</td>
+      <td>4837 (Fraud)</td>
+      <td><strong>2 / 100</strong></td>
+      <td>Tier C</td>
+      <td>Freight forwarder; AVS fail; stolen card; -55 penal.</td>
+      <td><strong>2 / 100 &rarr; Closed / Accepted Loss</strong></td>
+    </tr>
+    <tr>
+      <td><strong>DSP-4190</strong></td>
+      <td>Modular Platform Bed Frame</td>
+      <td>$1,150.00</td>
+      <td>4853 (Defective)</td>
+      <td><strong>73 / 100</strong></td>
+      <td>Tier B</td>
+      <td>Missing return policy on defect claim; -10 penalty.</td>
+      <td><strong>100 / 100 (Tier A) &rarr; Remediated & Approved</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>6.1 Summary of Findings by Research Question</h3>
+<ul>
+  <li><strong>RQ1 (Rule Consistency & Determinism):</strong> The deterministic engine executed with an average calculation latency of <strong>0.0099 milliseconds (9.9 &micro;s)</strong> per dispute in micro-benchmarks (<code>tests/benchmark.js</code>) across 1,000 iterations (4,000 total evaluations) on Node.js v24, and under <strong>1.0 millisecond</strong> in the automated unit test harness (<code>tests/engine.test.js</code>). Score variance across 1,000 sequential trials was <strong>&sigma;<sup>2</sup> = 0.0000</strong>, confirming absolute mathematical determinism. The automated test suite confirmed a 100% pass rate across <strong>24 tests</strong> in 3 suites with zero external dependencies.</li>
+  <li><strong>RQ2 (Dynamic Remediation Response):</strong> In the prototype sandbox, attaching the missing warranty policy and remedy record for Case DSP-4190 ($1,150 bed frame) dynamically elevated the score from 73/100 (Tier B) to <strong>100/100 (Tier A)</strong>, resolving an otherwise fatal evidentiary vulnerability in under 15 seconds.</li>
+  <li><strong>RQ3 (Deterministic vs. Black-Box Trade-Offs):</strong> Contradiction penalties safely rejected unwinnable claims (DSP-2081 at 22/100 and DSP-3312 at 2/100), shielding the merchant from $500 card scheme pre-arbitration penalties. In an illustrative single-case unit-economics model for DSP-4190, a flat $49/mo SaaS copilot retains $1,150 in gross recovery, compared to a $287.50 fee loss under a 25% contingency take-rate. Actual merchant savings depend on monthly dispute volume.</li>
+</ul>
+
+<h2>7. Discussion & Strategic Implications</h2>
+<p>In adversarial dispute representment, generative language models introduce unacceptable risks of factual hallucination, unverified timestamps, and non-deterministic scoring variance. Furthermore, enterprise card scheme audits require transparent, reproducible decision trails that proprietary LLMs cannot provide.</p>
+<p>Our findings establish that while full autopilot is suitable for low-ticket digital commodities, high-ticket physical merchandise claims require an agentic copilot architecture where automated systems harvest data and compile exhibits, while human operators retain final authorization on borderline cases.</p>
+
+<h2>8. Threats to Validity & Limitations</h2>
+<ul>
+  <li><strong>Internal Validity:</strong> Category weights and penalty thresholds were derived from published scheme standards and literature; empirical calibration across historical dispute datasets will further refine numerical boundary precision.</li>
+  <li><strong>External Validity:</strong> The synthetic benchmark dataset contains 4 representative cases (<em>n</em>=4). Generalizing across other verticals (travel, SaaS subscriptions) requires broader cross-industry evaluations. Planned discovery interviews (<em>n</em>=8&ndash;10) represent future validation work; zero live customer interviews have been conducted to date.</li>
+  <li><strong>Construct Validity & Operational Boundaries:</strong> The internal quality score represents evidence completeness and scheme compliance; it is not an official card scheme adjudication guarantee. Final dispute disposition rests exclusively with the issuing bank. The findings establish technical consistency, not real-world dispute win rates, commercial viability, or statistical significance across live merchant populations.</li>
+</ul>
+
+<h2>9. Ethical & Responsible Fintech Considerations</h2>
+<p>By relying strictly on synthetic merchant records, this research eliminated all exposure to live consumer cardholder data and merchant privacy disclosures. Furthermore, ChargeDossier’s heavy contradiction penalties prevent "merchant weaponization"—ensuring merchants do not fight legitimate consumer fraud or non-delivery claims.</p>
+
+<h2>10. Conclusion & Future Work</h2>
+<p>This study demonstrated that deterministic, explainable pre-submission evidence auditing provides a mathematically sound, cost-effective, and low-latency decision support system for payment disputes. Planned future work encompasses qualitative discovery interviews (<em>n</em>=8&ndash;10) with verified e-commerce operations leads, a blinded shadow pilot ingesting 50 redacted merchant records, and direct webhook integrations with Shopify Payments and Stripe.</p>
+
+<h2>11. References</h2>
+<ul class="references-list">
+  <li><span class="ref-id">[S-01]</span> Mastercard International Incorporated, "Mastercom API V6 Developer Documentation: API Basics & Representment Constraints," <em>Mastercard Developers</em>, 2024. [Online]. Available: <code>https://developer.mastercard.com/mastercom-documentation/api-basics/</code></li>
+  <li><span class="ref-id">[S-02]</span> Mastercard Corporate Communications, "Mastercard Tackles First-Party Trust with Merchant Risk Council and MAG," <em>Mastercard Newsroom</em>, Oct. 23, 2023. [Online]. Available: <code>https://www.mastercard.com/news/press-releases/2023/october/mastercard-tackles-first-party-fraud/</code></li>
+  <li><span class="ref-id">[S-03]</span> Ethoca, "Consumer Clarity Technical Overview and Merchant Data Requirements," <em>Ethoca (A Mastercard Company)</em>, 2024. [Online]. Available: <code>https://www.ethoca.com/consumer-clarity</code></li>
+  <li><span class="ref-id">[S-04]</span> Ethoca, "Ethoca Alerts Network: Collaborative Fraud Mitigation," <em>Ethoca (A Mastercard Company)</em>, 2024. [Online]. Available: <code>https://www.ethoca.com/ethoca-alerts</code></li>
+  <li><span class="ref-id">[S-05]</span> LexisNexis Risk Solutions, "True Cost of Fraud&trade; Study: E-commerce and Retail (North American Edition)," <em>LexisNexis Insights</em>, Apr. 2025. [Online]. Available: <code>https://risk.lexisnexis.com/insights-resources/research/true-cost-of-fraud-study-ecommerce-and-retail</code></li>
+  <li><span class="ref-id">[S-06]</span> Merchant Risk Council & Cybersource, "Global eCommerce Payments and Fraud Report," <em>MRC Research</em>, 2024. [Online]. Available: <code>https://www.merchantriskcouncil.org/resources/research/global-fraud-and-payments-report</code></li>
+  <li><span class="ref-id">[S-07]</span> Visa Inc. & Verifi, "Compelling Evidence 3.0 (CE3.0) Operating Specification," <em>Visa Global Support</em>, 2023. [Online]. Available: <code>https://usa.visa.com/dam/VCOM/global/support-legal/documents/visa-compelling-evidence-3-0.pdf</code></li>
+  <li><span class="ref-id">[S-08]</span> Verifi, "Rapid Dispute Resolution (RDR) and Cardholder Dispute Resolution Network," <em>Verifi (A Visa Solution)</em>, 2024. [Online]. Available: <code>https://www.verifi.com/solutions/rapid-dispute-resolution/</code></li>
+  <li><span class="ref-id">[S-09]</span> Stripe Inc., "Stripe Dispute Documentation & Chargeback Protection Policy," <em>Stripe Docs</em>, 2024. [Online]. Available: <code>https://stripe.com/docs/disputes</code></li>
+  <li><span class="ref-id">[S-10]</span> Shopify Inc., "Shopify Protect Terms of Service and Merchant Guidelines," <em>Shopify Help Center</em>, 2024. [Online]. Available: <code>https://help.shopify.com/en/manual/payments/shopify-protect</code></li>
+  <li><span class="ref-id">[S-11]</span> Chargeflow Inc., "Product Platform, Representment Automation & Public Pricing Structure," <em>Chargeflow Portal</em>, 2024. [Online]. Available: <code>https://www.chargeflow.io/pricing</code></li>
+  <li><span class="ref-id">[S-12]</span> Justt.ai, "How It Works: Autonomous Chargeback Management," <em>Justt Product Overview</em>, 2024. [Online]. Available: <code>https://justt.ai/how-it-works/</code></li>
+  <li><span class="ref-id">[S-13]</span> Chargebacks911, "Mastercard Chargeback Reason Codes & Field Dispute Guide," <em>Chargebacks911 Reference Library</em>, 2024. [Online]. Available: <code>https://chargebacks911.com/chargeback-reason-codes/mastercard/</code></li>
+  <li><span class="ref-id">[S-14]</span> Chargeblast & Disputifier, "Dispute Alert Reseller Public Pricing and SLA Comparison," <em>Chargeblast</em>, 2024. [Online]. Available: <code>https://www.chargeblast.com/pricing</code></li>
+  <li><span class="ref-id">[S-15]</span> Riskified & Datos Insights, "The Cost of Ineffective Dispute Management: Abandonment and Hidden Write-Offs," <em>Riskified Insights</em>, 2024. [Online]. Available: <code>https://www.riskified.com/blog/chargeback-management/</code></li>
+  <li><span class="ref-id">[S-16]</span> Consumer Financial Protection Bureau, "Required Rulemaking on Personal Financial Data Rights (Dodd-Frank Act Section 1033 Final Rule)," <em>CFPB Rules & Policy</em>, Oct. 22, 2024. [Online]. Available: <code>https://www.consumerfinance.gov/rules-policy/final-rules/personal-financial-data-rights/</code></li>
+  <li><span class="ref-id">[S-17]</span> Sahamati, "Account Aggregator Framework in India: Architecture & Technical Standards," <em>Sahamati Collective</em>, 2024. [Online]. Available: <code>https://sahamati.org.in/what-is-account-aggregator/</code></li>
+  <li><span class="ref-id">[S-18]</span> Intuit QuickBooks, "Small Business Insights: Cash Flow and Late Payments Empirical Report," <em>Intuit Press Room</em>, 2024. [Online]. Available: <code>https://www.intuit.com/company/press-room/press-releases/small-business-index/</code></li>
+  <li><span class="ref-id">[S-19]</span> Mastercard International Incorporated, "Mastercard Test & Learn and Brighterion Cognitive AI Architecture," <em>Mastercard Services</em>, 2024. [Online]. Available: <code>https://developer.mastercard.com/brighterion/</code></li>
+  <li><span class="ref-id">[S-20]</span> Mastercard Corporate Communications, "Mastercard Agent Pay: Autonomous AI Agent Transaction Infrastructure," <em>Mastercard Newsroom</em>, 2024. [Online]. Available: <code>https://www.mastercard.com/news/press-releases/2024/agentic-ai-commerce-infrastructure/</code></li>
+  <li><span class="ref-id">[S-21]</span> Plaid Inc., "Open Banking APIs and Signal Cash Flow Underwriting Models," <em>Plaid Developer Documentation</em>, 2024. [Online]. Available: <code>https://plaid.com/products/signal/</code></li>
+  <li><span class="ref-id">[S-22]</span> Ramp Business Corporation & Brex Inc., "AI-Driven Corporate Financial Operations and Policy Automation," <em>Ramp Platform</em>, 2024. [Online]. Available: <code>https://ramp.com/platform/ai</code></li>
+  <li><span class="ref-id">[S-23]</span> Chargeflow Inc., "Upload Evidence API & Dashboard Custom Evidence Integration Guide," <em>Chargeflow Help Docs</em>, 2025. [Online]. Available: <code>https://www.chargeflow.io/help/upload-evidence-guide</code></li>
+  <li><span class="ref-id">[S-24]</span> Chargeflow Inc., "Chargeback Workflow Automation: Manual Review State Queues for High-Risk Cases," <em>Chargeflow Blog</em>, 2024. [Online]. Available: <code>https://www.chargeflow.io/blog/chargeback-workflow-automation</code></li>
+  <li><span class="ref-id">[S-25]</span> Shopify App Store, G2 & Trustpilot, "Chargeflow Verified Merchant Review Corpus: Qualitative Feedback Analysis," <em>Shopify Apps & Trustpilot</em>, 2024. [Online]. Available: <code>https://apps.shopify.com/chargeflow</code></li>
+</ul>
+
+<h2>12. Reproducibility Appendix</h2>
+<p>ChargeDossier was engineered with zero external dependencies and executes on standard Node.js runtimes.</p>
+<pre><code># 1. Clone repository
+git clone https://github.com/pragymathur12-king/chargedossier.git
+cd chargedossier
+
+# 2. Execute automated test suite (24 tests across 3 suites)
+node --test tests/*.test.js
+
+# 3. Start local native HTTP server
+node server.js
+# Access dashboard at: http://localhost:3000</code></pre>
+<p>Public demo: <a href="https://pragymathur12-king.github.io/chargedossier/">https://pragymathur12-king.github.io/chargedossier/</a></p>
+
+</body>
+</html>
