@@ -57,18 +57,18 @@ Authors:
   - Name: "Mathur, Pragy"
     Affiliation: "Parul University (Integrated MBA Candidate, Class of 2027)"
     Email: "pragymathur12@gmail.com"
-Publication Date: "2026-10-28"
+Publication Date: "2026-10-30"
 Resource Type: "Preprint / Working Paper"
 Access Right: "Open Access"
-License: "Creative Commons Attribution 4.0 International (CC BY 4.0)"
+License: "Creative Commons Attribution 4.0 International (CC BY 4.0) — Pending Author Final Approval"
 Keywords:
   - "Payment Disputes"
   - "Chargebacks"
   - "Decision Support Systems"
-  - "Heuristic Auditing"
-  - "Explainable AI"
-  - "Synthetic Benchmarks"
-  - "Fintech Operations"
+  - "Explainable Decision Support"
+  - "Deterministic Rules Engine"
+  - "Synthetic Case Evaluation"
+  - "Fintech"
   - "Second Presentment"
   - "First-Party Trust"
 Language: "eng"
@@ -82,7 +82,7 @@ Related Identifiers:
 ```
 
 ### Abstract for Deposit
-> Payment dispute management in direct-to-consumer (D2C) e-commerce represents an asymmetric operational challenge. While card scheme rules (e.g., Mastercard Mastercom and Visa CE3.0) establish strict technical criteria for second presentment representment, merchants face severe friction: manual evidence compilation requires 30 to 60 minutes per dispute, while black-box automated solutions charge contingency take-rates of 20% to 25% that extract substantial margin on high-ticket goods ($150 to $1,500 Average Order Value). Furthermore, fully automated submission tools frequently submit contradictory files or fail to attach merchant-specific policies required for merchandise disputes (Mastercard Reason Code 4853). This paper investigates ChargeDossier, an explainable, deterministic decision-support copilot designed to pre-audit payment dispute evidence before submission to acquiring networks. Using an adversarial synthetic benchmark dataset (n=4) modeling cardholder fraud (Reason Code 4837) and merchandise non-receipt/defect disputes (Reason Code 4853), we evaluate whether a deterministic heuristic rules engine can reliably classify dispute viability, detect critical evidentiary contradictions, and guide dynamic gap remediation. The evaluation demonstrates that the deterministic scoring engine executes in under 5 milliseconds with zero non-deterministic drift, accurately isolating deficient claims (scoring 2/100 and 22/100) and elevating remediable claims from Tier B (73/100) to Tier A (100/100) upon attachment of required policy exhibits. We analyze the operational, computational, and economic trade-offs of human-in-the-loop deterministic auditing versus generative language models and uncapped contingency automation, showing that a fixed-cost explainable copilot preserves merchant operating margins while mitigating scheme pre-arbitration risks.
+> Payment dispute management in direct-to-consumer (D2C) e-commerce represents an asymmetric operational challenge. While card scheme rules (e.g., Mastercard Mastercom and Visa CE3.0) establish strict technical criteria for second presentment representment, merchants face severe friction: manual evidence compilation is estimated across industry operations to require 30 to 60 minutes per dispute, while black-box automated solutions charge contingency take-rates of 20% to 25% that extract substantial margin on high-ticket goods ($150 to $1,500 Average Order Value). Furthermore, fully automated submission tools frequently submit contradictory files or fail to attach merchant-specific policies required for merchandise disputes (Mastercard Reason Code 4853). This paper investigates ChargeDossier, an explainable, deterministic decision-support copilot designed to pre-audit payment dispute evidence before submission to acquiring networks. Using an adversarial synthetic benchmark dataset (n=4) modeling cardholder fraud (Reason Code 4837) and merchandise non-receipt/defect disputes (Reason Code 4853), we evaluate whether a deterministic heuristic rules engine can reliably classify dispute viability, detect critical evidentiary contradictions, and guide dynamic gap remediation. The evaluation demonstrates that the deterministic scoring engine executes with an average latency of ~0.010 ms per dispute in CPU micro-benchmarks and under 1.0 ms in automated test runners, with zero non-deterministic score drift (σ² = 0.0000), accurately isolating deficient claims (scoring 2/100 and 22/100) and elevating remediable claims from Tier B (73/100) to Tier A (100/100) upon attachment of required policy exhibits. We analyze the operational, computational, and economic trade-offs of human-in-the-loop deterministic auditing versus generative language models and uncapped contingency automation, showing that a fixed-cost explainable copilot preserves merchant operating margins while mitigating scheme pre-arbitration risks. No commercial viability, improved chargeback win rates, statistical significance across production populations, or causal dispute reversals are claimed; all evaluations reflect synthetic benchmark profiles and simulated operator actions.
 
 ---
 
