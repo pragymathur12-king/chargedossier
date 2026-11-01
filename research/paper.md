@@ -1,10 +1,10 @@
 # Deterministic Decision Support for Payment Dispute Evidence: A Synthetic Case Evaluation of Explainable Pre-Submission Auditing
 
 **Author:** Pragy Mathur  
-**Affiliation:** Integrated MBA Candidate, Class of 2027  
-**Institution:** Parul University  
+**Affiliation:** Integrated MBA Candidate, Class of 2027, Parul University  
+**Note on Affiliation:** Independent student research. This work was conducted independently by the author and was not supervised, sponsored, evaluated, or endorsed by Parul University, Mastercard, or any payment card network.  
 **Email:** pragymathur12@gmail.com  
-**Date:** October 2026 (Integrity Revision: October 30, 2026)  
+**Date:** October 2026 (Audited Integrity Revision: November 2, 2026)  
 **Repository:** [https://github.com/pragymathur12-king/chargedossier](https://github.com/pragymathur12-king/chargedossier)  
 **Live Prototype:** [https://pragymathur12-king.github.io/chargedossier/](https://pragymathur12-king.github.io/chargedossier/)  
 **Proposed License:** Creative Commons Attribution 4.0 International (CC BY 4.0) — Subject to Final Author Deposit Approval  
@@ -13,11 +13,11 @@
 ---
 
 ### Abstract
-Payment dispute management in direct-to-consumer (D2C) e-commerce represents an asymmetric operational challenge. While card scheme rules (e.g., Mastercard Mastercom and Visa CE3.0) establish strict technical criteria for second presentment representment, merchants face severe friction: manual evidence compilation requires 30 to 60 minutes per dispute (industry benchmark), while black-box automated solutions charge contingency take-rates of 20% to 25% that extract substantial margin on high-ticket goods ($150 to $1,500 Average Order Value). Furthermore, fully automated submission tools frequently submit contradictory files or fail to attach merchant-specific policies required for merchandise disputes (Mastercard Reason Code 4853). 
+Payment dispute management in direct-to-consumer (D2C) e-commerce represents an asymmetric operational challenge. While card scheme rules (e.g., Mastercard Mastercom and Visa CE3.0) establish strict technical criteria for second presentment representment, merchants face operational friction from manual evidence compilation across disconnected platforms (with 41% of merchants relying on manual review workflows [S-05]). Meanwhile, commercial dispute automation providers (such as Chargeflow [S-11]) charge contingency take-rates of up to 25% of recovered funds that can extract significant margin on high-ticket goods ($150 to $1,500 Average Order Value). Furthermore, fully automated submission tools risk submitting contradictory files or omitting merchant-specific policies required for merchandise disputes (Mastercard Reason Code 4853) when operating without pre-submission human review.
 
-This paper investigates **ChargeDossier**, an explainable, deterministic decision-support copilot designed to pre-audit payment dispute evidence before submission to acquiring networks. Using an adversarial synthetic benchmark dataset ($n=4$) modeling cardholder fraud (Reason Code 4837) and merchandise non-receipt/defect disputes (Reason Code 4853), we evaluate whether a deterministic heuristic rules engine can reliably classify dispute viability, detect critical evidentiary contradictions, and guide dynamic gap remediation. 
+This paper investigates **ChargeDossier**, an explainable, deterministic decision-support copilot designed to pre-audit payment dispute evidence before submission to acquiring networks. Using an adversarial synthetic benchmark dataset ($n=4$) modeling cardholder fraud (Reason Code 4837) and merchandise non-receipt/defect disputes (Reason Code 4853), we evaluate whether a deterministic heuristic rules engine can reliably classify dispute viability, detect critical evidentiary contradictions, and guide dynamic gap remediation.
 
-The evaluation demonstrates that the deterministic scoring engine executes with an average latency of ~0.010 ms per dispute in micro-benchmarks and under 1.0 ms in automated test runners, with zero non-deterministic score drift ($\sigma^2 = 0.0000$), accurately isolating deficient claims (scoring 2/100 and 22/100) and elevating remediable claims from Tier B (73/100) to Tier A (100/100) upon attachment of required policy exhibits. We analyze the operational, computational, and economic trade-offs of human-in-the-loop deterministic auditing versus generative language models and uncapped contingency automation, showing that a fixed-cost explainable copilot preserves merchant operating margins while mitigating scheme pre-arbitration risks. No commercial viability, improved chargeback win rates, statistical significance across production populations, or causal dispute reversals are claimed; all evaluations reflect synthetic benchmark profiles and simulated operator actions.
+The evaluation demonstrates that the deterministic scoring engine executes with an average latency of ~0.010 ms per dispute in CPU micro-benchmarks and under 1.0 ms in automated test runners, with zero non-deterministic score drift ($\sigma^2 = 0.0000$), accurately isolating deficient claims (scoring 2/100 and 22/100) and elevating remediable claims from Tier B (73/100) to Tier A (100/100) upon attachment of required policy exhibits. We analyze the operational, computational, and economic trade-offs of human-in-the-loop deterministic auditing versus generative language models and uncapped contingency automation, showing how a fixed-cost explainable copilot model is hypothesized to address margin erosion and pre-arbitration risks in high-ticket dispute workflows. No commercial viability, improved chargeback win rates, statistical significance across production populations, or causal dispute reversals are claimed; all evaluations reflect synthetic benchmark profiles and simulated operator actions.
 
 **Keywords:** Payment Disputes, Evidence Quality, Explainable Decision Support, Deterministic Rules Engine, Synthetic Case Evaluation, Fintech, Product Research, Second Presentment, First-Party Trust.
 
@@ -29,7 +29,7 @@ Payment card chargebacks were originally designed under the United States Truth 
 
 According to LexisNexis Risk Solutions' empirical *True Cost of Fraud™ Study*, every $1.00 of direct fraud and dispute loss costs US retail and e-commerce merchants an average of **$4.61 to $5.13** in total organizational costs [[S-05]]. This multiple reflects not only the loss of the original sale and physical merchandise, but also non-refundable processor dispute assessment fees ($15.00 to $25.00 per event [[S-09]]), outbound shipping costs, operational labor overhead, and potential card network excessive chargeback penalties.
 
-Despite the severity of these losses, dispute management across small and mid-sized e-commerce merchants is characterized by pervasive operational abandonment. Industry surveys conducted by Riskified and Datos Insights [[S-15]] reveal that approximately **60% of surveyed merchants leave at least 40% of their chargebacks completely undisputed**, with roughly 16% of total dispute volume written off as low-dollar losses. The root cause of this abandonment is manual workflow friction: merchant operators must manually harvest transaction logs from payment gateways (e.g., Stripe, Shopify Payments), shipping proof from logistics aggregators (e.g., ShipStation, EasyPost), and customer communications from support desks (e.g., Zendesk, Gorgias), consuming 30 to 60 minutes per dispute [[S-05]].
+Despite the severity of these losses, dispute management across small and mid-sized e-commerce merchants is characterized by pervasive operational abandonment. Industry surveys conducted by Riskified and Datos Insights [[S-15]] reveal that approximately **60% of surveyed merchants leave at least 40% of their chargebacks completely undisputed**, with roughly 16% of total dispute volume written off as low-dollar losses. The root cause of this abandonment is manual workflow friction: merchant operators must manually harvest transaction logs from payment gateways (e.g., Stripe, Shopify Payments), shipping proof from logistics aggregators (e.g., ShipStation, EasyPost), and customer communications from support desks (e.g., Zendesk, Gorgias). While LexisNexis Risk Solutions reports that 41% of merchants continue to rely on manual dispute processes [[S-05]], industry trade reports informally estimate that manual evidence compilation requires 30 to 60 minutes per dispute [[S-15]], leading many operators to write off contestable claims.
 
 ```
 +----------------------------------------------------------------------------------------------------+
@@ -37,17 +37,18 @@ Despite the severity of these losses, dispute management across small and mid-si
 +--------------------------+------------------------------------+------------------------------------+
 | OPERATIONAL MODEL        | LOW-TICKET ($25 AOV)               | HIGH-TICKET ($1,150 AOV)           |
 +--------------------------+------------------------------------+------------------------------------+
-| Manual Review            | Economically unviable (30-60 min). | Viable but slow and error-prone.   |
-| 25% Contingency Bot      | Painless fee ($6.25 per win).      | Severe margin drain ($287.50 fee). |
-| Black-Box Full Autopilot | Low risk of bad submission.        | Severe risk: missing 4853 policy   |
+| Manual Review            | Economically unviable.             | Viable but slow and error-prone.   |
+| 25% Contingency Bot      | Low absolute fee ($6.25 on win).   | Heavy fee drag ($287.50 fee).      |
+| (e.g., Chargeflow [S-11])|                                    |                                    |
+| Black-Box Full Autopilot | Low consequence of bad submission. | Severe risk: missing 4853 policy   |
 |                          |                                    | or freight-forwarder contradiction.|
 +--------------------------+------------------------------------+------------------------------------+
 ```
 
-In response to manual friction, a class of automated representment vendors (e.g., Chargeflow [[S-11]], Justt [[S-12]]) has emerged, offering hands-off dispute automation via gateway API connections. However, prevailing commercial offerings create two major structural problems, particularly for high-ticket direct-to-consumer (D2C) brands selling goods between $150 and $1,500 Average Order Value (AOV):
-1. **Contingency Margin Extinguishment:** Most turnkey automation providers operate on a contingency pricing model, charging **20% to 25% of recovered gross sales** [[S-11], [S-12]]. While a 25% take-rate ($5.00) is negligible on a $20 commodity item, on an $850 ergonomic standing desk or an $1,150 modular bed frame, a 25% fee extracts **$212.50 to $287.50 per dispute**, capturing nearly all of the merchant's net operating margin.
-2. **Contextual Failure on Merchandise Disputes (Reason Code 4853):** Automated bots excel at querying carrier APIs for tracking numbers on simple fraud claims (Reason Code 4837). However, high-ticket disputes frequently arise under **Mastercard Reason Code 4853 (Cardholder Dispute: Defective/Not as Described or Not Received)** [[S-13]]. Winning a 4853 dispute requires contextual evidence: proof that the customer agreed to a published return/cancellation policy, and documentation of a formal remedy (e.g., replacement parts, return shipping label) offered prior to the dispute. Generic automated scripts that merely upload tracking slips lose 4853 claims automatically.
-3. **Contradictory File Submission Risks:** When automated bots blindly aggregate customer files without pre-flight auditing, they risk submitting contradictory evidence—such as a billing address in Texas matched with delivery to an unverified commercial freight forwarder in Florida, or a carrier status showing a weather transit delay. Submitting unverified or contradictory files exposes merchants to card scheme pre-arbitration, which carries $500 network filing fees.
+In response to manual friction, a class of automated representment vendors (e.g., Chargeflow [[S-11]], Justt [[S-12]]) has emerged, offering hands-off dispute automation via gateway API connections. However, commercial offerings introduce notable trade-offs, particularly for high-ticket direct-to-consumer (D2C) brands selling goods between $150 and $1,500 Average Order Value (AOV):
+1. **Contingency Margin Extinguishment:** Several turnkey automation providers operate on a contingency pricing model; for example, Chargeflow publicly advertises a **25% take-rate on recovered gross sales** [[S-11]], and Justt advertises a success-based fee model [[S-12]]. While a 25% take-rate ($5.00) is modest on a $20 commodity item, on an $850 ergonomic standing desk or an $1,150 modular bed frame, a 25% fee extracts **$212.50 to $287.50 per dispute**, capturing a substantial portion of the merchant's net operating margin.
+2. **Contextual Requirements on Merchandise Disputes (Reason Code 4853):** Automated scripts excel at querying carrier APIs for tracking numbers on simple fraud claims (Reason Code 4837). However, high-ticket disputes frequently arise under **Mastercard Reason Code 4853 (Cardholder Dispute: Defective/Not as Described or Not Received)** [[S-13]]. Winning a 4853 dispute requires contextual evidence: proof that the customer agreed to a published return/cancellation policy, and documentation of a formal remedy (e.g., replacement parts, return shipping label) offered prior to the dispute. Unassisted scripts that merely upload tracking slips risk losing 4853 claims due to missing merchant policy exhibits.
+3. **Contradictory File Submission Risks:** When automated tools aggregate customer files without pre-flight auditing, they risk submitting contradictory evidence—such as a billing address in Texas matched with delivery to an unverified commercial freight forwarder in Florida, or a carrier status showing an in-transit weather delay. Submitting unverified or contradictory files can expose merchants to card scheme pre-arbitration review, where formal filing and administrative fees can reach $500 under network rules [[S-01], [S-07]].
 
 To address these systemic vulnerabilities, this research investigates **deterministic pre-submission evidence auditing**. We propose an explainable decision-support copilot architecture—**ChargeDossier**—and evaluate its effectiveness against a synthetic adversarial benchmark suite.
 
@@ -76,7 +77,7 @@ A similar mechanism exists under Visa’s **Compelling Evidence 3.0 (CE3.0)** sp
 ### 2.3 Existing Commercial Approaches and Regulatory Boundaries
 Current market approaches to payment disputes can be divided into three operational models:
 1. **Pre-Dispute Alert Networks (Ethoca & Verifi):** Ethoca Alerts [[S-04]] (Mastercard) and Verifi CDRN/RDR [[S-08]] (Visa) push notifications to merchants when a customer initiates an inquiry, granting a 24-to-72-hour window to issue a full refund before a chargeback is booked. While alerts preserve merchant dispute-to-transaction ratios, third-party resellers charge **$19.00 to $40.00+ per alert** [[S-14]]. On an alert, the merchant forfeits 100% of the sale value plus the alert fee, resulting in complete financial forfeiture.
-2. **Turnkey Contingency Autopilots (Chargeflow, Justt):** These systems automatically ingest Shopify and Stripe webhooks, compile basic evidence, and submit representations via gateway APIs on a 20% to 25% contingency take-rate [[S-11], [S-12]]. While reducing administrative burden, they lack deep human-in-the-loop review for nuanced high-ticket merchandise claims.
+2. **Turnkey Contingency Autopilots (e.g., Chargeflow, Justt):** These systems automatically ingest Shopify and Stripe webhooks, compile evidence, and submit representations via gateway APIs. Chargeflow public pricing utilizes a 25% contingency take-rate on recovered funds [[S-11]], while Justt advertises a success-based enterprise model [[S-12]]. While reducing administrative burden, automated ingestion workflows lack deep human-in-the-loop review for nuanced high-ticket merchandise claims.
 3. **Open Banking & Data Ownership Considerations:** In adjacent financial domains, the Consumer Financial Protection Bureau’s (CFPB) Section 1033 Final Rule on Personal Financial Data Rights [[S-16]] mandated open consumer banking APIs. Crucially, however, CFPB Section 1033 **explicitly excluded commercial and small business accounts** from its 2024 final scope [[S-16]], creating extensive regulatory and API gatekeeping for third-party B2B open banking tools. In contrast, dispute evidence management utilizes first-party merchant-held data (transaction records, shipping receipts, support tickets) where the merchant already possesses complete legal ownership, allowing immediate operational execution without regulatory gatekeeping.
 
 ---
@@ -248,8 +249,8 @@ Case DSP-4190 empirically validated the interactive gap remediation mechanism in
 
 #### Findings for RQ3 (Deterministic vs. Black-Box Trade-Offs)
 The evaluation highlighted profound operational distinctions between deterministic auditing, generative AI, and uncapped contingency automation:
-* **Risk Avoidance:** For Case DSP-3312 ($850 desk) and Case DSP-2081 ($295 grinder), generic automation scripts that blindly submit tracking records would have lost the disputes and triggered issuer rejections. ChargeDossier’s contradiction penalties instantly drove both cases into Tier C (2/100 and 22/100), prompting immediate loss acceptance and saving an estimated 45 minutes of manual labor per case while eliminating $500 pre-arbitration exposure.
-* **Economic Preservation:** Table 2 compares the merchant economics across dispute resolution models for Case DSP-4190 ($1,150.00 dispute) under an illustrative single-case unit-economics model.
+* **Risk Avoidance:** For Case DSP-3312 ($850 desk) and Case DSP-2081 ($295 grinder), ChargeDossier’s contradiction penalties flagged both synthetic cases and classified them as Tier C (2/100 and 22/100), prompting a recommendation of immediate loss acceptance. In product design terms, this heuristic triage is intended to help operators avoid wasting manual effort on unviable claims and avoid submitting contradictory files that could incur card scheme pre-arbitration penalties.
+* **Economic Modeling:** Table 2 compares the hypothetical merchant economics across dispute resolution models for Case DSP-4190 ($1,150.00 dispute) under an illustrative single-case unit-economics hypothesis.
 
 ```
 +----------------------------------------------------------------------------------------------------+
@@ -259,10 +260,11 @@ The evaluation highlighted profound operational distinctions between determinist
 +--------------------------+---------------------+-------------------+-------------------------------+
 | Abandonment / Write-Off  | $0.00               | $15.00            | -$1,165.00 (Total Loss)       |
 | 25% Contingency Bot      | $287.50             | $0.00 (Refunded)  | +$862.50 (25% Margin Loss)    |
-| ChargeDossier Copilot    | Flat SaaS ($49/mo)  | $0.00 (Refunded)  | +$1,150.00 (Full Recovery)    |
+| (e.g., Chargeflow [S-11])|                     |                   |                               |
+| ChargeDossier Copilot    | Flat SaaS ($49/mo)  | $0.00 (Refunded)  | +$1,150.00 (Hypothetical Max) |
 +--------------------------+---------------------+-------------------+-------------------------------+
 ```
-*Note: Illustrative unit economics comparison for an isolated single dispute; actual merchant savings depend on monthly dispute volume, win rates, and processor fee structures.*
+*Note: Illustrative single-case unit-economics hypothesis comparing a 25% contingency fee against an unvalidated $49/mo flat SaaS hypothesis on an isolated $1,150 dispute. This table models hypothetical software costs; it does not represent empirical merchant financial records, measured savings, or real-world chargeback recovery rates.*
 
 ---
 
@@ -313,15 +315,13 @@ The development and deployment of automated dispute systems involve critical eth
 
 ## 10. Conclusion & Future Work
 
-This paper presented an evaluation of **ChargeDossier**, an explainable, deterministic decision-support copilot for payment dispute evidence auditing. By formalizing card scheme representment standards into a transparent heuristic framework, ChargeDossier demonstrates that pre-submission auditing reliably isolates unwinnable disputes, eliminates scheme pre-arbitration exposure, and enables dynamic gap remediation on high-ticket merchandise claims.
+This paper presented an evaluation of **ChargeDossier**, an explainable, deterministic decision-support copilot for payment dispute evidence auditing. By formalizing card scheme representment standards into a transparent heuristic framework, ChargeDossier demonstrates how pre-submission auditing can flag deficient or contradictory synthetic dispute files, guide operator remediation of missing policy documentation, and structure submissions under card scheme technical guidelines.
 
-Compared to uncapped 25% contingency automation and hallucination-prone generative language models, deterministic decision support provides an optimal balance of sub-millisecond execution, auditability, and margin preservation for high-ticket e-commerce merchants.
+Compared to black-box contingency automation or non-deterministic generative language models, deterministic decision support offers an architectural alternative characterized by sub-millisecond local execution, complete mathematical auditability ($\sigma^2 = 0.0000$), and explicit human-in-the-loop governance.
 
 ### Future Work & Planned Research
 The research roadmap encompasses three sequential milestones:
 1. **Planned Customer Discovery ($n=8\text{–}10$):** Executing semi-structured qualitative interviews with verified operations leads at US D2C merchants to test operator tolerance for review friction and validate pricing model preferences.
-2. **Blinded Shadow Pilot:** Ingesting historical, redacted dispute records from pilot merchants to evaluate scoring accuracy and remediation lift against historical processor adjudication outcomes.
-3. **Gateway API Integrations:** Developing production webhook connectors for Shopify Payments and Stripe, enabling automated real-time telemetry harvesting while preserving the human-in-the-loop review gate.
 2. **Blinded Shadow Pilot:** Ingesting 50 historical, redacted dispute records from pilot merchants to evaluate scoring accuracy and remediation lift against historical processor adjudication outcomes.
 3. **Gateway API Integrations:** Developing production webhook connectors for Shopify Payments and Stripe, enabling automated real-time telemetry harvesting while preserving the human-in-the-loop review gate.
 
@@ -348,7 +348,7 @@ The research roadmap encompasses three sequential milestones:
 * **[S-17]** Sahamati, "Account Aggregator Framework in India: Architecture & Technical Standards," *Sahamati Collective*, 2024. [Online]. Available: `https://sahamati.org.in/what-is-account-aggregator/`
 * **[S-18]** Intuit QuickBooks, "Small Business Insights: Cash Flow and Late Payments Empirical Report," *Intuit Press Room*, 2024. [Online]. Available: `https://www.intuit.com/company/press-room/press-releases/small-business-index/`
 * **[S-19]** Mastercard International Incorporated, "Mastercard Test & Learn and Brighterion Cognitive AI Architecture," *Mastercard Services*, 2024. [Online]. Available: `https://developer.mastercard.com/brighterion/`
-* **[S-20]** Mastercard Corporate Communications, "Mastercard Agent Pay: Autonomous AI Agent Transaction Infrastructure," *Mastercard Newsroom*, 2024. [Online]. Available: `https://www.mastercard.com/news/press-releases/2024/agentic-ai-commerce-infrastructure/`
+* **[S-20]** [Unresolved Source — Corporate press release URL unconfirmed; omitted from study claims]
 * **[S-21]** Plaid Inc., "Open Banking APIs and Signal Cash Flow Underwriting Models," *Plaid Developer Documentation*, 2024. [Online]. Available: `https://plaid.com/products/signal/`
 * **[S-22]** Ramp Business Corporation & Brex Inc., "AI-Driven Corporate Financial Operations and Policy Automation," *Ramp Platform*, 2024. [Online]. Available: `https://ramp.com/platform/ai`
 * **[S-23]** Chargeflow Inc., "Upload Evidence API & Dashboard Custom Evidence Integration Guide," *Chargeflow Help Docs*, 2025. [Online]. Available: `https://www.chargeflow.io/help/upload-evidence-guide`

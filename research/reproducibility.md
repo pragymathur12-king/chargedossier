@@ -2,8 +2,9 @@
 
 **Project:** Mastercard Opportunity Lab — ChargeDossier  
 **Paper:** *Deterministic Decision Support for Payment Dispute Evidence: A Synthetic Case Evaluation of Explainable Pre-Submission Auditing*  
-**Author:** Pragy Mathur (pragymathur12@gmail.com)  
-**Date:** October 2026  
+**Author:** Pragy Mathur (pragymathur12@gmail.com) &middot; Integrated MBA Candidate, Class of 2027, Parul University  
+**Note on Affiliation:** Independent student research. This work was conducted independently by the author and was not supervised, sponsored, evaluated, or endorsed by Parul University, Mastercard, or any payment card network.  
+**Date:** October 2026 (Audited Integrity Revision: November 2, 2026)  
 **Repository:** [https://github.com/pragymathur12-king/chargedossier](https://github.com/pragymathur12-king/chargedossier)  
 **Live Prototype:** [https://pragymathur12-king.github.io/chargedossier/](https://pragymathur12-king.github.io/chargedossier/)  
 
@@ -80,10 +81,11 @@ Execute the standalone performance micro-benchmark (100 warmup runs, 1,000 itera
 ```powershell
 node tests/benchmark.js
 ```
+*Note on Live Execution vs. Static Files: Performance metrics are computed dynamically in memory by `tests/benchmark.js` via Node.js native `perf_hooks`. There is no static `benchmark-results.json` or `case-evaluation.json` file in the repository; ground-truth dispute definitions reside in `src/data/disputes.js`.*
 
 #### Expected Benchmark Output:
 ```
-Aggregate Mean Execution Latency: ~0.0099 ms (9.9 µs per audit)
+Aggregate Mean Execution Latency: ~0.010 ms (10 µs per audit)
 Deterministic Score Stability:
 DSP-1049: Score = 100/100 -> Score Variance = 0.0000 [PERFECT DETERMINISM]
 DSP-2081: Score = 22/100  -> Score Variance = 0.0000 [PERFECT DETERMINISM]

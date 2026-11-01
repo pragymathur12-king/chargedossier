@@ -3,12 +3,12 @@
 **Project:** Mastercard Opportunity Lab — ChargeDossier  
 **Paper Title:** *Deterministic Decision Support for Payment Dispute Evidence: A Synthetic Case Evaluation of Explainable Pre-Submission Auditing*  
 **Author:** Pragy Mathur  
-**Affiliation:** Integrated MBA Candidate (Class of 2027), Parul University  
+**Affiliation:** Integrated MBA Candidate (Class of 2027), Parul University (Independent Student Research; Not Sponsored, Supervised, or Endorsed by Parul University)  
 **Email:** pragymathur12@gmail.com  
 **Proposed License:** Creative Commons Attribution 4.0 International (CC BY 4.0) — Ready for Author Confirmation at Deposit  
 **Target Roles:** General Associate Product Manager (APM) &middot; Target Companies: Mastercard, Visa, Razorpay, Fintechs  
 **Submission Status:** STAGED LOCALLY &middot; NOT YET SUBMITTED TO ZENODO OR SSRN  
-**Date:** October 30, 2026  
+**Date:** October 30, 2026 (Audited Integrity Revision: November 2, 2026)  
 
 ---
 
@@ -55,7 +55,7 @@ Use this exact metadata payload when uploading the paper to Zenodo, SSRN, or ins
 Title: "Deterministic Decision Support for Payment Dispute Evidence: A Synthetic Case Evaluation of Explainable Pre-Submission Auditing"
 Authors:
   - Name: "Mathur, Pragy"
-    Affiliation: "Parul University (Integrated MBA Candidate, Class of 2027)"
+    Affiliation: "Parul University (Integrated MBA Candidate, Class of 2027; Independent Student Research)"
     Email: "pragymathur12@gmail.com"
 Publication Date: "2026-10-30"
 Resource Type: "Preprint / Working Paper"
@@ -82,7 +82,11 @@ Related Identifiers:
 ```
 
 ### Abstract for Deposit
-> Payment dispute management in direct-to-consumer (D2C) e-commerce represents an asymmetric operational challenge. While card scheme rules (e.g., Mastercard Mastercom and Visa CE3.0) establish strict technical criteria for second presentment representment, merchants face severe friction: manual evidence compilation is estimated across industry operations to require 30 to 60 minutes per dispute, while black-box automated solutions charge contingency take-rates of 20% to 25% that extract substantial margin on high-ticket goods ($150 to $1,500 Average Order Value). Furthermore, fully automated submission tools frequently submit contradictory files or fail to attach merchant-specific policies required for merchandise disputes (Mastercard Reason Code 4853). This paper investigates ChargeDossier, an explainable, deterministic decision-support copilot designed to pre-audit payment dispute evidence before submission to acquiring networks. Using an adversarial synthetic benchmark dataset (n=4) modeling cardholder fraud (Reason Code 4837) and merchandise non-receipt/defect disputes (Reason Code 4853), we evaluate whether a deterministic heuristic rules engine can reliably classify dispute viability, detect critical evidentiary contradictions, and guide dynamic gap remediation. The evaluation demonstrates that the deterministic scoring engine executes with an average latency of ~0.010 ms per dispute in CPU micro-benchmarks and under 1.0 ms in automated test runners, with zero non-deterministic score drift (σ² = 0.0000), accurately isolating deficient claims (scoring 2/100 and 22/100) and elevating remediable claims from Tier B (73/100) to Tier A (100/100) upon attachment of required policy exhibits. We analyze the operational, computational, and economic trade-offs of human-in-the-loop deterministic auditing versus generative language models and uncapped contingency automation, showing that a fixed-cost explainable copilot preserves merchant operating margins while mitigating scheme pre-arbitration risks. No commercial viability, improved chargeback win rates, statistical significance across production populations, or causal dispute reversals are claimed; all evaluations reflect synthetic benchmark profiles and simulated operator actions.
+> Payment dispute management in direct-to-consumer (D2C) e-commerce represents an asymmetric operational challenge. While card scheme rules (e.g., Mastercard Mastercom and Visa CE3.0) establish strict technical criteria for second presentment representment, merchants face operational friction from manual evidence compilation across disconnected platforms (with 41% of merchants relying on manual review workflows [S-05]). Meanwhile, commercial dispute automation providers (such as Chargeflow [S-11]) charge contingency take-rates of up to 25% of recovered funds that can extract significant margin on high-ticket goods ($150 to $1,500 Average Order Value). Furthermore, fully automated submission tools risk submitting contradictory files or omitting merchant-specific policies required for merchandise disputes (Mastercard Reason Code 4853) when operating without pre-submission human review.
+>
+> This paper investigates **ChargeDossier**, an explainable, deterministic decision-support copilot designed to pre-audit payment dispute evidence before submission to acquiring networks. Using an adversarial synthetic benchmark dataset (n=4) modeling cardholder fraud (Reason Code 4837) and merchandise non-receipt/defect disputes (Reason Code 4853), we evaluate whether a deterministic heuristic rules engine can reliably classify dispute viability, detect critical evidentiary contradictions, and guide dynamic gap remediation.
+>
+> The evaluation demonstrates that the deterministic scoring engine executes with an average latency of ~0.010 ms per dispute in CPU micro-benchmarks and under 1.0 ms in automated test runners, with zero non-deterministic score drift (σ² = 0.0000), accurately isolating deficient claims (scoring 2/100 and 22/100) and elevating remediable claims from Tier B (73/100) to Tier A (100/100) upon attachment of required policy exhibits. We analyze the operational, computational, and economic trade-offs of human-in-the-loop deterministic auditing versus generative language models and uncapped contingency automation, showing how a fixed-cost explainable copilot model is hypothesized to address margin erosion and pre-arbitration risks in high-ticket dispute workflows. No commercial viability, improved chargeback win rates, statistical significance across production populations, or causal dispute reversals are claimed; all evaluations reflect synthetic benchmark profiles and simulated operator actions.
 
 ---
 

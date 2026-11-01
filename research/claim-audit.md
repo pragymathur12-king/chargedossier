@@ -1,9 +1,10 @@
 # ChargeDossier: Research & Portfolio Claim Integrity Audit
 
 **Project:** Mastercard Opportunity Lab — ChargeDossier  
-**Author:** Pragy Mathur &middot; Integrated MBA Candidate (Class of 2027)  
+**Author:** Pragy Mathur &middot; Integrated MBA Candidate (Class of 2027), Parul University  
+**Note on Affiliation:** Independent student research. This work was conducted independently by the author and was not supervised, sponsored, evaluated, or endorsed by Parul University, Mastercard, or any payment card network.  
 **Target Roles:** General Associate Product Manager (APM) &middot; Target Companies: Mastercard, Visa, Razorpay, Fintechs  
-**Date:** October 2026 (Audit Completed: October 30, 2026)  
+**Date:** October 2026 (Audited Integrity Revision: November 2, 2026)  
 **Status:** Complete Audit & Verification Register  
 
 ---
@@ -32,15 +33,15 @@ This integrity audit evaluates every numerical, factual, technical, and commerci
 +----+------------------------------------+--------------------------+-----------------------+------------------+----------------------------------------------------+
 | ID | EXACT CLAIM                        | EVIDENCE / CITATION      | VERIFICATION METHOD   | CLASSIFICATION   | AUDIT FINDING & REQUIRED CORRECTION                |
 +----+------------------------------------+--------------------------+-----------------------+------------------+----------------------------------------------------+
-| C1 | 45-min manual assembly to 90-sec   | LexisNexis [S-05] (30-60m| Time-motion heuristic | Mixed:           | Correct terminology: "45 minutes" is a source-     |
-|    | audit review goal                  | manual review); Product  | and user testing goal | Source-derived / | derived average for manual handling; "90 seconds"  |
-|    |                                    | PRD target (<90s)        | in local prototype    | Hypothetical     | is an unvalidated product target SLA, NOT a field- |
-|    |                                    |                          |                       | target           | measured production merchant metric.               |
+| C1 | 45-min manual assembly to 90-sec   | Trade literature [S-15]; | Time-motion heuristic | Mixed:           | Correct terminology: 30-60 min is an informal      |
+|    | audit review goal                  | LexisNexis [S-05] (41%   | and user testing goal | Informal trade   | trade estimate (LexisNexis reports 41% manual      |
+|    |                                    | manual); PRD target (<90s| in local prototype    | estimate / Target| review, not a 30-60m clock). "90s" is an internal   |
+|    |                                    |                          |                       | SLA              | prototype target, not a measured field metric.     |
 +----+------------------------------------+--------------------------+-----------------------+------------------+----------------------------------------------------+
-| C2 | 0.48 ms execution latency          | tests/benchmark.js and   | Micro-benchmark with  | Measured         | Correct precision: In tests/benchmark.js across    |
+| C2 | ~0.010 ms execution latency        | tests/benchmark.js and   | Micro-benchmark with  | Measured         | Correct precision: In tests/benchmark.js across    |
 |    |                                    | tests/engine.test.js     | 1,000 iterations      | (reproducible)   | 1,000 iterations, pure engine latency averages     |
-|    |                                    |                          |                       |                  | ~0.010 ms (10 µs); test-runner suite execution is  |
-|    |                                    |                          |                       |                  | <1.0 ms per test. Replace with exact benchmark.    |
+|    |                                    |                          |                       |                  | ~0.010 ms (10 µs); test runner assertions execute  |
+|    |                                    |                          |                       |                  | in <1.0 ms; HTTP roundtrip executes in 0.4-10 ms.  |
 +----+------------------------------------+--------------------------+-----------------------+------------------+----------------------------------------------------+
 | C3 | 100 audit cycles with zero         | tests/benchmark.js       | 1,000 sequential runs | Measured         | Verified: Score variance across 1,000 sequential   |
 |    | score variance (sigma^2 = 0.00)    |                          | in Node.js v24        | (reproducible)   | runs is exactly 0.0000 across all 4 benchmark      |
@@ -62,9 +63,9 @@ This integrity audit evaluates every numerical, factual, technical, and commerci
 | C7 | $49 monthly SaaS pricing hypothesis| Phase 2A Pricing & Unit  | Breakeven & ICP unit  | Hypothetical     | Must be explicitly labeled: "Unvalidated pricing   |
 |    |                                    | Economics doc            | economics modeling    | (hypothesis)     | hypothesis to be tested in Phase 2B interviews."   |
 +----+------------------------------------+--------------------------+-----------------------+------------------+----------------------------------------------------+
-| C8 | 25% contingency take-rate          | Chargeflow pricing portal| Public vendor pricing | Source-derived   | Verified: Chargeflow publicly advertises a 25%     |
-|    | charged by incumbent autopilots    | [S-11]; Justt [S-12]     | sheets & reviews      |                  | contingency fee on recovered funds. Justt uses     |
-|    |                                    |                          |                       |                  | 20%–25%. Accurately reflects incumbent market.   |
+| C8 | 25% contingency take-rate          | Chargeflow pricing portal| Public vendor pricing | Source-derived   | Verified for Chargeflow: Chargeflow advertises     |
+|    | charged by specific autopilots     | [S-11]; Justt [S-12]     | sheets & reviews      | (scoped to vendor| a 25% contingency fee on recovered funds. Justt    |
+|    |                                    |                          |                       | pricing)         | uses success-based fees. Scoped to vendor pages.   |
 +----+------------------------------------+--------------------------+-----------------------+------------------+----------------------------------------------------+
 | C9 | $4.61–$5.13 total cost per $1.00   | LexisNexis Risk Solutions| Empirical industry    | Source-derived   | Verified: Directly published in LexisNexis True    |
 |    | of direct merchant fraud loss      | True Cost of Fraud [S-05]| study (US & Canada)   |                  | Cost of Fraud Study (Retail & E-commerce edition). |

@@ -1,10 +1,11 @@
 # ChargeDossier: Bibliographic Source & Reference Verification Audit
 
 **Project:** Mastercard Opportunity Lab — ChargeDossier  
-**Author:** Pragy Mathur &middot; Integrated MBA Candidate (Class of 2027)  
+**Author:** Pragy Mathur &middot; Integrated MBA Candidate (Class of 2027), Parul University  
+**Note on Affiliation:** Independent student research. This work was conducted independently by the author and was not supervised, sponsored, evaluated, or endorsed by Parul University, Mastercard, or any payment card network.  
 **Target Roles:** General Associate Product Manager (APM) &middot; Target Companies: Mastercard, Visa, Razorpay, Fintechs  
-**Date:** October 30, 2026  
-**Status:** 25/25 Sources Individually Verified & Audited  
+**Date:** October 30, 2026 (Audited Integrity Revision: November 2, 2026)  
+**Status:** 24/25 Sources Verified &middot; 1 Source Unresolved (S-20 Omitted from Claims)  
 
 ---
 
@@ -41,8 +42,10 @@ Every source cited across ChargeDossier research documents was individually audi
 | S-04| Ethoca (A Mastercard Company),         | Tier 1 | https://www.ethoca.com/ethoca-alerts                         | 24–72h alert SLA,  | VERIFIED (Tier 1/3)    |
 |     | "Ethoca Alerts Network Overview"       |        |                                                              | ECP exemption      | Vendor documentation   |
 +-----+----------------------------------------+--------+--------------------------------------------------------------+--------------------+------------------------+
-| S-05| LexisNexis Risk Solutions,             | Tier 2 | https://risk.lexisnexis.com/insights-resources/research/     | $4.61–$5.13 cost   | VERIFIED (Tier 2)      |
-|     | "True Cost of Fraud™ Study"            |        | true-cost-of-fraud-study-ecommerce-and-retail                | per $1 fraud; 41%  | Authoritative benchmark|
+| S-05| LexisNexis Risk Solutions,             | Tier 2 | https://risk.lexisnexis.com/insights-resources/research/     | $4.61–$5.13 cost   | PARTIALLY VERIFIED     |
+|     | "True Cost of Fraud™ Study"            |        | true-cost-of-fraud-study-ecommerce-and-retail                | per $1 fraud; 41%  | Verified for cost/ratio|
+|     |                                        |        |                                                              | manual review; (not| 30-60m is trade estim.)|
+|     |                                        |        |                                                              | 30-60 min clock)   |                        |
 +-----+----------------------------------------+--------+--------------------------------------------------------------+--------------------+------------------------+
 | S-06| Merchant Risk Council & Cybersource,   | Tier 2 | https://www.merchantriskcouncil.org/resources/research/      | <20% manual fraud  | VERIFIED (Tier 2)      |
 |     | "Global eCommerce Payments & Fraud"    |        | global-fraud-and-payments-report                             | dispute win rate   | Trade survey benchmark |
@@ -60,7 +63,8 @@ Every source cited across ChargeDossier research documents was individually audi
 |     | of Service & Guidelines"               |        | shopify-protect                                              | fulfillment limit  | Platform documentation |
 +-----+----------------------------------------+--------+--------------------------------------------------------------+--------------------+------------------------+
 | S-11| Chargeflow Inc., "Product Platform &   | Tier 3 | https://www.chargeflow.io/pricing                            | 25% contingency    | VERIFIED (Tier 3)      |
-|     | Public Pricing Structure"              |        |                                                              | take-rate model    | Vendor pricing portal  |
+|     | Public Pricing Structure"              |        |                                                              | take-rate model     | Vendor pricing portal  |
+|     |                                        |        |                                                              | (scoped to vendor)  |                        |
 +-----+----------------------------------------+--------+--------------------------------------------------------------+--------------------+------------------------+
 | S-12| Justt.ai, "Autonomous Chargeback       | Tier 3 | https://justt.ai/how-it-works/                               | 20%–25% contingency| VERIFIED (Tier 3)      |
 |     | Management Overview"                   |        |                                                              | fee for enterprise | Vendor commercial site |
@@ -87,8 +91,9 @@ Every source cited across ChargeDossier research documents was individually audi
 | S-19| Mastercard International Incorporated, | Tier 1 | https://developer.mastercard.com/brighterion/                | Brighterion AI &   | VERIFIED (Tier 1)      |
 |     | "Test & Learn & Brighterion AI Docs"   |        |                                                              | Test & Learn suite | Official service specs |
 +-----+----------------------------------------+--------+--------------------------------------------------------------+--------------------+------------------------+
-| S-20| Mastercard Corporate Communications,   | Tier 1 | https://www.mastercard.com/news/press-releases/2024/         | Agent Pay card     | VERIFIED (Tier 1)      |
-|     | "Mastercard Agent Pay Infrastructure"  |        | agentic-ai-commerce-infrastructure/                          | limits for AI agent| Corporate press release|
+| S-20| Mastercard Corporate Communications,   | Tier 1 | https://www.mastercard.com/news/press-releases/2024/         | Agent Pay card     | UNRESOLVED             |
+|     | "Mastercard Agent Pay Infrastructure"  |        | agentic-ai-commerce-infrastructure/                          | limits for AI agent| URL unconfirmed in live|
+|     |                                        |        |                                                              | (omitted from paper)| test; omitted from text|
 +-----+----------------------------------------+--------+--------------------------------------------------------------+--------------------+------------------------+
 | S-21| Plaid Inc., "Open Banking APIs and     | Tier 3 | https://plaid.com/products/signal/                           | Real-time balance  | VERIFIED (Tier 3)      |
 |     | Signal Underwriting Models"            |        |                                                              | & transaction APIs | Commercial aggregator  |
@@ -115,4 +120,4 @@ Every source cited across ChargeDossier research documents was individually audi
 1. **Card Scheme Operating Regulations:** References `[S-01]` (Mastercard Mastercom) and `[S-07]` (Visa CE3.0) define technical and structural constraints that cannot be modified by merchant software. Citing these specifications establishes realistic boundaries for ChargeDossier's dossier layout (<10MB, <18 pages) and First-Party Trust deflection vectors.
 2. **Commercial Pricing Transparency:** References `[S-11]` (Chargeflow), `[S-12]` (Justt), and `[S-14]` (Alert resellers) cite publicly advertised pricing sheets. While vendors periodically adjust pricing, the documented 20%–25% contingency model and $19–$40 alert fees accurately represent prevailing market conditions.
 3. **Regulatory Feasibility:** Reference `[S-16]` (CFPB Section 1033 Final Rule) was published on October 22, 2024. Confirming that commercial SMB accounts were excluded from the rule’s immediate scope verified that open banking tools face statutory hurdles, substantiating ChargeDossier’s focus on merchant-owned dispute records.
-4. **Zero Missing or Fabricated References:** All 25 references exist, are publicly verifiable, and directly substantiate the specific technical, legal, and economic claims made in the manuscript.
+4. **Source Verification Status:** 24 of 25 references are fully verified against authoritative publications. Source `[S-20]` (Mastercard Agent Pay) is marked **UNRESOLVED** because its specific newsroom URL path could not be independently verified; all claims in the manuscript have been audited to ensure zero dependence on `[S-20]`. Source `[S-05]` (LexisNexis) is verified for fraud cost multiples and manual process rates, but explicitly not for the informal 30–60 minute operational estimate. Source `[S-11]` (Chargeflow) is verified for its 25% contingency pricing structure.

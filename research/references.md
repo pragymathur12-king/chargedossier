@@ -2,6 +2,7 @@
 
 **Author:** Pragy Mathur  
 **Affiliation:** Integrated MBA Candidate (Class of 2027), Parul University  
+**Note on Affiliation:** Independent student research. This work was conducted independently by the author and was not supervised, sponsored, evaluated, or endorsed by Parul University, Mastercard, or any payment card network.  
 **Email:** pragymathur12@gmail.com  
 **Project:** Mastercard Opportunity Lab — ChargeDossier  
 **Paper:** *Deterministic Decision Support for Payment Dispute Evidence: A Synthetic Case Evaluation of Explainable Pre-Submission Auditing*  
@@ -39,7 +40,7 @@ This document provides the formal reference index mapping every citation key (`[
 | [S-17]   | Account Aggregator Framework (Sahamati)      | Tier 1 | Tripartite blind data pipe      |
 | [S-18]   | Small Business Insights (Intuit QuickBooks)  | Tier 2 | 45–50% cash flow struggle       |
 | [S-19]   | Test & Learn & Brighterion (Mastercard)      | Tier 1 | Sub-10ms cognitive risk scoring |
-| [S-20]   | Agent Pay Infrastructure (Mastercard)        | Tier 1 | Autonomous agent limits         |
+| [S-20]   | Agent Pay (Mastercard) [UNRESOLVED]           | Unresol| Press URL unverified; omitted   |
 | [S-21]   | Signal & Open Banking (Plaid)                | Tier 3 | Cash flow underwriting APIs     |
 | [S-22]   | Corporate Spend AI (Ramp / Brex)             | Tier 3 | Autonomous expense governance   |
 | [S-23]   | Upload Evidence API (Chargeflow)             | Tier 3 | 5 files, 5MB limit per file     |
@@ -80,7 +81,7 @@ This document provides the formal reference index mapping every citation key (`[
 * **Full Citation:** LexisNexis Risk Solutions, "True Cost of Fraud™ Study: E-commerce and Retail (North American Edition)," *LexisNexis Insights*, Apr. 2025.
 * **URL:** [https://risk.lexisnexis.com/insights-resources/research/true-cost-of-fraud-study-ecommerce-and-retail](https://risk.lexisnexis.com/insights-resources/research/true-cost-of-fraud-study-ecommerce-and-retail)
 * **Reliability Tier:** Tier 2 — Independent Empirical Benchmark
-* **Context & Application:** Provides the empirical finding that every $1.00 of direct fraud costs US retail/e-commerce merchants $4.61 to $5.13 in total organizational expenses, and notes that 41% of merchants continue to rely on manual dispute reviews.
+* **Context & Application:** Provides the empirical finding that every $1.00 of direct fraud costs US retail/e-commerce merchants $4.61 to $5.13 in total organizational expenses, and notes that 41% of merchants continue to rely on manual dispute reviews. *Note on Claim Boundaries:* Does not measure an empirical 30–60 minute clock; that figure is an informal trade estimate from vendor/operational literature [S-15, S-25].
 
 ### [S-06] Merchant Risk Council (MRC) & Cybersource: Global eCommerce Report
 * **Full Citation:** Merchant Risk Council & Cybersource, "Global eCommerce Payments and Fraud Report," *MRC Research*, 2024.
@@ -116,7 +117,7 @@ This document provides the formal reference index mapping every citation key (`[
 * **Full Citation:** Chargeflow Inc., "Product Platform, Representment Automation & Public Pricing Structure," *Chargeflow Portal*, 2024.
 * **URL:** [https://www.chargeflow.io/pricing](https://www.chargeflow.io/pricing)
 * **Reliability Tier:** Tier 3 — Commercial Vendor Specification
-* **Context & Application:** Documents the 25% contingency take-rate on recovered funds, illustrating the economic drag on high-ticket goods ($150 to $1,500 AOV).
+* **Context & Application:** Documents Chargeflow's specific 25% contingency take-rate on recovered funds, illustrating the economic drag on high-ticket goods ($150 to $1,500 AOV). Scoped strictly to this specific vendor's published pricing.
 
 ### [S-12] Justt.ai: Autonomous Chargeback Management
 * **Full Citation:** Justt.ai, "How It Works: Autonomous Chargeback Management," *Justt Product Overview*, 2024.
@@ -166,11 +167,11 @@ This document provides the formal reference index mapping every citation key (`[
 * **Reliability Tier:** Tier 1 — Corporate Technology Specification
 * **Context & Application:** Analyzes sub-10ms cognitive computing and real-time transaction risk scoring at payment network scale.
 
-### [S-20] Mastercard Corporate Communications: Agent Pay Infrastructure
+### [S-20] Mastercard Corporate Communications: Agent Pay [UNRESOLVED]
 * **Full Citation:** Mastercard Corporate Communications, "Mastercard Agent Pay: Autonomous AI Agent Transaction Infrastructure," *Mastercard Newsroom*, 2024.
 * **URL:** [https://www.mastercard.com/news/press-releases/2024/agentic-ai-commerce-infrastructure/](https://www.mastercard.com/news/press-releases/2024/agentic-ai-commerce-infrastructure/)
-* **Reliability Tier:** Tier 1 — Strategic Platform Launch
-* **Context & Application:** Outlines scheme standards for autonomous AI agents transacting within pre-authorized governance envelopes.
+* **Reliability Tier:** Tier 1 — Strategic Platform Announcement
+* **Status:** **UNRESOLVED** (The specific press release URL slug is unverified in live testing; this reference is omitted from all manuscript claims).
 
 ### [S-21] Plaid Inc.: Open Banking APIs and Cash Flow Underwriting
 * **Full Citation:** Plaid Inc., "Open Banking APIs and Signal Cash Flow Underwriting Models," *Plaid Developer Documentation*, 2024.
